@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --main-bg-color: #006d77;
+    --main-border-color: #e0e0e0;
+    --main-text-color: #edf6f9;
+}
+body {
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+input[type='text'] {
+    padding: 10px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 5px;
+}
+input[type='text']:focus {
+    outline: none;
+    border-color: var(--main-text-color);
+}
+input[type='submit'] {
+    padding: 10px 20px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 5px;
+    background-color: var(--main-text-color);
+    color: var(--main-bg-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+img {
+    max-width: 100%;
+}
+.wrapper {
+   display: grid;
+   grid-gap: 20px;
+}
+.top {
+    display: grid;
+    grid-template-areas: "main main cta1"
+                         "main main cta2";
+}
+.main {
+    grid-area: main;
+    min-height: 400px;
+    background-color: var(--main-bg-color);
+    border: 1px solid var(--main-border-color);
+    background-image: url("https://e0.pxfuel.com/wallpapers/256/688/desktop-wallpaper-may-contain-plant-flower-sky-tree-nature-and-outdoor-beautiful-nature-flowers-graphy-beautiful-flowers-spa-flowers.jpg");
+    background-size: cover;
+    background-position: bottom-right;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+.coll {
+    background-color: rgba(16, 219, 104, 0.153);
+    display: grid;
+    border: 1px solid black;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+.coll p {
+    margin: 0;
+}
+.main > * {
+    background-color: chartreuse;
+    padding: 5px;
+    margin: 5px;
+}
+.coll1 {
+    grid-area: cta1;
+}
+.coll2 {
+    grid-area: cta2;
+}
+.description {
+    font-size: 60px;
+    font-weight: 300;
+}
+
+/* navigations */
+.menu-btn {
+    display: none;
+}
+.menu ul {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(227, 220, 12);
+    font-weight: 700;
+    font-size: 20px;
+}
+[aria-controls="menu-option"] {
+    display: none;
+}
+
+/*featured items */
+
+.guides {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.guides{
+    background-color: var(--main-bg-color)
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.guides .icon {
+    color: gray
+}
+.guides-tips h1{
+    text-align: center;
+    background: #0b0a01;
+    margin: 0;
+}
+.guide {
+    border: 1px solid var(--main-text-color);
+    margin: 10px;
+}
+.about {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    background-color: var(--main-bg-color);
+    padding: 50px;
+    align-items: center;
+}
+.about img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gallery {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid black;
+}
+.gallery h2 {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+.gallery h2:before, .gallery h2:after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, transparent, rgb(143, 125, 8), transparent);
+    justify-self: center;
+}
+@media(max-width: 1000px) {
+    .menu {
+        order: -1;
+        perspective: 800px;
+    }
+    [aria-controls="menu-list"] {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .menu-btn{
+        display: inline-block;
+    }
+    .menu ul {
+        max-height: 0; /* hide the menu  without remaing the space */
+        overflow: hidden;
+        transform: rotateX(90deg);
+        transition: all 0.5s;
+    }
+    [aria-expanded="true"] ~ ul {
+        display: grid;
+        max-height: 500px;
+        transform: rotateX(0);
+    }
+    [aria-expanded="false"] .close {
+        display: none;
+    }
+    [aria-expanded="true"] .close {
+        display: inline-block;
+    }
+    [aria-expanded="true"] .open {
+        display: none;
+    }
+}
+@media(max-width: 700px) {
+   .top {
+    grid-template-areas: 
+    "main main"
+    "cta1 cta2";
+   }
+   .about {
+       grid-template-columns: 1fr;
+   }
+}
+@media(max-width: 500px) {
+    .top {
+     grid-template-areas: 
+     "main"
+     "cta1"
+     "cta2";
+    }
+ }

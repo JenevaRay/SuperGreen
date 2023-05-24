@@ -5,23 +5,34 @@
 }
 :root {
     --main-bg-color: #006d77;
-    --main-border-color: #e0e0e0;
-    --main-text-color: #edf6f9;
+    --dark-bg-color: #001524;
+    --light-bg-color: #ebebeb;
+    --main-border-color: #076cd7;
+    --main-text-color: #02242f;
 }
 body {
-    background: var(--main-bg-color);
-    color: var(--main-text-color);
+    transition: background-color 0.2s;
 }
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
+}
+header h1 {
+    font-size: 30px;
+    font-weight: 300;
+}
+header img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 input[type='text'] {
     padding: 10px;
     border: 1px solid var(--main-border-color);
     border-radius: 5px;
+    width: 350px;
 }
 input[type='text']:focus {
     outline: none;
@@ -39,14 +50,39 @@ input[type='submit'] {
 img {
     max-width: 100%;
 }
+button {
+    padding: 10px 20px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 10%;
+    background-color: var(--main-text-color);
+    color: var(--main-bg-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+button.on {
+    background-color: #5cb85c;
+    color: #fff;
+}
+button.off {
+    background-color: #d9534f;
+    color: #fff;
+}
+body.on {
+    background-color: var(--light-bg-color);
+
+}
+body.off {
+    background-color: var(--dark-bg-color);
+    color: #fff;
+}
 .wrapper {
    display: grid;
    grid-gap: 20px;
 }
 .top {
     display: grid;
-    grid-template-areas: "main main cta1"
-                         "main main cta2";
+    grid-template-areas: "main main coll1"
+                         "main main coll2";
 }
 .main {
     grid-area: main;
@@ -62,9 +98,9 @@ img {
     justify-content: center;
 }
 .coll {
-    background-color: rgba(16, 219, 104, 0.153);
+    border: 1px solid var(--main-border-color);
+    background-color: none;
     display: grid;
-    border: 1px solid black;
     justify-items: center;
     align-items: center;
     align-content: center;
@@ -73,15 +109,15 @@ img {
     margin: 0;
 }
 .main > * {
-    background-color: chartreuse;
+    background-color: rgb(113, 113, 113);
     padding: 5px;
     margin: 5px;
 }
 .coll1 {
-    grid-area: cta1;
+    grid-area: coll1;
 }
 .coll2 {
-    grid-area: cta2;
+    grid-area: coll2;
 }
 .description {
     font-size: 60px;
@@ -105,7 +141,7 @@ img {
     padding: 10px;
     text-decoration: none;
     text-align: center;
-    background-color: rgb(227, 220, 12);
+    background-color: rgb(1, 91, 96);
     font-weight: 700;
     font-size: 20px;
 }
@@ -120,7 +156,6 @@ img {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 .guides{
-    background-color: var(--main-bg-color)
     padding: 10px;
     border: 1px solid black;
     text-align: center;
@@ -138,14 +173,13 @@ img {
     border: 1px solid var(--main-text-color);
     margin: 10px;
 }
-.about {
+.detail {
     display: grid;
     grid-template-columns: 400px 1fr;
-    background-color: var(--main-bg-color);
     padding: 50px;
     align-items: center;
 }
-.about img {
+.detail img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -174,12 +208,27 @@ img {
     content: "";
     width: 100%;
     height: 10px;
-    background: linear-gradient(to right, transparent, rgb(143, 125, 8), transparent);
+    background: linear-gradient(to right, transparent, rgb(5, 1, 69), transparent);
     justify-self: center;
 }
+
+footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin: 20px;
+    padding: 20px;
+    border-top: 1px solid var(--main-border-color);
+}
+footer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
 @media(max-width: 1000px) {
     .menu {
-        order: -1;
+        order: -1;  
         perspective: 800px;
     }
     [aria-controls="menu-list"] {
@@ -214,9 +263,9 @@ img {
    .top {
     grid-template-areas: 
     "main main"
-    "cta1 cta2";
+    "coll1 coll2";
    }
-   .about {
+   .detail {
        grid-template-columns: 1fr;
    }
 }
@@ -224,7 +273,22 @@ img {
     .top {
      grid-template-areas: 
      "main"
-     "cta1"
-     "cta2";
+     "coll1"
+     "coll2";
     }
+    input[type="text"] {
+        width: 150px
+    }
+    header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+    header h1 {
+        font-size: 20px;
+    }   
+    footer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
  }

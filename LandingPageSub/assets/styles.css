@@ -368,6 +368,10 @@ button,
 .list-inline-item:not(:last-child) {
     margin-right: 0.5rem;
 }
+footer ul li a {
+    color: var(--text-dark);
+    text-decoration: none;
+}
 
 .mb-2 {
     margin-bottom: 0.5rem !important;

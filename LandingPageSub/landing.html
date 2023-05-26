@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <!-- Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+     <!-- icons used for site from font awesome -->
     <script src="https://kit.fontawesome.com/4268e3dc68.js" crossorigin="anonymous"></script>
     <link href="assets/styles.css" rel="stylesheet" />
     <title>Practice Landing Page</title>
 </head>
 <body>
+    <!-- nav bar, will remain the same on both landing page and search results page -->
     <nav class="navbar navbar-light bg-light whole-nav">
         <div class="left-nav">
             <img class="logo" src="assets/images/garden-icon-transparent.png" alt="Garden">
@@ -25,13 +25,14 @@
             <input type="submit" value="Search" class="search-btn">
         </div>
     </nav>
+    <!-- this section will only appear on the landing page -->
     <header class="masthead">
         <div class="container position-relative">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="text-center text-white">
                         <!-- Page heading-->
-                        <h1 class="mb-5">This is a landing page!</h1>
+                        <h1 class="mb-5">Expert Gardening is One Search Away!</h1>
                         <form class="form-subscribe" id="contactForm">
                             <div class="row lg-search">
                                 <div class="col">
@@ -45,6 +46,7 @@
             </div>
         </div>
     </header>
+    <!-- three features area on landing page -->
     <section class="features-icons bg-light text-center">
         <div class="container">
             <div class="row">
@@ -52,21 +54,21 @@
                     <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                         <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
                         <h3>Watering Schedules</h3>
-                        <p class="lead mb-0">This is some text describing our feature</p>
+                        <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                         <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
                         <h3>Sunlight Needed</h3>
-                        <p class="lead mb-0">This is some text describing our feature</p>
+                        <p class="lead mb-0">Find out what amount of sunlight your specific plant needs.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-question"></i></div>
-                        <h3>Third Item</h3>
-                        <p class="lead mb-0">This is some text describing our feature</p>
+                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
+                        <h3>Weather Tracking</h3>
+                        <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
                     </div>
                 </div>
             </div>
@@ -78,27 +80,26 @@
             <div class="row g-0">
                 <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/agriculture.jpg')"></div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Gardening stuff yay</h2>
-                    <p class="lead mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati, nam laborurendis cumque? rrupti aliquid ducimus eius quae neque!</p>
+                    <h2>All Your Gardening Information In One Place</h2>
+                    <p class="lead mb-0">You no longer need to scour the internet looking for vital gardening information. The techniques and criteria needed to grow your favorite vegatables are all found with one easy search</p>
                 </div>
             </div>
             <div class="row g-0">
                 <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/veggies.jpg')"></div>
                 <div class="col-lg-6 my-auto showcase-text">
-                    <h2>Veggies and ish</h2>
-                    <p class="lead mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esci ducimus animiue porro quibinima distinctio fugiat veritatis esse.</p>
+                    <h2>Save Your Virtual Garden</h2>
+                    <p class="lead mb-0">Conveniently save plant searches to your online garden for fast and easy reference</p>
                 </div>
             </div>
             <div class="row g-0">
                 <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/woman-carrying-fruits-vegetables.jpg')"></div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Veggie veggie</h2>
-                    <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo non nostrum facilis obcaecati nesciunt. Ullam, doloremque corporis.</p>
+                    <h2>Keep Informed About The Weather</h2>
+                    <p class="lead mb-0">Using our built in weather feature, you will be able to stay up to date on your local weather to anticipate any adjustments you may need to make in the care of your plants</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Call to Action-->
     <!-- Footer-->
     <footer class="footer bg-light">
         <div class="container">

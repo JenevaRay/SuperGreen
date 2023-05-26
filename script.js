@@ -7,12 +7,14 @@ function handleSearch(event) {
     var searchPlant2 = searchPlant.value
     console.log(searchPlant2);
     handleLocalStorage("searchplant", "set")
-   
+
     fetch(`https://perenual.com/api/species-list?${searchPlant}page=1&${apiKey}&watering=frequent&sunlight=full_sun`)
         // return response .json
         .then(function (response) {
             return response.json();
-        }
-        )
-    
+        })
+        .then(function (data) {
+            console.log(data);
+            
+})
 }

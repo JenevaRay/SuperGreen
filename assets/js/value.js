@@ -11,16 +11,23 @@ cache = JSON.parse(localStorage.getItem("cache"))
 function displayPerenualInfo(div, perenualInfoObject) {
     console.log(perenualInfoObject)
     
-    let sunlightHeader = $("<h2>").text("Sunlight").appendTo(div)
     let plantIDs = Object.keys(perenualInfoObject)
     for (plantID in plantIDs) {
-        // console.log(plantIDs[plantID])
+        let sunlightHeader = $("<h2>").text("Sunlight").appendTo(div)
+        let wateringHeader = $("<h2>").text("Watering").appendTo(div)
+            // console.log(plantIDs[plantID])
         let ID = plantIDs[plantID]
         // if this is an array, which right now the only example we have is...
         if (Array.isArray(perenualInfoObject[ID].sunlight)) {
-            for (level in perenualInfoObject[ID].sunlight) {
-                let p = $("<p>").text(perenualInfoObject[ID].sunlight[level]).appendTo(div)
+            for (index in perenualInfoObject[ID].sunlight) {
+                let p = $("<p>").text(perenualInfoObject[ID].sunlight[index]).insertAfter(sunlightHeader)
             }
+        }
+        if (Array.isArray(perenualInfoObject[ID].watering)) {
+
+        } else {
+            let p = $("<p>").text(perenualInfoObject[ID].watering).insertAfter(wateringHeader)
+            console.log(perenualInfoObject[ID].watering)
         }
     }
 }
@@ -28,7 +35,6 @@ function displayPerenualInfo(div, perenualInfoObject) {
 function getPerenualSpeciesInfoByID(plantID) {    
     // cacheResults = lib.checkCache()
     gotPerenualInfo = false
-    // let plantID = 2292
     desiredPerenualInfo = {}
     let url = `https://perenual.com/api/species/details/${plantID}?key=${API.perenual}`
     if (!cache[url]) {            
@@ -98,16 +104,12 @@ function getPerenualSearchByNameInfoForPerenualSpeciesID(query) {
             if (!response.ok) {
                 console.log("Network response was not OK")
                 console.log(response)
-                // throw new Error("City not found!")
             }
             if (response.status === 200) {
                 return response.json();
             }
         }).then((jsonData) => {
-            // if (jsonData == "error") {
-            //     return "error"
-            // }
-            let info = ""
+            let IDs = {}
             console.log("fetching ${info} from perenual")
             console.log(jsonData.data[0])
             gotPerenualInfo = true;
@@ -182,10 +184,11 @@ function getTrefleInfo() {
         },50)
     }
     checkTrefleInfo()
-}
+}   
 // console.log(Object.keys(cache))
 // getPerenualAllSpeciesInfo("Tomato")
 getPerenualSearchByNameInfoForPerenualSpeciesID("tomato")
+
 getPerenualSpeciesInfoByID(2292)
 // getPerenualInfo()
 // getTrefleInfo()

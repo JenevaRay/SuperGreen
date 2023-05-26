@@ -5,13 +5,33 @@ API = {}
 API.perenual = "sk-zrou646ebab236f671023"
 API.trefle = "ZfBlNTHy7fc7eWQYcdcUOdMts9fDRXZQt2t3BcNDKU0"
 
-trefleInfo = {}
+var cache = {}
+cache = JSON.parse(localStorage.getItem("cache"))
 
-function getPerenualSpeciesInfo() {    
+function displayPerenualInfo(div, perenualInfoObject) {
+    console.log(perenualInfoObject)
+    
+    let sunlightHeader = $("<h2>").text("Sunlight").appendTo(div)
+    let plantIDs = Object.keys(perenualInfoObject)
+    for (plantID in plantIDs) {
+        // console.log(plantIDs[plantID])
+        let ID = plantIDs[plantID]
+        // if this is an array, which right now the only example we have is...
+        if (Array.isArray(perenualInfoObject[ID].sunlight)) {
+            for (level in perenualInfoObject[ID].sunlight) {
+                let p = $("<p>").text(perenualInfoObject[ID].sunlight[level]).appendTo(div)
+            }
+        }
+    }
+}
+
+function getPerenualSpeciesInfoByID(plantID) {    
     // cacheResults = lib.checkCache()
     gotPerenualInfo = false
+    // let plantID = 2292
+    desiredPerenualInfo = {}
     let url = `https://perenual.com/api/species/details/${plantID}?key=${API.perenual}`
-    if (!perenualInfo[url]) {            
+    if (!cache[url]) {            
         fetch(url).then((response) => {
             if (!response.ok) {
                 console.log("Network response was not OK")
@@ -25,19 +45,29 @@ function getPerenualSpeciesInfo() {
             // if (jsonData == "error") {
             //     return "error"
             // }
-            let info = ""
+            desiredPerenualInfo[plantID] = {
+                sunlight: jsonData.sunlight,
+                watering: jsonData.watering
+            }
             console.log("fetching ${info} from perenual")
             console.log(jsonData)
             gotPerenualInfo = true;
-            perenualInfo[url] = jsonData
-            localStorage.setItem("PerenualInfo", JSON.stringify(perenualInfo))
+            cache[url] = jsonData
+            localStorage.setItem("PerenualInfo", JSON.stringify(cache))
             // console.log(jsonData)
-
         })
-    } else {};
+    } else {
+        desiredPerenualInfo[plantID] = {
+            sunlight: cache[url].sunlight,
+            watering: cache[url].watering
+        }
+        gotPerenualInfo = true;
+        console.log("using cache")
+    };
     function checkPerenualInfo() {
         setTimeout(() => {
             if (gotPerenualInfo) {
+                displayPerenualInfo($("#PerenualSearchInfo"), desiredPerenualInfo)
                 // apis.getOWMCurrentbyLL(lat, long)
                 // apis.getOWMForecastbyLL(lat, long)            
             } else {
@@ -50,8 +80,8 @@ function getPerenualSpeciesInfo() {
 
 
 
-perenualInfo = {}
-function getPerenualSearchByNameInfo(query) {    
+
+function getPerenualSearchByNameInfoForPerenualSpeciesID(query) {    
     // cacheResults = lib.checkCache()
     gotPerenualInfo = false
     let queryString = ""
@@ -59,7 +89,11 @@ function getPerenualSearchByNameInfo(query) {
         queryString = `&q=${query}`
     }
     let url = `https://perenual.com/api/species-list?key=${API.perenual}${queryString}`
-    if (!perenualInfo[url]) {            
+    if (cache === null) {
+        cache = {}
+    }
+
+    if (!cache[url]) {            
         fetch(url).then((response) => {
             if (!response.ok) {
                 console.log("Network response was not OK")
@@ -75,14 +109,17 @@ function getPerenualSearchByNameInfo(query) {
             // }
             let info = ""
             console.log("fetching ${info} from perenual")
-            console.log(jsonData)
+            console.log(jsonData.data[0])
             gotPerenualInfo = true;
-            perenualInfo[url] = jsonData
-            localStorage.setItem("PerenualInfo", JSON.stringify(perenualInfo))
+            cache[url] = jsonData
+            localStorage.setItem("cache", JSON.stringify(cache))
             // console.log(jsonData)
 
         })
-    } else {};
+    } else {
+        console.log(`using cache for ${url}`)
+        console.log(cache[url])
+    };
     function checkPerenualInfo() {
         setTimeout(() => {
             if (gotPerenualInfo) {
@@ -146,8 +183,9 @@ function getTrefleInfo() {
     }
     checkTrefleInfo()
 }
-
+// console.log(Object.keys(cache))
 // getPerenualAllSpeciesInfo("Tomato")
-getPerenualSearchByNameInfo("Cyphomandra betacea")
+getPerenualSearchByNameInfoForPerenualSpeciesID("tomato")
+getPerenualSpeciesInfoByID(2292)
 // getPerenualInfo()
 // getTrefleInfo()

@@ -8,7 +8,7 @@ function handleSearch(event) {
     console.log(searchPlant2);
     handleLocalStorage("searchplant", "set")
    
-    fetch(`https://perenual.com/api/species-list?${searchPlant}page=1&${apiKey}&watering=frequent&sunlight=full_sun`);
+    fetch(`https://perenual.com/api/species-list?${searchPlant}page=1&${apiKey}&watering=frequent&sunlight=full_sun`)
         // return response .json
         .then(function (response) {
             return response.json();

@@ -259,7 +259,6 @@ button,
 .btn {
     --bs-btn-padding-x: 1rem;
     --bs-btn-padding-y: 0.75rem;
-    --bs-btn-font-family: ;
     --bs-btn-font-size: 1rem;
     --bs-btn-font-weight: 400;
     --bs-btn-line-height: 1.5;
@@ -273,7 +272,6 @@ button,
     --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
     display: inline-block;
     padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-    font-family: var(--bs-btn-font-family);
     font-size: var(--bs-btn-font-size);
     font-weight: var(--bs-btn-font-weight);
     line-height: var(--bs-btn-line-height);
@@ -308,15 +306,49 @@ button,
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity);
 }
+/* area with 3 features */
+.features-icons-icon {
+    height: 9rem;
+    font-size: 4.5rem;
+    align-items: center;
+    justify-content: center;
+}
 
-.h-100 {
-    height: 100% !important;
+.water {
+    color: rgb(38, 181, 224);
+}
+
+.sun {
+    color: rgb(255, 231, 109);
+}
+.d-flex {
+    display: flex !important;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+ /* showcase of 3 images */
+.showcase .showcase-text {
+    padding: 3rem;
+    
+}
+
+.showcase .showcase-img {
+    min-height: 30rem;
+    background-size: cover;
+    opacity: 0.85;
 }
 /* footer element */
 .footer {
     padding-top: 4rem;
     padding-bottom: 4rem;
     padding-left: 2rem;
+}
+
+.h-100 {
+    height: 100% !important;
 }
 
 .my-auto {
@@ -352,38 +384,6 @@ button,
 
 .mb-4 {
     margin-bottom: 1.5rem !important;
-}
-
-.features-icons-icon {
-    height: 7rem;
-    font-size: 4.5rem;
-    align-items: center;
-    justify-content: center;
-}
-
-.water {
-    color: rgb(38, 181, 224);
-}
-
-.sun {
-    color: rgb(255, 231, 109);
-}
-.d-flex {
-    display: flex !important;
-}
-
-.lead {
-    font-size: 1.25rem;
-    font-weight: 300;
-}
- /* showcase of 3 images */
-.showcase .showcase-text {
-    padding: 3rem;
-}
-
-.showcase .showcase-img {
-    min-height: 30rem;
-    background-size: cover;
 }
 
 @media (min-width: 768px) {

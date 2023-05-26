@@ -8,7 +8,7 @@ perenualInfo = {}
 function getPerenualInfo() {    
     // cacheResults = lib.checkCache()
     gotPerenualInfo = false
-    let url = `https://perenual.com/api/species-list?${API.perenual}`
+    let url = `https://perenual.com/api/species-list?key=${API.perenual}`
     if (!perenualInfo[url]) {            
         fetch(url).then((response) => {
             if (!response.ok) {
@@ -24,7 +24,7 @@ function getPerenualInfo() {
             //     return "error"
             // }
             let info = ""
-            console.log("fetching ${info} from trefle.io")
+            console.log("fetching ${info} from perenual")
             console.log(jsonData)
             gotPerenualInfo = true;
             perenualInfo[url] = jsonData
@@ -35,9 +35,9 @@ function getPerenualInfo() {
     } else {};
     function checkPerenualInfo() {
         setTimeout(() => {
-            if (gotTrefleInfo) {
-                apis.getOWMCurrentbyLL(lat, long)
-                apis.getOWMForecastbyLL(lat, long)            
+            if (gotPerenualInfo) {
+                // apis.getOWMCurrentbyLL(lat, long)
+                // apis.getOWMForecastbyLL(lat, long)            
             } else {
                 checkPerenualInfo()
             }
@@ -48,9 +48,15 @@ function getPerenualInfo() {
 function getTrefleInfo() {    
     // cacheResults = lib.checkCache()
     gotTrefleInfo = false
-    let url = `https://trefle.io/api/v1/plants?${API.trefle}`
+    let url = `https://trefle.io/api/v1/plants?token=${API.trefle}`
     if (!trefleInfo[url]) {            
-        fetch(url).then((response) => {
+        fetch(url, {
+            method: 'GET',
+            // 'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+            'mode': "cors"
+        }).then((response) => {
+            console.log("a word")
             if (!response.ok) {
                 console.log("Network response was not OK")
                 console.log(response)
@@ -76,8 +82,6 @@ function getTrefleInfo() {
     function checkTrefleInfo() {
         setTimeout(() => {
             if (gotTrefleInfo) {
-                apis.getOWMCurrentbyLL(lat, long)
-                apis.getOWMForecastbyLL(lat, long)            
             } else {
                 checkTrefleInfo()
             }
@@ -86,5 +90,5 @@ function getTrefleInfo() {
     checkTrefleInfo()
 }
 
-// getPerenualInfo()
-// getTrefleInfo()
+getPerenualInfo()
+getTrefleInfo()

@@ -1,4 +1,7 @@
-
+var currWind = document.getElementById("wind");
+var currTemp = document.getElementById("temp");
+var currHumidity = document.getElementById("humidity");
+var currWeatherList = document.getElementById("currentWeatherList");
 
 function handleSearch(event) {
     event.preventDefault()

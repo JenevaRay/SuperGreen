@@ -1,20 +1,23 @@
-var apiKey = "sk-ai9U646c22a32e62a1024"
-var searchPlant = document.getElementById("searchplant");
-var savedPlants = handleLocalStorage("plants");
-console.log(searchPlant);
+
+
 function handleSearch(event) {
     event.preventDefault()
-    var searchPlant2 = searchPlant.value
-    console.log(searchPlant2);
-    handleLocalStorage("searchplant", "set")
-
-    fetch(`https://perenual.com/api/species-list?${searchPlant}page=1&${apiKey}&watering=frequent&sunlight=full_sun`)
+    const searchWeather = document.getElementById("searchweather").value
+    handleLocalStorage("searchweather", "set")
+    // call function on form submit
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchWeather}&units=imperial&appid=${apiKey}`)
         // return response .json
         .then(function (response) {
-            return response.json();
+            return response.json()
         })
         .then(function (data) {
             console.log(data);
-            
-})
-}
+            const iconImg = document.createElement('img');
+            iconImg.setAttribute('class', 'icon-span-styling');
+            iconImg.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0]["icon"]}@2x.png`);
+            currWeatherList.append(iconImg);
+            currWind.textContent = "Wind: " + data.wind.speed + " m/h";
+            currTemp.textContent = "Temp: " + data.main.temp + " F";
+            currHumidity.textContent = "Humidity " + data.main.humidity + "%";
+        })
+    }

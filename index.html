@@ -54,63 +54,26 @@
         <div class="introduction">
             <h1>Super Green</h1>
         </div>
-  <div class="wrapper">
-    <div class="top">
-      <span class="main">
-        <h1 class="plant-name">plant name</h1>
-        <p class="sci-name">scientfic name</p>
-      </span>
-      <div class="coll coll1">
-        <p class="description">Short desc</p>
-        <span class="icon">&#x1F33F</span>
-      </div>
-      <div class="coll coll2">
-        <p class="description">weather</p>
-        <span class="icon">&#x1F324</span>
-      </div>
-    </div>
-    <nav class="menu">
-      <form>
-      <input id="searchweather" name="search"/>
-      <button class ="menu-btn" aria-expanded="false" aria-controls="option">
-        <span class="open">☰</span>
-        <span class="close">×</span>
-        Menu
-      </button>
-      <ul id="option">
-        <li>
-          <a href="">Link1</a>
-        </li>
-        <li>
-          <a href="">Link2</a>
-        </li>
-        <li>
-          <a href="">Link3</a>
-        </li>
-        <li>
-          <a href="">Link4</a>
-        </li>
-      </ul>
-    </form>
-    </nav>
-      <div class="desc">
-        <div class="message-box">
-          <div class="message-content">
-            <div class="message-icon">
-              <i class="fas fa-lightbulb"></i>
+
+        <div class="desc">
+            <div class="message-box">
+                <div class="message-content">
+                    <div class="message-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="message-text">
+                        <p>Introducing GreenLife: Your Ultimate Plant Companion!</p>
+                        <button class="learn">learn more</button>
+                    </div>
+                </div>
             </div>
-            <div class="message-text">
-              <p>Introducing GreenLife: Your Ultimate Plant Companion!</p>
-              <button class="learn">learn more</button>
-            </div>
-          </div>
-        </div>
-        <div class="desc-item">
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
+            <div class="desc-item">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+
                 </div>
             </div>
         </div>
@@ -161,11 +124,8 @@
                 $('close-btn').css('visibility', 'visible');
             });
         });
-navButton.addEventListener('click', toggleNav);
-</script>
 
-<script src="./js/script.js"></script>
-  var swiper = new Swiper(".mySwiper", {
+        var swiper = new Swiper(".mySwiper", {
       direction: "vertical",
       slidesPerView: 1,
       spaceBetween: 30,
@@ -181,7 +141,6 @@ navButton.addEventListener('click', toggleNav);
 //   event.stopPropagation();
 // }, {passive: false});
     </script>
-
 </body>
 
 </html>

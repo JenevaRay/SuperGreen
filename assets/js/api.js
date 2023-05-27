@@ -12,7 +12,7 @@ var debug = {
     dataToBeDisplayed: true,
 }
 
-function showPerenualSpeciesInfo(perenualApiKey, jQueryDiv, infoToShow) {    
+function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, infoToShow) {    
     /* perenualApiKey:  API key 
     **  such as     sk-zrou646ebab236f671020
     ** jQueryDiv:       a jQuery element to attach data to with the perenual plant ID written in
@@ -22,7 +22,7 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryDiv, infoToShow) {
     */
 
     // get the info from the HTML element itself (makes it easy to create the element with the data parameter already set, so it shows precisely what is intended)
-    plantID = jQueryDiv.data().plantPerenual
+    plantID = jQueryEl.data().plantPerenual
 
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
     gotPerenualInfo = false
@@ -64,22 +64,28 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryDiv, infoToShow) {
                     console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
                     console.log(cache[url])
                 }
-                // please feel free to edit this for your needs, so you can get the appearance you want.
-                // works for reference      let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
-                let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
-                // if it's an array, then we'll iterate through it..
-                if (Array.isArray(cache[url][infoToShow])) {
-                    for (index in cache[url][infoToShow]) {
-                        // ..and for each entry in the array, display it.
-                        // please feel free to edit this for your needs, so you can get the appearance you want.
-                        // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
-                        let p = $("<p>").text(cache[url][infoToShow][index]).insertAfter(header)
-                    }
+                if (infoToShow === "common_name") {
+                    jQueryEl.text(cache[url][infoToShow])
+                } else if (infoToShow === "scientific_name") {
+                    jQueryEl.text(cache[url][infoToShow])
                 } else {
-                    // if it's not an array, display the string.
                     // please feel free to edit this for your needs, so you can get the appearance you want.
-                    // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
-                    let p = $("<p>").text(cache[url][infoToShow]).insertAfter(header)
+                    // works for reference      let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
+                    let header = $("<h2>").text(infoToShow).appendTo(jQueryEl)
+                    // if it's an array, then we'll iterate through it..
+                    if (Array.isArray(cache[url][infoToShow])) {
+                        for (index in cache[url][infoToShow]) {
+                            // ..and for each entry in the array, display it.
+                            // please feel free to edit this for your needs, so you can get the appearance you want.
+                            // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
+                            let p = $("<p>").text(cache[url][infoToShow][index]).insertAfter(header)
+                        }
+                    } else {
+                        // if it's not an array, display the string.
+                        // please feel free to edit this for your needs, so you can get the appearance you want.
+                        // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
+                        let p = $("<p>").text(cache[url][infoToShow]).insertAfter(header)
+                    }
                 }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
@@ -296,12 +302,14 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
 
 
 // show all info (great for search)
-showPerenualSearch(API.perenual, $("#searchresults"), "tomato", "thumbnail")
+// showPerenualSearch(API.perenual, $("#searchresults"), "tomato", "thumbnail")
 
 
 
 // show specific info...
-showPerenualSpeciesInfo(API.perenual, $("#common-name"), "common_name")
-showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
-showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
+params = new URLSearchParams(window.location.search)
+showPerenualSpeciesInfo(API.perenual, $(".plant-name"), "common_name")
+showPerenualSpeciesInfo(API.perenual, $(".sci-name"), "scientific_name")
+// showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
+// showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
 

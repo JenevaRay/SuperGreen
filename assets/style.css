@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --main-bg-color: rgba(255, 255, 255, 0.8);;
+    --main-text-color: hsl(90, 50%, 50%);
+    --main-hover-color: #dad6d647;
+    --main-border-color: #ccc;
+}
+body {
+    min-height: 100vh;
+    background: var(--main-bg-color);
+    font-family: 'comfortaa', sans-serif;
+    background-image: url('./images/main-background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.introduction {
+    display: grid;
+    place-items: end;
+    margin-right: 5px;
+  }
+
+.introduction h1 {
+    font-size: 70px;
+    font-weight: 600;
+    color: var(--main-text-color);
+    text-align: center;
+    margin-bottom: 170px;
+    margin-right: 0px;
+}
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 100vh;
+    max-width: 250px;
+    top: 0;
+    position: fixed;
+    left: -100%;
+    overflow-y: auto;
+    transition: 0.6s;
+    transition-property: left;
+    color: var(--main-text-color); 
+}
+.navbar.active {
+    left: 0;
+    transition: 0.5s;
+}
+.navbar .navbar_items {
+    width: 100%;
+    margin-top: 80px;
+}
+.navbar .navbar-items .item {
+    position: relative;
+    cursor: pointer;   
+}
+.navbar .navbar-items .item:first-child {
+    position: relative;
+    cursor: pointer;    
+    margin-top: 50px;
+}
+.navbar .navbar-items .item a {
+    text-decoration: none;
+    color: var(--main-text-color);
+    font-size: 20px;
+    padding: 5px 30px;
+    display: block;
+    line-height: 60px;    
+    color: var(--main-text-color);
+}
+.navbar .navbar-items .item a:hover{
+    background-color: var(--main-hover-color);
+    color: #363636fa;
+}
+.navbar .navbar-items .item i {
+    margin-right: 15px;
+}
+#bars {
+  font-size: 30px;
+}
+.close-btn {
+    position: absolute;
+    right: 0;
+    margin: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.menu-btn {
+    position: absolute;
+    font-size: 20px;
+    margin: 25px;
+    cursor: pointer;
+    color: var(--main-text-color);
+}
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 20px 10px auto;
+  }
+  
+  .search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #cccccc6e;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .cool-search-button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .cool-search-button:hover {
+    background-color: var(--main-text-color);
+  }
+  
+  .search-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("search.png"); /* Replace with your search icon image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  
+  .logo img {
+   width: 30px;
+   margin-right: 10px;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+.message-box {
+  width: 300px;
+  background-color: transparent;
+  border: 1px solid #cccccc58;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+}
+
+.message-icon {
+  font-size: 34px;
+  color: var(--main-text-color);
+  margin-right: 10px;
+}
+
+.message-text p {
+  margin: 0;
+  color: var(--main-text-color);
+  transform: scale(1);
+  animation: pulse 1s ease-in-out infinite;
+ }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+.learn {
+    background-color: var(--main-text-color);
+    color: var(--main-bg-color);
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .social-icons {
+    display: flex;
+    flex-direction: column;
+    
+}
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.social-icons a {
+    margin-bottom: 10px;
+    margin-right: 10px; 
+    color: var(--main-text-color);
+}
+@media screen and (max-width: 500px){
+    .navbar {
+        max-width: 100%;
+    }
+    .navbar .navbar-items .item a {
+        font-size: 18px;
+    }
+    .menu-btn {
+        font-size: 18px;
+    }
+    .close-btn {
+        font-size: 18px;
+    }
+    .search-input {
+        width: 200px;
+  }
+  .search-container {
+    margin: 0 20px 10px auto;
+  }
+  .introduction h1 {
+    font-size: 50px;
+    writing-mode: vertical-rl;    
+  }
+}
+@media screen and (min-width: 1200px){
+  .message-box {
+    margin-left: 250px;
+    width: 400px;
+  }
+}

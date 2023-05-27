@@ -157,15 +157,18 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
                     let paywalled = false;
                     let imgLicenseRestricted = false;
                     // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
-                    let rowResult = $(`<div data-plant-perenual=${cache[url].data[row].id}>`).appendTo(jQueryDiv)
+                    let swiperEl = $(".swiper-slide").eq(row)
+                    rowResult = $(`<div data-plant-perenual=${cache[url].data[row].id}>`).appendTo(swiperEl)
+                    // rowResult = $(`<div data-plant-perenual=${cache[url].data[row].id}>`).addClass("swiper-slide").appendTo(jQueryDiv)
                     $("<h2>").text(`${cache[url].data[row].common_name}`).appendTo(rowResult)
                     // since this is useful in case we ever get Trefle working...
-                    $("<p>").text(`scientific name: ${cache[url].data[row].scientific_name}`).appendTo(rowResult)
+                    $("<p>").text(`${cache[url].data[row].scientific_name}`).appendTo(rowResult)
                     // in case of Attribution-ShareAlike License, we would have to make everything freely available, so we'll use it for proof-of-concept for now.
                     switch(cache[url].data[row].default_image.license_name) {
                         case "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication":
                             // freely usable
                         case "Attribution-ShareAlike License":
+                        case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
                             imgLicenseRestricted = true;
                             // use of this licence requires everything to be made copyleft (freely available upon request.)
                         case "authorized":
@@ -174,7 +177,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
                             break
                         case undefined:
                             paywalled = true;
-                            // we would get this one in case of paywall.
+                            // we would get this one in case of paywall, so we'll silently hide them
                             break;
                         default: 
                             console.log(cache[url].data[row].default_image.license_name + " not known!")
@@ -307,9 +310,15 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
 
 
 // show specific info...
-params = new URLSearchParams(window.location.search)
-showPerenualSpeciesInfo(API.perenual, $(".plant-name"), "common_name")
-showPerenualSpeciesInfo(API.perenual, $(".sci-name"), "scientific_name")
+
+
+
+// showPerenualSpeciesInfo(API.perenual, $(".plant-name"), "common_name")
+// showPerenualSpeciesInfo(API.perenual, $(".sci-name"), "scientific_name")
+
+
+
+
 // showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
 // showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
 

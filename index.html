@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>Super Green Plants solution</title>
+    <!-- cdn for swiper css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- cdn for fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8"></script>
+    <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- custom stylesheet-->
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Super Green Plants solution</title>
 </head>
 
 <body>
+    <!-- header section starts-->
     <header>
         <div class="menu-btn">
             <i id="bars" class="fas fa-bars"></i>
@@ -34,7 +40,7 @@
         </div>
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search Plants here">
-            <button type="submit" class="cool-search-button">
+            <button type="submit" class="search-button">
                 <span class="search-icon"></span>Search
             </button>
         </div>
@@ -42,34 +48,63 @@
             <img src="./assets/images/logo.png" alt="logo">
         </div>
     </header>
-
-    <section class="introduction-section">
+<!-- header section ends-->
+<!-- main section starts-->
+    <div class="first-main">
         <div class="introduction">
             <h1>Super Green</h1>
-        </div>      
-    </section>
-    <div class="footer">
-    <div class="message-box">
-        <div class="message-content">
-          <div class="message-icon">
-            <i class="fas fa-lightbulb"></i>
-          </div>
-          <div class="message-text">
-            <p>This is the right place where you can find all the plants information.</p>
-            <button class="learn">learn more</button>
-          </div>
         </div>
-      </div>
-      
-      <div class="footer-item">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
 
+        <div class="desc">
+            <div class="message-box">
+                <div class="message-content">
+                    <div class="message-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="message-text">
+                        <p>Introducing GreenLife: Your Ultimate Plant Companion!</p>
+                        <button class="learn">learn more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+
+                </div>
+            </div>
         </div>
     </div>
+<!-- main section ends -->
+<!-- swiper sliding section starts -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+<!-- footer section -->
+    <footer>
+        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a>
+        <br>
+        <p>© 2023 Super Green. All rights reserved.</p>
+    </footer>
+    <!-- cdn for swiper js -->    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- cdn for jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -82,6 +117,22 @@
                 $('close-btn').css('visibility', 'visible');
             });
         });
+
+        var swiper = new Swiper(".mySwiper", {
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      mousewheel: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+    var swiperContainer = document.querySelector(".swiper-container");
+
+//     swiperContainer.addEventListener("mousewheel", function (event) {
+//   event.stopPropagation();
+// }, {passive: false});
     </script>
 </body>
 

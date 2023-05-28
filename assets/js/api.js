@@ -1,8 +1,13 @@
 // need API for Trefle.io
 
 // need API for 
-API = {}
-API.perenual = "sk-zrou646ebab236f671023"
+// if (API !== {}) {
+//     API = {}
+// }
+// if (!API.perenual) {
+//     API.perenual = "sk-zrou646ebab236f671023"    
+// }
+
 
 var cache = {}
 cache = JSON.parse(localStorage.getItem("cache"))
@@ -20,13 +25,18 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, imgSize) {
     ** imgSize:         image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
     **  such as     "medium_url"
     */
+    let plantID = ""
 
-    // get the info from the HTML element itself (makes it easy to create the element with the data parameter already set, so it shows precisely what is intended)
-    if (jQueryEl.data() !== undefined) {
-        plantID = jQueryEl.data().plantPerenual
-    } else {
-        console.log("bad parameters!")
-        return false;
+    for (let [key, value] of params) {
+        if (key === "q") {
+            // showPerenualSearch(API.perenual, $(".swiper-wrapper"), value, "original_url")
+        } else if (key === "plantID") {
+            plantID = value
+            // showPerenualSpeciesInfo(API.perenual, $(".wrapper"), value, "thumbnail")
+            // showPerenualSearch(API.perenual, $("#searchresults"), "tomato", "thumbnail")
+        } else {
+            console.log(`search parameter ${key} not implemented`)
+        }
     }
 
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
@@ -119,6 +129,7 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, imgSize) {
                                                     imgLicenseRestricted = true;
                                                     // use of this licence requires everything to be made copyleft (freely available upon request.)
                                                 case "authorized":
+                                                    console.log(cache[url][key][imgSize])
                                                     $(`<img src=${cache[url][key][imgSize]}>`).insertAfter(header)
                                                     // move this section up or down depending on team agreement.
                                                     break

@@ -165,7 +165,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
                     $("<p>").text(`${cache[url].data[row].scientific_name}`).appendTo(rowResult)
                     // in case of Attribution-ShareAlike License, we would have to make everything freely available, so we'll use it for proof-of-concept for now.
                     switch(cache[url].data[row].default_image.license_name) {
-                        case "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication":
+                        case "CC0 1.0 Universal (CC0 1.0) Public Domain":
                             // freely usable
                         case "Attribution-ShareAlike License":
                         case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
@@ -319,6 +319,6 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
 
 
 
-// showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
-// showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
+showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
+showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
 

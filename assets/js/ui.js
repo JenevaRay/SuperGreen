@@ -1,7 +1,7 @@
 function withSearchResult(entry, perenualApiResult) {
     // to be used for search
     let id = perenualApiResult['id']
-    window.location.href = `${window.location.pathname}?plantID=${id}`
+    // window.location.href = `${window.location.pathname}?plantID=${id}`
 }
 
 params = new URLSearchParams(window.location.search)
@@ -13,15 +13,16 @@ for (let [key, value] of params) {
         }
         
     } else if (key === "plantID") {
+        targetDiv = $("<div>").appendTo(".swiper-wrapper")
         // commented out so we aren't querying the API needlessly during development of other needed features.
-        showPerenualSpeciesInfo(API.perenual, $(".wrapper"), "thumbnail")
+        // showPerenualSpeciesInfo(API.perenual, targetDiv, "thumbnail")
+        showPerenualSearch(API.perenual, targetDiv, "thumbnail")
     } else {
         console.log(`search parameter ${key} not implemented`)
     }
 }
 if (window.location.search == "" || invalidParams) { 
-    // window.location.href = `${window.location.pathname}?q=tomato`
-    window.location.href = `${window.location.pathname}?plantID=2292`
+    // window.location.href = `${window.location.pathname}?plantID=2292`
 }
     
 

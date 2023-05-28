@@ -12,17 +12,22 @@ var debug = {
     dataToBeDisplayed: true,
 }
 
-function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, infoToShow) {    
+function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, imgSize) {    
     /* perenualApiKey:  API key 
     **  such as     sk-zrou646ebab236f671020
-    ** jQueryDiv:       a jQuery element to attach data to with the perenual plant ID written in
+    ** jQueryEl:        a jQuery element to attach data to with the perenual plant ID written in
     **  such as     $('<div data-plant-perenual="2292">')
-    ** infoToShow:      one of ["sunlight", "watering"] to display info in the div.
-    **  such as     "sunlight"
+    ** imgSize:         image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
+    **  such as     "medium_url"
     */
 
     // get the info from the HTML element itself (makes it easy to create the element with the data parameter already set, so it shows precisely what is intended)
-    plantID = jQueryEl.data().plantPerenual
+    if (jQueryEl.data() !== undefined) {
+        plantID = jQueryEl.data().plantPerenual
+    } else {
+        console.log("bad parameters!")
+        return false;
+    }
 
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
     gotPerenualInfo = false
@@ -58,35 +63,110 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, infoToShow) {
     function checkPerenualInfo() {
         setTimeout(() => {
             // if we have the info in memory, and the information matches the information we can display:
-            if (gotPerenualInfo && Object.keys(cache[url]).includes(infoToShow)) {
+            if (gotPerenualInfo) {
                 // if we're debugging, show the source information to be shown
                 if (debug.dataToBeDisplayed) {
-                    console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
+                    // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
                     console.log(cache[url])
                 }
-                if (infoToShow === "common_name") {
-                    jQueryEl.text(cache[url][infoToShow])
-                } else if (infoToShow === "scientific_name") {
-                    jQueryEl.text(cache[url][infoToShow])
-                } else {
-                    // please feel free to edit this for your needs, so you can get the appearance you want.
-                    // works for reference      let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
-                    let header = $("<h2>").text(infoToShow).appendTo(jQueryEl)
-                    // if it's an array, then we'll iterate through it..
-                    if (Array.isArray(cache[url][infoToShow])) {
-                        for (index in cache[url][infoToShow]) {
-                            // ..and for each entry in the array, display it.
-                            // please feel free to edit this for your needs, so you can get the appearance you want.
-                            // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
-                            let p = $("<p>").text(cache[url][infoToShow][index]).insertAfter(header)
-                        }
+
+                for (let [key, value] of Object.entries(cache[url])) {
+                    let innerDiv = $("<div>").appendTo(jQueryEl) // for each data element, for custom styling.
+                    if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. Im sorry"].includes(value)) {
+                        innerDiv.hide()
                     } else {
-                        // if it's not an array, display the string.
-                        // please feel free to edit this for your needs, so you can get the appearance you want.
-                        // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
-                        let p = $("<p>").text(cache[url][infoToShow]).insertAfter(header)
+                        // console.log(key)
+                        let header = ""
+                        if (["id"].includes(key)) {
+                            // we already have this...  so we'll skip it!
+                        } else {
+                            if (["common_name"].includes(key)) {
+                                // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
+                                header = $("<h1>").text(key).appendTo(innerDiv)
+                            } else {
+                                // the default header style
+                                header = $("<h2>").text(key).appendTo(innerDiv)
+                            }
+                            switch (typeof cache[url][key]) {
+                                case "string":
+                                    let p = $("<p>").text(cache[url][key]).insertAfter(header)
+                                    break;
+                                case "object":
+                                    if (Array.isArray(cache[url][key])) {
+                                        if (cache[url][key].length == 0) {
+                                            innerDiv.hide()
+                                        }
+                                        for (index in cache[url][key]) {
+                                            let p = $("<p>").text(cache[url][key][index]).insertAfter(header)
+                                        }
+                                    } else {
+                                        innerObj = cache[url][key]
+                                        if (key == "hardiness_location") {
+                                            iframeHtml = innerObj.full_iframe
+                                            let iFrame = $(`${iframeHtml}`).insertAfter(header)
+                                            hardinessURL = innerObj.full_url
+                                            // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
+                                            // this seems to be a full page, and is NOT cacheable.
+                                        } else if (key == "hardiness") {
+                                            let max = cache[url][key].max
+                                            let min = cache[url][key].min
+                                        } else if (key == "default_image") {
+                                            switch(cache[url][key].license_name) {
+                                                case "CC0 1.0 Universal (CC0 1.0) Public Domain":
+                                                    // freely usable
+                                                case "Attribution-ShareAlike License":
+                                                case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
+                                                    imgLicenseRestricted = true;
+                                                    // use of this licence requires everything to be made copyleft (freely available upon request.)
+                                                case "authorized":
+                                                    $(`<img src=${cache[url][key][imgSize]}>`).insertAfter(header)
+                                                    // move this section up or down depending on team agreement.
+                                                    break
+                                                case undefined:
+                                                    paywalled = true;
+                                                    // we would get this one in case of paywall, so we'll silently hide them
+                                                    break;
+                                                default: 
+                                                    console.log(cache[url].data[row].default_image.license_name + " not known!")
+                                            }
+                        
+                                        } else {
+                                            console.log(key)
+                                            
+                                            for (let [innerKey, innerValue] in innerObj) {
+                                                console.log(innerKey)
+                                                // console.log(innerValue)
+                                            }
+                                        }
+                                        
+                                    }
+                                    break;
+                                case "boolean":
+                                    booleanFields = ["cuisine"]
+                                    if (cache[url][key]) {
+                                        // if it evaluates to True
+                                        if (booleanFields.includes(key)) {
+                                            header.text("IS " + header.text())
+                                        }    
+                                    } else {
+                                        // if it evaluates to False
+                                        header.text("IS NOT " + header.text())
+                                    }
+                                    // console.log(cache[url][key])
+                                    break;
+                                default:
+                                    console.log(typeof cache[url][key])
+                                    break;
+                            }
+                        }
                     }
+                    
                 }
+
+
+
+
+
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
                 checkPerenualInfo()
@@ -122,7 +202,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
         queryString = `&q=${query}`
     }
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
-    let url = `https://perenual.com/api/species-list?key=${API.perenual}${queryString}`
+    let url = `https://perenual.com/api/species-list?key=${perenualApiKey}${queryString}`
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url).then((response) => {
@@ -164,6 +244,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
                     // since this is useful in case we ever get Trefle working...
                     $("<p>").text(`${cache[url].data[row].scientific_name}`).appendTo(rowResult)
                     // in case of Attribution-ShareAlike License, we would have to make everything freely available, so we'll use it for proof-of-concept for now.
+                    // considering making this a function.  1 of 2 instances.
                     switch(cache[url].data[row].default_image.license_name) {
                         case "CC0 1.0 Universal (CC0 1.0) Public Domain":
                             // freely usable
@@ -215,33 +296,13 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
                         let p = $("<p>").text(cache[url].data[row].sunlight).insertAfter(sunlight)
                     }
 
+                    if (paywalled) {
+                        rowResult.hide();
+                    }
                     if (debug.dataToBeDisplayed) {
-                        if (paywalled) {
-                            rowResult.hide();
-                        } else {
-                            console.log(cache[url].data[row])
-                        }
+                        console.log(cache[url].data[row])
                     }
                 }
-                // if (["watering", "sunlight"].includes(infoToShow)) {
-                //     // if we're debugging, show the source information to be shown
-                //     // please feel free to edit this for your needs, so you can get the appearance you want.
-                //     // works for reference      let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
-                //     let header = $("<h2>").text(infoToShow).appendTo(jQueryDiv)
-                //     // if it's an array, then we'll iterate through it..
-                //     if (Array.isArray(cache[url][infoToShow])) {
-                //         for (index in cache[url][infoToShow]) {
-                //             // ..and for each entry in the array, display it.
-                //             // please feel free to edit this for your needs, so you can get the appearance you want.
-                //             // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
-                //             let p = $("<p>").text(cache[url][infoToShow][index]).insertAfter(header)
-                //         }
-                //     } else {
-                //         // if it's not an array, display the string.
-                //         // please feel free to edit this for your needs, so you can get the appearance you want.
-                //         // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
-                //         let p = $("<p>").text(cache[url][infoToShow]).insertAfter(header)
-                //     }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
                 checkPerenualInfo()                
@@ -311,14 +372,12 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, query, imgSize) {
 
 // show specific info...
 
-
-
-// showPerenualSpeciesInfo(API.perenual, $(".plant-name"), "common_name")
-// showPerenualSpeciesInfo(API.perenual, $(".sci-name"), "scientific_name")
-
-
-
-
-showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
-showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
+// for (key in infoObj) {
+//     // showPerenualSpeciesInfo(API.perenual, $(`<div class=${key}>`).appendTo(allInfoDiv), "common_name", 2292)
+//     console.log(key)
+// }
+// showPerenualSpeciesInfo(API.perenual, $("#common-name"), "common_name")
+// showPerenualSpeciesInfo(API.perenual, $("#care-guide"), "care-guides")
+// showPerenualSpeciesInfo(API.perenual, $("#wateringInfo"), "watering")
+// showPerenualSpeciesInfo(API.perenual, $("#sunlightInfo"), "sunlight")
 

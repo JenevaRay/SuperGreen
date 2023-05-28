@@ -3,7 +3,7 @@
 params = new URLSearchParams(window.location.search)
 for (let [key, value] of params) {
     if (key === "q") {
-        showPerenualSearch(API.perenual, $(".swiper-wrapper"), value, "thumbnail")
+        showPerenualSearch(API.perenual, $(".swiper-wrapper"), value, "original_url")
     }
 }
 

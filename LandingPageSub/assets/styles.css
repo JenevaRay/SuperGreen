@@ -371,9 +371,9 @@ footer ul li a {
     margin-bottom: 1.5rem !important;
 }
 /* class hide so that we are able to have a 1 page format using JS to add and remove this class upon event */
-.hide {
+ .hide { 
     display: none;
-}
+} 
 
 @media (min-width: 768px) {
     .showcase .showcase-text {

@@ -33,7 +33,6 @@ function showEachSearchResult(entry, perenualApiResult, linked = false) {
     // to be used for search
 
     
-    let id = perenualApiResult['id']
     // window.location.href = `${window.location.pathname}?plantID=${id}`
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}">`).appendTo($('#results'))
     for (let [key, value] of Object.entries(perenualApiResult)) {
@@ -41,12 +40,15 @@ function showEachSearchResult(entry, perenualApiResult, linked = false) {
         let imgLicenseRestricted = false;
         // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
         let innerDiv = ""
-        if (["id"].includes(key) && linked) {
-            let plantID = value
-            thisDiv.on("click", () => {
-                // console.log(plantID)
-                window.location.href = `${window.location.pathname}?plantID=${plantID}`
-        })} else if (["medicinal_method"].includes(key)) {
+        if (["id"].includes(key)) {
+            if (linked) {
+                let plantID = value
+                thisDiv.on("click", () => {
+                    // console.log(plantID)
+                    window.location.href = `${window.location.pathname}?plantID=${plantID}`
+                })
+            }
+        } else if (["medicinal_method"].includes(key)) {
             // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
         } else if (["Coming Soon"].includes(value)) {
             // innerDiv.hide()

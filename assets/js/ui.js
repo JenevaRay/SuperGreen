@@ -3,7 +3,8 @@ function eachSearchResult(entry, perenualApiResult) {
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
     
-    imgSize = "thumbnail"
+    // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
+    imgSize = "original_url"
     
     // to be used for search
 
@@ -22,7 +23,7 @@ function eachSearchResult(entry, perenualApiResult) {
         } else {
             // console.log(key)
             let header = ""
-            if (["id"].includes(key)) {
+            if (["id", "medicinal_method"].includes(key)) {
                 // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
             } else if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.

@@ -11,9 +11,9 @@ function handleSearch(event) {
             return response.json()
         })
 
-        .then((jsonData.rain) {
+        .then((jsonData) => {
         console.log(jsonData.rain);
-        currPrecip.textContent = "Precipitation: " + data.wind.speed + " mm"
+        currPrecip.textContent = "Precipitation: " + jsonData.rain + " mm"
 
     })
 }

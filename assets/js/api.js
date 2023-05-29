@@ -18,10 +18,6 @@ var debug = {
     dataToBeDisplayed: true,
 }
 
-
-
-
-
 function getPerenualPlantIDName(perenualApiKey, searchString) {    
     /* perenualApiKey:  API key 
     **  such as     sk-zrou646ebab236f671020
@@ -93,7 +89,6 @@ function getPerenualPlantIDName(perenualApiKey, searchString) {
     }
     checkPerenualInfo()
 }
-
 
 function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, imgSize) {    
     /* perenualApiKey:  API key 
@@ -291,9 +286,9 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, imgSize) {
             console.log(`search parameter ${key} not implemented`)
         }
     }
-
+    
     // get the info from the HTML element itself (makes it easy to create the element with the data parameter already set, so it shows precisely what is intended)
-    plantID = jQueryDiv.data().plantPerenual
+    // plantID = jQueryDiv.data().plantPerenual
 
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
     gotPerenualInfo = false
@@ -320,7 +315,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, imgSize) {
                 return response.json();
             }
         }).then((jsonData) => {
-            if (debug.cache) {console.log("fetching info");}
+            if (debug.cache) {console.log(`fetching info from ${url}`);}
             // we'll put the fetched info into cache
             cache[url] = jsonData
             // say that we got the information...
@@ -340,6 +335,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, imgSize) {
                 for (row in cache[url].data) {
                     eachSearchResult(row, cache[url].data[row])
                 }
+
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
                 checkPerenualInfo()                

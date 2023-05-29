@@ -1,4 +1,6 @@
 function eachSearchResult(entry, perenualApiResult) {
+    // do keep in mind that this is intentionally one API endpoint for consistency in development and viewing.
+
     // feel free to edit this for your needs - keep in mind that
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
@@ -16,16 +18,17 @@ function eachSearchResult(entry, perenualApiResult) {
         let paywalled = false;
         let imgLicenseRestricted = false;
         // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
-        
-        let innerDiv = $(`<div class="${key}">`).appendTo(thisDiv) // for each data element, for custom styling.
-        if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. Im sorry"].includes(value)) {
-            innerDiv.hide()
+        let innerDiv = ""
+        if (["id", "medicinal_method"].includes(key)) {
+            // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
+        } else if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. Im sorry"].includes(value)) {
+            // innerDiv.hide()
         } else {
+            innerDiv = $(`<div class="${key}">`).appendTo(thisDiv) // for each data element, for custom styling.
             // console.log(key)
             let header = ""
-            if (["id", "medicinal_method"].includes(key)) {
-                // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
-            } else if (["common_name"].includes(key)) {
+            if (["common_name"].includes(key)) {
+                console.log(value)
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
                 header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["scientific_name"].includes(key)) {

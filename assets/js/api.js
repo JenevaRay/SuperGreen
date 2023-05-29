@@ -6,7 +6,8 @@ if (API !== {}) {
     API = {}
 }
 if (!API.perenual) {
-    API.perenual = "sk-zrou646ebab236f671023"    
+    // API.perenual = "sk-zrou646ebab236f671023"    
+    API.perenual = "sk-uzQv6475151f07b921086"
 }
 
 
@@ -152,100 +153,99 @@ function showPerenualSpeciesInfo(perenualApiKey, jQueryEl, imgSize) {
                     // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
                     console.log(cache[url])
                 }
-
-                for (let [key, value] of Object.entries(cache[url])) {
-                    let innerDiv = $(`<div class="${key}">`).appendTo(jQueryEl) // for each data element, for custom styling.
-                    if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. Im sorry"].includes(value)) {
-                        innerDiv.hide()
-                    } else {
-                        // console.log(key)
-                        let header = ""
-                        if (["id"].includes(key)) {
-                            // we already have this...  so we'll skip it!
-                        } else {
-                            if (["common_name"].includes(key)) {
-                                // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                                header = $("<h1>").text(key).appendTo(innerDiv)
-                            } else {
-                                // the default header style
-                                header = $("<h2>").text(key).appendTo(innerDiv)
-                            }
-                            switch (typeof cache[url][key]) {
-                                case "string":
-                                    let p = $("<p>").text(cache[url][key]).insertAfter(header)
-                                    break;
-                                case "object":
-                                    if (Array.isArray(cache[url][key])) {
-                                        if (cache[url][key].length == 0) {
-                                            innerDiv.hide()
-                                        }
-                                        for (index in cache[url][key]) {
-                                            let p = $("<p>").text(cache[url][key][index]).insertAfter(header)
-                                        }
-                                    } else {
-                                        innerObj = cache[url][key]
-                                        if (key == "hardiness_location") {
-                                            iframeHtml = innerObj.full_iframe
-                                            let iFrame = $(`${iframeHtml}`).insertAfter(header)
-                                            hardinessURL = innerObj.full_url
-                                            // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
-                                            // this seems to be a full page, and is NOT cacheable.
-                                        } else if (key == "hardiness") {
-                                            let max = cache[url][key].max
-                                            let min = cache[url][key].min
-                                        } else if (key == "default_image") {
-                                            switch(cache[url][key].license_name) {
-                                                case "CC0 1.0 Universal (CC0 1.0) Public Domain":
-                                                    // freely usable
-                                                case "Attribution-ShareAlike License":
-                                                case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
-                                                    imgLicenseRestricted = true;
-                                                    // use of this licence requires everything to be made copyleft (freely available upon request.)
-                                                case "authorized":
-                                                    console.log(cache[url][key][imgSize])
-                                                    $(`<img src=${cache[url][key][imgSize]}>`).insertAfter(header)
-                                                    // move this section up or down depending on team agreement.
-                                                    break
-                                                case undefined:
-                                                    paywalled = true;
-                                                    // we would get this one in case of paywall, so we'll silently hide them
-                                                    break;
-                                                default: 
-                                                    console.log(cache[url].data[row].default_image.license_name + " not known!")
-                                            }
+                eachSearchResult(cache[url].id, cache[url])
+                // for (let [key, value] of Object.entries(cache[url])) {
+                //     let innerDiv = $(`<div class="${key}">`).appendTo(jQueryEl) // for each data element, for custom styling.
+                //     if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. Im sorry"].includes(value)) {
+                //         innerDiv.hide()
+                //     } else {
+                //         // console.log(key)
+                //         let header = ""
+                //         if (["id"].includes(key)) {
+                //             // we already have this...  so we'll skip it!
+                //         } else {
+                //             if (["common_name"].includes(key)) {
+                //                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
+                //                 header = $("<h1>").text(key).appendTo(innerDiv)
+                //             } else {
+                //                 // the default header style
+                //                 header = $("<h2>").text(key).appendTo(innerDiv)
+                //             }
+                //             switch (typeof cache[url][key]) {
+                //                 case "string":
+                //                     let p = $("<p>").text(cache[url][key]).insertAfter(header)
+                //                     break;
+                //                 case "object":
+                //                     if (Array.isArray(cache[url][key])) {
+                //                         if (cache[url][key].length == 0) {
+                //                             innerDiv.hide()
+                //                         }
+                //                         for (index in cache[url][key]) {
+                //                             let p = $("<p>").text(cache[url][key][index]).insertAfter(header)
+                //                         }
+                //                     } else {
+                //                         innerObj = cache[url][key]
+                //                         if (key == "hardiness_location") {
+                //                             iframeHtml = innerObj.full_iframe
+                //                             let iFrame = $(`${iframeHtml}`).insertAfter(header)
+                //                             hardinessURL = innerObj.full_url
+                //                             // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
+                //                             // this seems to be a full page, and is NOT cacheable.
+                //                         } else if (key == "hardiness") {
+                //                             let max = cache[url][key].max
+                //                             let min = cache[url][key].min
+                //                         } else if (key == "default_image") {
+                //                             switch(cache[url][key].license_name) {
+                //                                 case "CC0 1.0 Universal (CC0 1.0) Public Domain":
+                //                                     // freely usable
+                //                                 case "Attribution-ShareAlike License":
+                //                                 case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
+                //                                     imgLicenseRestricted = true;
+                //                                     // use of this licence requires everything to be made copyleft (freely available upon request.)
+                //                                 case "authorized":
+                //                                     console.log(cache[url][key][imgSize])
+                //                                     $(`<img src=${cache[url][key][imgSize]}>`).insertAfter(header)
+                //                                     // move this section up or down depending on team agreement.
+                //                                     break
+                //                                 case undefined:
+                //                                     paywalled = true;
+                //                                     // we would get this one in case of paywall, so we'll silently hide them
+                //                                     break;
+                //                                 default: 
+                //                                     console.log(cache[url].data[row].default_image.license_name + " not known!")
+                //                             }
                         
-                                        } else {
-                                            console.log(key)
+                //                         } else {
+                //                             console.log(key)
                                             
-                                            for (let [innerKey, innerValue] in innerObj) {
-                                                console.log(innerKey)
-                                                // console.log(innerValue)
-                                            }
-                                        }
+                //                             for (let [innerKey, innerValue] in innerObj) {
+                //                                 console.log(innerKey)
+                //                                 // console.log(innerValue)
+                //                             }
+                //                         }
                                         
-                                    }
-                                    break;
-                                case "boolean":
-                                    booleanFields = ["cuisine"]
-                                    if (cache[url][key]) {
-                                        // if it evaluates to True
-                                        if (booleanFields.includes(key)) {
-                                            header.text("IS " + header.text())
-                                        }    
-                                    } else {
-                                        // if it evaluates to False
-                                        header.text("IS NOT " + header.text())
-                                    }
-                                    // console.log(cache[url][key])
-                                    break;
-                                default:
-                                    console.log(typeof cache[url][key])
-                                    break;
-                            }
-                        }
-                    }
-                    
-                }
+                //                     }
+                //                     break;
+                //                 case "boolean":
+                //                     booleanFields = ["cuisine"]
+                //                     if (cache[url][key]) {
+                //                         // if it evaluates to True
+                //                         if (booleanFields.includes(key)) {
+                //                             header.text("IS " + header.text())
+                //                         }    
+                //                     } else {
+                //                         // if it evaluates to False
+                //                         header.text("IS NOT " + header.text())
+                //                     }
+                //                     // console.log(cache[url][key])
+                //                     break;
+                //                 default:
+                //                     console.log(typeof cache[url][key])
+                //                     break;
+                //             }
+                //         }
+                //     }
+                // }
 
 
 

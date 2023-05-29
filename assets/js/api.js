@@ -72,12 +72,12 @@ function getPerenualPlantIDName(perenualApiKey, searchString) {
                         // innerDiv.hide()
                     } else {
                         eachSearchResult(row, cache[url].data[row])
-                        // console.log(cache[url].data[row])
-                        // results = {
-                        //     id: cache[url].data[row].id,
-                        //     common_name: cache[url].data[row].common_name
-                        // }
-                        // console.log(results)
+                        console.log(cache[url].data[row])
+                        results = {
+                            id: cache[url].data[row].id,
+                            common_name: cache[url].data[row].common_name
+                        }
+                        console.log(results)
                     }
                 }
             } else {

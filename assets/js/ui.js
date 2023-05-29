@@ -28,7 +28,7 @@ function showEachSearchResult(entry, perenualApiResult, linked = false) {
     // array matches are used for ease of categorical changes.
     
     // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
-    imgSize = "original_url"
+    imgSize = "thumbnail"
     
     // to be used for search
 
@@ -103,7 +103,7 @@ function showEachSearchResult(entry, perenualApiResult, linked = false) {
                                     console.log(perenualApiResult)
                                 }
                                 // p = $("<p>").text(`min: ${min}, max: ${max}`).insertAfter(header)
-                            } else if (key == "default_image" && perenualApiResult[key][imgSize] != "https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/og/49255769768_df55596553_b.jpg") {
+                            } else if (key == "default_image" && perenualApiResult[key][imgSize].includes("49255769768_df55596553_b.jpg")) {
                                 switch(perenualApiResult[key].license_name) {
                                     case undefined:
                                         paywalled = true;

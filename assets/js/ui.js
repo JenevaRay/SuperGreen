@@ -103,7 +103,7 @@ function showEachSearchResult(entry, perenualApiResult, linked = false) {
                                     console.log(perenualApiResult)
                                 }
                                 // p = $("<p>").text(`min: ${min}, max: ${max}`).insertAfter(header)
-                            } else if (key == "default_image" && perenualApiResult[key][imgSize].includes("49255769768_df55596553_b.jpg")) {
+                            } else if (key == "default_image" && !perenualApiResult[key][imgSize].includes("49255769768_df55596553_b.jpg")) {
                                 switch(perenualApiResult[key].license_name) {
                                     case undefined:
                                         paywalled = true;

@@ -7,9 +7,7 @@ function handleSearch(event) {
     event.preventDefault()
     const searchWeather = document.getElementById("searchweather").value
     handleLocalStorage("searchweather", "set")
-    // call function on form submit
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchWeather}&units=imperial&appid=${apiKey}`)
-        // return response .json
         .then(function (response) {
             return response.json()
         })

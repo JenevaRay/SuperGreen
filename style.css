@@ -4,11 +4,12 @@
     box-sizing: border-box;
 }
 :root {
-    --main-bg-color: #006d77;
+    --main-bg-color: #ffffff;
     --dark-bg-color: #001524;
-    --light-bg-color: #ebebeb;
-    --main-border-color: #076cd7;
+    --light-bg-color: #fdf5eb;
+    --main-border-color: #049209;
     --main-text-color: #02242f;
+    --accent-blue: #2d7ebc;
 }
 body {
     transition: background-color 0.2s;
@@ -109,7 +110,7 @@ body.off {
     margin: 0;
 }
 .main > * {
-    background-color: rgb(113, 113, 113);
+    background-color: rgb(255, 255, 255);
     padding: 5px;
     margin: 5px;
 }
@@ -141,10 +142,12 @@ body.off {
     padding: 10px;
     text-decoration: none;
     text-align: center;
-    background-color: rgb(1, 91, 96);
+    background-color: rgb(190, 255, 147);
     font-weight: 700;
     font-size: 20px;
+    border-radius: 8px;
 }
+
 [aria-controls="menu-option"] {
     display: none;
 }
@@ -155,7 +158,7 @@ body.off {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-.guides{
+.guides {
     padding: 10px;
     border: 1px solid black;
     text-align: center;
@@ -166,8 +169,10 @@ body.off {
 }
 .guides-tips h1{
     text-align: center;
-    background: #0b0a01;
+    background: var(--accent-blue);
     margin: 0;
+    color: white;
+    padding: 10px;
 }
 .guide {
     border: 1px solid var(--main-text-color);
@@ -225,6 +230,7 @@ footer ul {
     margin: 0;
     list-style: none;
 }
+
 
 @media(max-width: 1000px) {
     .menu {

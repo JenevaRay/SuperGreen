@@ -7,6 +7,9 @@ API.perenual = "sk-uzQv6475151f07b921086"
 
 var cache = {}
 cache = JSON.parse(localStorage.getItem("cache"))
+if (cache == null) {
+    cache = {}
+}
 
 var debug = {
     cache: true,
@@ -26,7 +29,7 @@ function getPerenualPlantDetail(perenualApiKey, searchString) {
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
     let url = `https://perenual.com/api/species-list?q=${searchString}&key=${perenualApiKey}`
     // console.log(url)
-    if (!cache[url]) {            
+    if (!cache[url] || cache[url] != null) {            
         // since it's not in the cache, fetch it.
         fetch(url).then((response) => {
             if (!response.ok) {

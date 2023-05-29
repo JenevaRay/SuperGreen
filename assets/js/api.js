@@ -1,14 +1,8 @@
 // need API for Trefle.io
 
 // need API for 
-API = ""
-if (API !== {}) {
-    API = {}
-}
-if (!API.perenual) {
-    // API.perenual = "sk-zrou646ebab236f671023"    
-    API.perenual = "sk-uzQv6475151f07b921086"
-}
+API = {}
+API.perenual = "sk-uzQv6475151f07b921086"
 
 
 var cache = {}

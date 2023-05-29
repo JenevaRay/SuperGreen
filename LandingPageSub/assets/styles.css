@@ -485,3 +485,8 @@ footer ul li a {
         width: 50%;
     }
 }
+
+.weatherlist {
+    color: rgb(10, 157, 10);
+    font-family: 'Impact';
+}

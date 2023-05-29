@@ -32,5 +32,6 @@ $("form").on("submit", (event) => {
     console.log(searchString)
     window.location.href = `${window.location.pathname}?q=${searchString}`
     console.log("submitted!")
+    
 })
 

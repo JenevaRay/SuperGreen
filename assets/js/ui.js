@@ -1,4 +1,8 @@
 function eachSearchResult(entry, perenualApiResult) {
+    // feel free to edit this for your needs - keep in mind that
+    // this function is used site-wide, not just for individual html files.
+    // array matches are used for ease of categorical changes.
+    
     imgSize = "thumbnail"
     
     // to be used for search
@@ -19,15 +23,21 @@ function eachSearchResult(entry, perenualApiResult) {
             // console.log(key)
             let header = ""
             if (["id"].includes(key)) {
-                // we already have this...  so we'll skip it!
+                // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
+            } else if (["common_name"].includes(key)) {
+                // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
+                header = $("<h1>").text(value).appendTo(innerDiv)
+            } else if (["scientific_name"].includes(key)) {
+                header = $("<h2>").text(value).appendTo(innerDiv)
+            } else if (["other_name"].includes(key)) {
+                p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
             } else {
-                if (["common_name"].includes(key)) {
-                    // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                    header = $("<h1>").text(key).appendTo(innerDiv)
-                } else {
-                    // the default header style
+                if (!["default_image"].includes(key)) {
+                    // we won't add a header for images.
                     header = $("<h2>").text(key).appendTo(innerDiv)
-                }
+                } 
+                // and now we'll add any other info as <p>words</p>
+                
                 switch (typeof perenualApiResult[key]) {
                     case "string":
                         let p = $("<p>").text(perenualApiResult[key]).insertAfter(header)
@@ -61,7 +71,7 @@ function eachSearchResult(entry, perenualApiResult) {
                                         // use of this licence requires everything to be made copyleft (freely available upon request.)
                                     case "authorized":
                                         console.log(perenualApiResult[key][imgSize])
-                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).insertAfter(header)
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
                                         // move this section up or down depending on team agreement.
                                         break
                                     case undefined:

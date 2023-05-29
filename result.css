@@ -2,19 +2,66 @@
     margin: 5px;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'comfortaa', sans-serif;
 }
+
 :root {
     --main-bg-color: rgba(255, 255, 255, 0.8);;
-    --main-text-color: hsl(90, 50%, 50%);
+    --main-accent-color: hsl(90, 50%, 50%);
     --main-hover-color: #621075ed;
     --main-border-color: #ccc;
+    --light: 248, 249, 250;
+    --white: 255, 255, 255;
+    --text-dark: green;
+    --main-text-color: black;
+    --btn-color: rgb(103, 201, 103);
   }
+
+  .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+/* left navbar items, logo and brand title */
+.left-nav {
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+    margin: 0;
+}
+
+.logo {
+    max-width: 20%;
+    margin: 0;
+}
+
+.title {
+    color: var(--text-dark);
+    margin: 0;
+    font-size: 28px;
+}
+/* right navbar items, search bar for plants */
+.search-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    max-width: 50%;
+    margin-left: 50px;
+}
+
+#searchplant {
+    display: flex;
+    justify-content: flex-end;
+}
+
   html,
   body {
     background-color: var(--main-bg-color);
     position: relative;
     height: 100%;
-    font-family: 'comfortaa', sans-serif;
   }
   header{
     display: flex;
@@ -128,15 +175,16 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
+    background-color: var(--btn-color);
   }
   
   .search-button:hover {
     background-color: var(--main-text-color);
   }
-    .logo img {
+    /* .logo img {
    width: 30px;
    margin-top: 20px;
-  }
+  } */
 
 
   .guides {
@@ -153,10 +201,11 @@
 .guides .icon {
     color: gray
 }
-.guides-tips h1{
+.guides-tips h1 {
     text-align: center;
-    background: #0b0a01;
+    background-color: var(--main-accent-color);
     margin: 0;
+    font-size: 28px;
 }
 .guide {
     border: 1px solid var(--main-text-color);
@@ -164,6 +213,12 @@
 }
   
 @media(max-width: 700px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .top {
      grid-template-areas: 
      "left-side main "

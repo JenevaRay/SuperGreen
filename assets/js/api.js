@@ -72,7 +72,7 @@ function withPerenualAPI(url, searchString) {
                         console.log("skipped entry due to paywall for PlantID: " + cache[url].data[row].id)
                         // innerDiv.hide()
                     } else {
-                        withSearchResult(row, cache[url].data[row])
+                        eachSearchResult(row, cache[url].data[row])
                         // console.log(cache[url].data[row])
                         // results = {
                         //     id: cache[url].data[row].id,
@@ -105,7 +105,7 @@ function getPerenualPlantIDName(perenualApiKey, searchString) {
 
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
     let url = `https://perenual.com/api/species-list?q=${searchString}&key=${perenualApiKey}`
-    console.log(url)
+    // console.log(url)
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url).then((response) => {
@@ -146,7 +146,7 @@ function getPerenualPlantIDName(perenualApiKey, searchString) {
                         console.log("skipped entry due to paywall for PlantID: " + cache[url].data[row].id)
                         // innerDiv.hide()
                     } else {
-                        withSearchResult(row, cache[url].data[row])
+                        eachSearchResult(row, cache[url].data[row])
                         // console.log(cache[url].data[row])
                         // results = {
                         //     id: cache[url].data[row].id,
@@ -409,74 +409,7 @@ function showPerenualSearch(perenualApiKey, jQueryDiv, imgSize) {
             if (gotPerenualInfo) {
                 // let linkSizes = ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
                 for (row in cache[url].data) {
-                    let paywalled = false;
-                    let imgLicenseRestricted = false;
-                    // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
-                    let swiperEl = $(".swiper-slide").eq(row)
-                    rowResult = $(`<div data-plant-perenual=${cache[url].data[row].id}>`).appendTo(swiperEl)
-                    // rowResult = $(`<div data-plant-perenual=${cache[url].data[row].id}>`).addClass("swiper-slide").appendTo(jQueryDiv)
-                    $("<h2>").text(`${cache[url].data[row].common_name}`).appendTo(rowResult)
-                    // since this is useful in case we ever get Trefle working...
-                    $("<p>").text(`${cache[url].data[row].scientific_name}`).appendTo(rowResult)
-                    // in case of Attribution-ShareAlike License, we would have to make everything freely available, so we'll use it for proof-of-concept for now.
-                    // considering making this a function.  1 of 2 instances.
-                    switch(cache[url].data[row].default_image.license_name) {
-                        case "CC0 1.0 Universal (CC0 1.0) Public Domain":
-                            // freely usable
-                        case "Attribution-ShareAlike License":
-                        case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
-                            imgLicenseRestricted = true;
-                            // use of this licence requires everything to be made copyleft (freely available upon request.)
-                        case "authorized":
-                            $(`<img src=${cache[url].data[row].default_image[imgSize]}>`).appendTo(rowResult)
-                            // move this section up or down depending on team agreement.
-                            break
-                        case undefined:
-                            paywalled = true;
-                            // we would get this one in case of paywall, so we'll silently hide them
-                            break;
-                        default: 
-                            console.log(cache[url].data[row].default_image.license_name + " not known!")
-                    }
-
-                    let watering = $("<h3>").text("watering:").appendTo(rowResult)
-                    // if it's an array, then we'll iterate through it..
-                    if (Array.isArray(cache[url].data[row].watering)) {
-                        for (index in cache[url].data[row].watering) {
-                            // ..and for each entry in the array, display it.
-                            // please feel free to edit this for your needs, so you can get the appearance you want.
-                            // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
-                            let p = $("<p>").text(cache[url].data[row][index]).insertAfter(watering)
-                        }
-                    } else {
-                        // if it's not an array, display the string.
-                        // please feel free to edit this for your needs, so you can get the appearance you want.
-                        // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
-                        let p = $("<p>").text(cache[url].data[row].watering).insertAfter(watering)
-                    }
-
-                    let sunlight = $("<h3>").text("sunlight:").appendTo(rowResult)
-                    // if it's an array, then we'll iterate through it..
-                    if (Array.isArray(cache[url].data[row].sunlight)) {
-                        for (index in cache[url].data[row].sunlight) {
-                            // ..and for each entry in the array, display it.
-                            // please feel free to edit this for your needs, so you can get the appearance you want.
-                            // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow][index]).insertAfter(header)
-                            let p = $("<p>").text(cache[url].data[row].sunlight[index]).insertAfter(sunlight)
-                        }
-                    } else {
-                        // if it's not an array, display the string.
-                        // please feel free to edit this for your needs, so you can get the appearance you want.
-                        // works for reference      let p = $("<p>").text(desiredPerenualInfo[plantID][infoToShow]).insertAfter(header)
-                        let p = $("<p>").text(cache[url].data[row].sunlight).insertAfter(sunlight)
-                    }
-
-                    if (paywalled) {
-                        rowResult.hide();
-                    }
-                    if (debug.dataToBeDisplayed) {
-                        console.log(cache[url].data[row])
-                    }
+                    eachSearchResult(row, cache[url].data[row])
                 }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)

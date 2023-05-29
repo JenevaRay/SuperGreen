@@ -39,10 +39,12 @@
             </div>
         </div>
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search Plants here">
-            <button type="submit" class="search-button">
-                <span class="search-icon"></span>Search
-            </button>
+            <form>
+                <input type="text" class="search-input" placeholder="Search Plants here">
+                <button type="submit" class="search-button">
+                    <span class="search-icon"></span>Search
+                </button>
+            </form>
         </div>
         <div class="logo">
             <img src="./assets/images/logo.png" alt="logo">
@@ -54,62 +56,6 @@
         <div class="introduction">
             <h1>Super Green</h1>
         </div>
-<<<<<<< HEAD
-  <div class="wrapper">
-    <div class="top">
-      <span class="main">
-        <h1 class="plant-name">plant name</h1>
-        <p class="sci-name">scientfic name</p>
-      </span>
-      <div class="coll coll1">
-        <p class="description">Short desc</p>
-        <span class="icon">&#x1F33F</span>
-      </div>
-      <div class="coll coll2">
-        <p class="description">weather</p>
-        <span class="icon">&#x1F324</span>
-      </div>
-    </div>
-    <nav class="menu">
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <form>
-      <input id="searchweather" name="search"/>
-      <button class ="menu-btn" aria-expanded="false" aria-controls="option">
-=======
-      <button  class ="menu-btn" aria-expanded="false" aria-controls="option">
->>>>>>> 6fa14af1ca20a1b5f6768be2062e64d5cf2e1768
-=======
-      <form>
-      <input id="searchweather" name="search"/>
-      <button class ="menu-btn" aria-expanded="false" aria-controls="option">
->>>>>>> ab648b99fcdc254fbb163e73020c3f7571d90ae0
-        <span class="open">☰</span>
-        <span class="close">×</span>
-        Menu
-      </button>
-      <ul id="option">
-        <li>
-          <a href="">Link1</a>
-        </li>
-        <li>
-          <a href="">Link2</a>
-        </li>
-        <li>
-          <a href="">Link3</a>
-        </li>
-        <li>
-          <a href="">Link4</a>
-        </li>
-      </ul>
-    </form>
-    </nav>
-      <div class="desc">
-        <div class="message-box">
-          <div class="message-content">
-            <div class="message-icon">
-              <i class="fas fa-lightbulb"></i>
-=======
 
         <div class="desc">
             <div class="message-box">
@@ -118,19 +64,10 @@
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <div class="message-text">
-                        <p>Introducing GreenLife: </p>
+                        <p>Introducing GreenLife: Your Ultimate Plant Companion!</p>
                         <button class="learn">learn more</button>
                     </div>
                 </div>
->>>>>>> 4539077239f2e48f88cd7bb67548d53229a72df8
-            </div>
-            <div class="list-item">
-                <ul>
-                    <li> <i class="fa-solid fa-seedling"></i> <span>Plant Species Database</span></li>
-                    <li> <i class="fa-solid fa-seedling"></i> <span>plant propagation</span></li>
-                    <li> <i class="fa-solid fa-seedling"></i> <span>plant care, like watering</span></li>
-                    <li> <i class="fa-solid fa-seedling"></i> <span>Plant origin and so on.</span></li>
-                </ul>
             </div>
             <div class="desc-item">
                 <div class="social-icons">
@@ -173,10 +110,15 @@
         <br>
         <p>© 2023 Super Green. All rights reserved.</p>
     </footer>
+    <!-- cdn for jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- API needs to be loaded sooner for the purpose of getting information available to display. -->
+    <script src="./assets/js/api.js"></script>
     <!-- cdn for swiper js -->    
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <!-- cdn for jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8"></script> -->
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -206,6 +148,8 @@
 //   event.stopPropagation();
 // }, {passive: false});
     </script>
+    <script src="./assets/js/ui.js"></script>
+
 </body>
 
 </html>

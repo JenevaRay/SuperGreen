@@ -33,6 +33,7 @@ header {
   flex-wrap: wrap;
 }
 .first-main {
+  height: 100vh;
   background-image: url('./images/main-background.png');
   background-size: contain;
   background-position: center;
@@ -93,7 +94,7 @@ header {
 }
 .navbar .navbar-items .item a:hover{
     background-color: #ffffff4b;
-    color: #363636fa;
+    color: var(--main-hover-color)
 }
 .navbar .navbar-items .item i {
     margin-right: 15px;
@@ -121,7 +122,6 @@ header {
     align-items: center;
     margin: 10px 20px 10px auto;
   }
-  
   .search-input {
     width: 300px;
     padding: 10px;
@@ -158,14 +158,14 @@ header {
    margin-right: 10px;
   }
   .desc {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 20px;
   }
+
 .message-box {
-  width: 300px;
-  background-color: transparent;
-  border: 1px solid #cccccc58;
+  grid-column: 1 / 7;
+  width: 500px;
   border-radius: 5px;
   padding: 20px;
 }
@@ -176,12 +176,12 @@ header {
 }
 
 .message-icon {
-  font-size: 34px;
+  font-size: 50px;
   color: var(--main-text-color);
   margin-right: 10px;
 }
 
-.message-text p {
+.message-text p {  
   margin: 0;
   color: var(--main-text-color);
   transform: scale(1);
@@ -207,17 +207,47 @@ header {
     cursor: pointer;
     border-radius: 4px;
   }
+  .list-item {
+    grid-column: span 4;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  .list-item ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    color: var(--main-text-color);
+    border: 1px solid #cccccc6e;
+    border-radius: 4px;
+  }
+  .list-item ul li{
+    list-style: none;
+    padding: 10px;
+    margin: 2px 0;
+    color: var(--main-text-color);
+    border: 1px solid #cccccc6e;
+    border-radius: 4px;
+  }
+  .list-item ul li:hover{
+    background-color: #ffffff4b;
+    color: var(--main-hover-color)
+  }
+  .list-item span {
+    margin-left: 10px;
+    font-weight: 600;
+    color: var(--main-text-color);
+  }
+  .list-item span:hover {
+    color: var(--main-hover-color);
+  }
+  .desc-items {
+    grid-column: 1 / 11;
+  }
   .social-icons {
     display: flex;
     flex-direction: column;
-    
+        
 }
-.social-icons {
-    display: flex;
-    flex-direction: column;
-    
-}
-
 .social-icons a {
     margin-bottom: 10px;
     margin-right: 10px; 
@@ -225,10 +255,45 @@ header {
 }
 section .sliding {
   position: relative;
-  height: 100%;
+  height: 90%;
+}
+.navigator {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navigator span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-bottom: 5px solid var(--main-text-color);
+  border-right: 5px solid var(--main-text-color);
+  transform: rotate(45deg);
+  margin-top: -50px;
+  animation: scroll 2s infinite;
+}
+
+.navigator span:nth-child(2) {
+  animation-delay: -.2s;
+}
+.navigator span:nth-child(3) {
+  animation-delay: -.4s;
+}
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
 }
 .swiper {
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 
@@ -236,6 +301,7 @@ section .sliding {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  color: var(--main-text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,33 +324,55 @@ footer {
     footer a:hover {
       color: var(--main-hover-color);
     }
-@media screen and (max-width: 500px){
-    .navbar {
-        max-width: 100%;
-    }
-    .navbar .navbar-items .item a {
-        font-size: 18px;
-    }
-    .menu-btn {
-        font-size: 18px;
-    }
-    .close-btn {
-        font-size: 18px;
-    }
-    .search-input {
-        width: 200px;
-  }
-  .search-container {
-    margin: 0 20px 10px auto;
-  }
-  .introduction h1 {
-    font-size: 50px;
-    writing-mode: vertical-rl;    
-  }
-}
+
 @media screen and (min-width: 1200px){
   .message-box {
-    margin-left: 250px;
-    width: 400px;
+    font-size: 30px;
+    margin-left: 100px;
+    margin-right: 350px; 
   }
+  .list-item ul i {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 780px){
+.list-item span {
+  font-size: 20px;
+}
+.list-item ul i{
+  font-size: 20px;
+}
+}
+@media screen and (max-width: 500px){
+  .navbar {
+      max-width: 100%;
+  }
+  .navbar .navbar-items .item a {
+      font-size: 18px;
+  }
+  .menu-btn {
+      font-size: 18px;
+  }
+  .close-btn {
+      font-size: 18px;
+  }
+  .search-input {
+      width: 200px;
+}
+.search-container {
+  margin: 0 20px 10px auto;
+}
+.introduction h1 {
+  font-size: 50px;
+  writing-mode: vertical-rl;    
+}
+.navigator {
+  display: block;
+}
+.list-item ul span {
+  font-size: 10px;
+}
+.list-item ul i {
+  font-size: 10px;
+}
 }

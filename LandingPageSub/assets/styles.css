@@ -1,5 +1,5 @@
 * {
-    font-family: 'Lexend', sans-serif;
+    font-family: 'comfortaa', sans-serif;
 }
 
 :root {
@@ -288,6 +288,10 @@ button,
     font-size: 4.5rem;
     align-items: center;
     justify-content: center;
+}
+
+.feature-title {
+    font-weight: bolder;
 }
 
 .water {

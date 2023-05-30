@@ -192,12 +192,10 @@ invalidParams = false;
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
-            getPerenualSpeciesList(API.perenual, $("#results"), value, "thumbnail")
+            getPerenualSpeciesList($("#results"), value, "thumbnail")
         }
     } else if (key === "plantID") {
-        // targetDiv = $("<div>").appendTo("#results")
-        // commented out so we aren't querying the API needlessly during development of other needed features.
-        // showPerenualSpeciesInfo(API.perenual, targetDiv, "thumbnail")
+        // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
         getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
     } else {
         console.log(`search parameter ${key} not implemented`)

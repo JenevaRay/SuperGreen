@@ -75,11 +75,11 @@ function getPerenualPlantDetail(jQueryEl, plantID, imgSize) {
     checkPerenualInfo()
 }
 
-function getPerenualSpeciesList(perenualApiKey, jQueryEl, query, imgSize = "thumbnail") {    
-    /* perenualApiKey:  API key 
-    **  such as     sk-zrou646ebab236f671020
-    ** jQueryEl:        a jQuery element to attach data to with the perenual plant ID written in
+function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {    
+    /* jQueryEl:        a jQuery element to attach data to with the perenual plant ID written in
     **  such as     $('<div data-plant-perenual="2292">')
+    ** query:           the query itself from parameters
+    **  such as     "tomato"
     ** imgSize:         image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
     **  such as     "medium_url"
     */
@@ -101,7 +101,7 @@ function getPerenualSpeciesList(perenualApiKey, jQueryEl, query, imgSize = "thum
     gotPerenualInfo = false
 
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
-    let url = `https://perenual.com/api/species-list?q=${query}&key=${perenualApiKey}`
+    let url = `https://perenual.com/api/species-list?q=${query}&key=${API.perenual}`
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url).then((response) => {

@@ -2,25 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="result.css">
-    <title>search result</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="result.css">
+  <title>search result</title>
 </head>
 
 <body>
   <header class="navbar navbar-light bg-light whole-nav">
-        <!-- <div class="weather">
+    <!-- <div class="weather">
             <img src="./assets/images/cloudy.png" alt="weather-pic">
         </div> -->
     <div class="left-nav">
@@ -28,10 +28,10 @@
       <h1 class="title">SuperGreen</h1>
     </div>
     <form class="search-container">
-        <input type="text" class="search-input" placeholder="Search Plants Here">
-        <button type="submit" class="search-button">
-          <span class="search-icon">Search</span>
-        </button>
+      <input type="text" class="search-input" placeholder="Search Plants Here">
+      <button type="submit" class="search-button">
+        <span class="search-icon">Search</span>
+      </button>
     </form>
   </header>
   <section class="wrapper">
@@ -42,11 +42,12 @@
           <!-- <li>plant id</li> -->
           <li>Common Name</li>
           <li>Sci-name</li>
+          <li>Family</li>
           <li>Origin</li>
           <li>Toxicity</li>
           <li>Edible: T/F</li>
-          <li>Fruits:T/F</li>
-          <li>Flowers:T/F</li>
+          <li>cycle</li>
+          <li>growth rate</li>
         </ul>
       </div>
       <div class="main plant-image">
@@ -56,12 +57,16 @@
         <!-- <p class="scientific_name">Scientfic name</p> -->
       </div>
       <div class="coll coll1">
-        <h3 class="description">description</h3>
-        <p>this plant is orginaly from ....asgdhjas</p>
+        <h3 class="hardiness">hardiness_location</h3>
+        <p>hardiness_location location goes here / the map thing</p>
       </div>
       <div class="coll coll2">
-        Dashboard
+        extra info goes here like leaf, flower, fruit, etc
         <!-- maybe we can add an "add to my garden" button here? -->
+        <!--we don't need dashboard any more here since we merge the landing page into the result page-->
+      </div>
+      <div class="description">
+        <p> description goes here it is responsive so it will be flexible with amount of text</p>
       </div>
     </div>
 
@@ -91,11 +96,15 @@
       </div>
     </section>
   </section>
+  <div id="detailedresult"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+    integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/ui.js"></script>
+</body>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./vault.js"></script>
-    <script src="./assets/js/api.js"></script>
-    <script src="./assets/js/ui.js"></script>
-  </body>
 </html>

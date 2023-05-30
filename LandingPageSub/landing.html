@@ -85,11 +85,12 @@
     </section>
     <!-- below is the result page that will be hidden until the search is executed -->
     <div id="results"></div>
-    <!-- <header class="navbar navbar-light bg-light whole-nav"> -->
-        <!-- <div class="weather">
+    <div id="detailedresult"></div>
+    <header class="navbar navbar-light bg-light whole-nav">
+       <div class="weather">
             <img src="./assets/images/cloudy.png" alt="weather-pic">
-        </div> -->
-    <!-- <div class="left-nav">
+        </div> 
+    <div class="left-nav">
       <img class="logo" src="assets/images/logo.png" alt="Garden">
       <h1 class="title">SuperGreen</h1>
     </div>
@@ -99,14 +100,14 @@
           <span class="search-icon">Search</span>
         </button>
     </form>
-  </header> -->
-  <section class="wrapper">
+  </header>
+ <section class="wrapper">
     <div class="top">
       <div class="coll left-side">
         <h3>Database</h3>
-        <ul>
-          <!-- <li>plant id</li> -->
-          <li>Common Name</li>
+        <ul> 
+     <li>plant id</li> 
+         <li>Common Name</li>
           <li>Sci-name</li>
           <li>Origin</li>
           <li>Toxicity</li>
@@ -117,9 +118,9 @@
       </div>
       <div class="main plant-image">
         default-image loads here
-        <h1 class="common_name">Plant name</h1>
+        <h1 class="common_name">Plant name</h1> 
         <!-- commented out sci name here since it will be featured on the left column -->
-        <!-- <p class="scientific_name">Scientfic name</p> -->
+        <p class="scientific_name">Scientfic name</p> 
       </div>
       <div class="coll coll1">
         <h3 class="description">description</h3>
@@ -127,11 +128,11 @@
       </div>
       <div class="coll coll2">
         Dashboard
-        <!-- maybe we can add an "add to my garden" button here? -->
+        maybe we can add an "add to my garden" button here? 
       </div>
-    </div>
+    </div> 
 
-    <section class="guides-tips">
+     <section class="guides-tips">
       <h1>Guides & Tips</h1>
       <div class="guides">
         <div class="guide">
@@ -148,8 +149,20 @@
           <span class="icon">&#x1F340</span>
           <h3>Propagation</h3>
           <p>Lorem ipsum.</p>
-        </div>
-        <div class="guide">
+        </div> 
+        <div id="tips" class="grid text-center" style="--bs-columns: 3;">
+            <h1>Guides & Tips</h1>
+            <div id="water" class="grid text-center" style="--bs-columns: 3;"></div>
+            <h3>Watering</h3>
+            <div>1 gallon</div>
+            <div id="sun" class="grid text-center" style="--bs-columns: 3;"></div>
+            <h3>sunlight</h3>
+            <div>half</div>
+            <div id="prop" class="grid text-center" style="--bs-columns: 3;"></div>
+            <h3>Propagation</h3>
+            <div>Lorem ipsum</div>
+          </div>
+      <div class="guide">
           <span class="icon">&#x1F331</span>
           <h3>guide</h3>
           <p>Lorem ipsum assumenda.</p>
@@ -157,7 +170,7 @@
       </div>
     </section>
   </section>
-    <!-- Image Showcases-->
+    Image Showcases
     <section class="showcase">
         <div class="container-fluid p-0">
             <div class="row g-0">
@@ -182,7 +195,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
     <!-- Footer-->
     <footer class="footer bg-light">
         <div class="container">
@@ -205,7 +218,6 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../vault.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/ui.js"></script>
 </body>

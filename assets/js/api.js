@@ -76,6 +76,7 @@ function getPerenualPlantDetail(perenualApiKey, searchString) {
                         //     common_name: cache[url].data[row].common_name
                         // }
                         // console.log(results)
+
                     }
                 }
             } else {

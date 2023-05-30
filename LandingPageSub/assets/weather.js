@@ -9,6 +9,6 @@ var currWeatherList = document.getElementById("currentWeatherList");
 
         .then((jsonData) => {
         console.log(jsonData);
-        currPrecip.textContent = "Precipitation: " + jsonData.rain['1h'] + " mm"
+        currPrecip.textContent = "Precipitation: " + jsonData.rain + " mm"
 
     })

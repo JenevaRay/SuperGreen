@@ -78,7 +78,9 @@
  .top {
      display: grid;
      grid-template-areas: "left-side main main cta1"
-                          "left-side main main cta2";
+                          "left-side main main cta2"
+                          "test test test test"
+                          "test test test test";
  }
  
  .main {
@@ -118,8 +120,7 @@
     background-color: #0b0a010b;
  }
  .coll1 {
-     grid-area: cta1;     
-     word-break: break-word;
+     grid-area: cta1;
  }
  .coll2 {
      grid-area: cta2;
@@ -135,11 +136,15 @@
      border-radius: 4px;
      margin-top: 3px;
     }
- .description {
+ .hardiness {
      font-size: 16px;
      font-weight: 300;
  }
- 
+.description {
+    grid-area: test;
+    border: 1px solid var(--main-border-color);
+    word-break: break-word;
+}
 
 .search-box {
     display: flex;
@@ -211,46 +216,50 @@
     border: 1px solid var(--main-text-color);
     margin: 10px;
 }
-  
-@media(max-width: 700px) {
-    .navbar {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
+@media (max-width: 700px) {
     .top {
-     grid-template-areas: 
-     "left-side main "
-     "cta2 cta1";
-     grid-template-columns: 200px 1fr;
+      display: grid;
+      grid-template-areas:
+        "left-side main"
+        "description description"
+        "cta2 cta2"
+        "cta1 cta1";
     }
-    .about {
-        grid-template-columns: 1fr;
-    }
-
- }
- @media(max-width: 500px) {
-    * {
-        margin: 2px;
-        padding: 0;
-    }
-    body {
-        padding: 0;
-        margin: 0;
-    }
-     .top {
-      grid-template-areas: 
-      "left-side main"
-      "cta1"
-      "cta2";
-     }
-     .search-input{
-        width: 200px;
-        margin: 5px;
-        padding: 5px 10px;
-     }
-     .search-button {
-        padding: 7px 10px;
-     }
+  .description {
+    grid-column: 1 / 3; 
   }
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    * {
+      margin: 2px;
+      padding: 0;
+    }
+    
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  
+    .top {
+      grid-template-areas:
+        "left-side main"
+        "description description"
+        "cta1 cta1"
+        "cta2 cta2";
+    }
+  
+    .search-input {
+      width: 200px;
+      margin: 5px;
+      padding: 5px 10px;
+    }
+  
+    .search-button {
+      padding: 7px 10px;
+    }
+  }
+  

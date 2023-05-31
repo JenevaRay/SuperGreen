@@ -57,7 +57,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             let header = ""
             if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                header = $("<h1>").text(value).appendTo(innerDiv)
+                $(`#detailed_${key}`).text(value)
+                // header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
                 // the URL given to us by the API silently requires HTTPS or we get CORS errors.
@@ -74,7 +75,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     header = $("<h2>").text(key).appendTo(innerDiv)
                 } 
                 // and now we'll add any other info as <p>words</p>
-                let p = ""
+                let p = "" // pre-define it so that we can use it later out of the scope of the switch case below.
                 switch (typeof perenualApiResult[key]) {
                     case "string":
                         p = $("<p>").text(perenualApiResult[key]).insertAfter(header)
@@ -82,17 +83,22 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     case "object":
                         if (Array.isArray(perenualApiResult[key])) {
                             if (perenualApiResult[key].length == 0) {
-                                innerDiv.hide()
+                                // if the information is empty, do not show the category.
+                                // TODO, enable after category layout is determined.
+                                // innerDiv.hide()
                             }
                             for (index in perenualApiResult[key]) {
+                                // for each entry in the array, give it its own line.
                                 p = $("<p>").text(perenualApiResult[key][index]).insertAfter(header)
                             }
                         } else {
                             innerObj = perenualApiResult[key]
                             if (key == "hardiness_location") {
                                 iframeHtml = innerObj.full_iframe
-                                let iFrame = $(`${iframeHtml}`).insertAfter(header)
-                                hardinessURL = innerObj.full_url
+                                target = $(`#detailed_${key}`)
+                                $(`<h3>`).text("Ideal Planting Zones (mostly by Temperature)")
+                                $(`${iframeHtml}`).appendTo(target)
+                                // hardinessURL = innerObj.full_url
                                 // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
                                 // this seems to be a full page, and is NOT cacheable.
                             } else if (key == "hardiness") {
@@ -115,8 +121,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                 } 
                                 switch(perenualApiResult[key].license_name) {
                                     case undefined:
-                                        paywalled = true;
-                                        // we would get this one in case of paywall, so we'll silently hide them
+                                        // we would get this one in case of paywall, so we'll silently hide them.  no longer relevant.
                                         break;
                                     case "CC0 1.0 Universal (CC0 1.0) Public Domain":
                                         // freely usable
@@ -127,8 +132,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                     default: 
                                         console.log(perenualApiResult.default_image.license_name + " not known!")
                                     case "authorized":
-                                        // console.log(perenualApiResult[key][imgSize])
-                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
+                                        // for any of the above case statements, display the image.  for any of the below case statements, do not.
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo($(`#detailed_${key}`))
                                         // move this section up or down depending on team agreement.
                                         break
                                     }
@@ -138,6 +143,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                     // if the information... really doesn't have information, then we'll hide the section.
                                     innerDiv.hide()
                                 } else {
+                                    // if the category does have information, report it.
                                     console.log(key)
                                 }
                             }
@@ -197,7 +203,7 @@ for (let [key, value] of params) {
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
         // this fetches and parses the JSON for a single detailed result.
-        getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
+        getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
     } else {
         // if an unrecognized parameter is given, show us.
         console.log(`search parameter ${key} not implemented`)

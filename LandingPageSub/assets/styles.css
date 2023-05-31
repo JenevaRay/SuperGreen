@@ -2,7 +2,13 @@
     margin: 5px;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'comfortaa', sans-serif;
+    font-family: 'Nunito', sans-serif;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
 
 :root {
@@ -15,10 +21,6 @@
     --text-dark: green;
     --main-text-color: black;
     --btn-color: rgb(103, 201, 103);
-}
-  
-.hide {
-    display: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -502,6 +504,10 @@ body {
     margin: 10px;
 }
 
+.hide {
+    display: none;
+}
+
 @media (max-width: 500px) {
     * {
       margin: 2px;
@@ -587,7 +593,7 @@ body {
     }
     .col-lg-4 {
       flex: 0 0 auto;
-      width: 33.33333333%;
+      width: 33.333%;
     }
     .col-lg-5 {
       flex: 0 0 auto;

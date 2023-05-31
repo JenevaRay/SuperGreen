@@ -57,7 +57,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             let header = ""
             if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                header = $("<h1>").text(value).appendTo(innerDiv)
+                $(`#detailed_${key}`).text(value)
+                // header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
                 // the URL given to us by the API silently requires HTTPS or we get CORS errors.
@@ -132,7 +133,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                         console.log(perenualApiResult.default_image.license_name + " not known!")
                                     case "authorized":
                                         // for any of the above case statements, display the image.  for any of the below case statements, do not.
-                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo($(`#detailed_${key}`))
                                         // move this section up or down depending on team agreement.
                                         break
                                     }
@@ -202,7 +203,7 @@ for (let [key, value] of params) {
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
         // this fetches and parses the JSON for a single detailed result.
-        getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
+        getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
     } else {
         // if an unrecognized parameter is given, show us.
         console.log(`search parameter ${key} not implemented`)

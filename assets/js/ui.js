@@ -63,7 +63,13 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         }
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
         $(`${mode}_origin`).text(`from: ${perenualApiResult.origin.join(", ")}`)
-        
+        $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)
+        $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
+        $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
+        $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
+        console.log(perenualApiResult.dimension)
+        $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
+
         let poisonous_to = []
         if (perenualApiResult.poisonous_to_humans) {
             poisonous_to.push("Humans")
@@ -79,19 +85,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             $(`${mode}_poisonous_to_`).text(`Poisonous to: ${poisonous_to.join(", ")}`)
         }
 
-        $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
-        $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
-        console.log(perenualApiResult.dimension)
-        $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
+        // todo: eventually remove the below section.
         
-        
-        // .appendTo(cycleDetailedDiv)
-        let wateringDetailedDiv = $(`<div class="watering">`).appendTo(thisDiv)
-        $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)
-        // .appendTo(wateringDetailedDiv)
-        let sunlightDetailedDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
-        $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
-        // .appendTo(sunlightDetailedDiv)
 
 
 

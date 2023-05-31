@@ -25,14 +25,15 @@ function showCareGuide(data, innerDiv) {
     }
 }
 
-function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = false) {
+function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = false, mode="#detailed") {
     // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
     // do keep in mind that this is intentionally one API endpoint for consistency in development and viewing.
 
     // feel free to edit this for your needs - keep in mind that
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
-    let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
+    let id = perenualApiResult.id
+    let thisDiv = $(`<div id="${id}" class="searchresult">`).appendTo(jQueryEl)
     for (let [key, value] of Object.entries(perenualApiResult)) {
         let imgLicenseRestricted = false;
         // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
@@ -57,7 +58,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             let header = ""
             if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                $(`#detailed_${key}`).text(value)
+                $(`${mode}_${key}`).text(value)
                 // header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
@@ -95,7 +96,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                             innerObj = perenualApiResult[key]
                             if (key == "hardiness_location") {
                                 iframeHtml = innerObj.full_iframe
-                                target = $(`#detailed_${key}`)
+                                target = $(`${mode}_${key}`)
                                 $(`<h3>`).text("Ideal Planting Zones (mostly by Temperature)")
                                 $(`${iframeHtml}`).appendTo(target)
                                 // hardinessURL = innerObj.full_url
@@ -133,6 +134,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                         console.log(perenualApiResult.default_image.license_name + " not known!")
                                     case "authorized":
                                         // for any of the above case statements, display the image.  for any of the below case statements, do not.
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo($(`#${id}`))
                                         $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo($(`#detailed_${key}`))
                                         // move this section up or down depending on team agreement.
                                         break

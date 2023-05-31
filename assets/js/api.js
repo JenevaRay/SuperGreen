@@ -142,7 +142,7 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
                         console.log("skipped entry due to paywall for PlantID: " + cache[url].data[row].id)
                         // innerDiv.hide()
                     } else {
-                        showEachSearchResult(cache[url].data[row], jQueryEl, imgSize, true)
+                        showEachSearchResult(cache[url].data[row], jQueryEl, imgSize, true, "searchresult")
                         // console.log(cache[url].data[row])
                         // results = {
                         //     id: cache[url].data[row].id,

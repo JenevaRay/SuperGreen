@@ -37,7 +37,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // array matches are used for ease of categorical changes.
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
     let imageContainer =  thisDiv.find("#imageContainer")
-    
+
     if (mode == "searchresult") {
         let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
         $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
@@ -45,7 +45,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`<h2>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv)
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
-            $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
+            $("$").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
         }
         let cycleDiv = $(`<div class="cycle">`).appendTo(thisDiv)
         $("<p>").text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `).appendTo(cycleDiv)
@@ -56,6 +56,45 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
     } else {
+        $(`${mode}_common_name`).text(perenualApiResult.common_name)
+        $(`${mode}_scientific_name`).text(`${perenualApiResult.family}: ${perenualApiResult.scientific_name}`)
+        if (perenualApiResult.other_name.length != 0) {
+            $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo($(`${mode}_all_image`))
+        }
+        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
+        $(`${mode}_origin`).text(`from: ${perenualApiResult.origin.join(", ")}`)
+        
+        let poisonous_to = []
+        if (perenualApiResult.poisonous_to_humans) {
+            poisonous_to.push("Humans")
+            $(`${mode}_poisonous_to_humans`).text("Poisonous to Humans")
+        }
+        if (perenualApiResult.poisonous_to_pets) {
+            poisonous_to.push("Pets")
+            $(`${mode}_poisonous_to_pets`).text("Poisonous to Pets")
+        }
+        if (poisonous_to.length == 0) {
+            $(`${mode}_poisonous_to_`).text(`Not Poisonous`)
+        } else {
+            $(`${mode}_poisonous_to_`).text(`Poisonous to: ${poisonous_to.join(", ")}`)
+        }
+
+        $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
+        $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
+        console.log(perenualApiResult.dimension)
+        $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
+        
+        
+        // .appendTo(cycleDetailedDiv)
+        let wateringDetailedDiv = $(`<div class="watering">`).appendTo(thisDiv)
+        $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)
+        // .appendTo(wateringDetailedDiv)
+        let sunlightDetailedDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
+        $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
+        // .appendTo(sunlightDetailedDiv)
+
+
+
         for (let [key, value] of Object.entries(perenualApiResult)) {
             let paywalled = false;
             let imgLicenseRestricted = false;

@@ -32,15 +32,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // feel free to edit this for your needs - keep in mind that
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
-    
-
-    // imgSize = "thumbnail"
-    
-    // window.location.href = `${window.location.pathname}?plantID=${id}`
-    // console.log(perenualApiResult)
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
     for (let [key, value] of Object.entries(perenualApiResult)) {
-        let paywalled = false;
         let imgLicenseRestricted = false;
         // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
         let innerDiv = ""
@@ -52,9 +45,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     window.location.href = `${window.location.pathname}?plantID=${plantID}`
                 })
             }
+            // medicinal_method is filtered out per team choice due to out-of-scope data.
         } else if (["medicinal_method"].includes(key)) {
-            // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
+            // if the data is not there because it's pending, then don't show it.
         } else if (["Coming Soon"].includes(value)) {
+            // TODO: uncomment, because irrelevant information doesn't belong (hiding disabled for layout testing).
             // innerDiv.hide()
         } else {
             innerDiv = $(`<div class="${key}">`).appendTo(thisDiv) // for each data element, for custom styling.
@@ -182,8 +177,9 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
 $("form").on("submit", (event) => {
     event.preventDefault()
+    // get the text from the first input within the form.
     let searchString = $("form").find("input").first().val()
-    // this is for if we are on a single-page form
+    // search for the string given in the search box.
     window.location.href = `${window.location.pathname}?q=${searchString}`
 })
 
@@ -192,12 +188,16 @@ invalidParams = false;
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
+            // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
+            // this fetches and parses the JSON for multiple generic results.
             getPerenualSpeciesList($("#results"), value, "thumbnail")
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
+        // this fetches and parses the JSON for a single detailed result.
         getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
     } else {
+        // if an unrecognized parameter is given, show us.
         console.log(`search parameter ${key} not implemented`)
     }
 }

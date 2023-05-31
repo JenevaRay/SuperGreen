@@ -37,6 +37,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // array matches are used for ease of categorical changes.
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
     let imageContainer =  thisDiv.find("#imageContainer")
+    
     if (mode == "searchresult") {
         let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
         $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)

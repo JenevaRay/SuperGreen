@@ -28,7 +28,7 @@ function showCareGuide(data, innerDiv) {
     }
 }
 
-function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = false) {
+function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = false, mode="#detailed") {
     // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
     // do keep in mind that this is intentionally one API endpoint for consistency in development and viewing.
 
@@ -62,7 +62,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             let header = ""
             if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                header = $("<h3>").text(value).appendTo('#idContainer')
+                $(`${mode}_${key}`).text(value)
+                // header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
                 // the URL given to us by the API silently requires HTTPS
@@ -100,9 +101,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                             innerObj = perenualApiResult[key]
                             if (key == "hardiness_location") {
                                 iframeHtml = innerObj.full_iframe
-                              
-                                let iFrame = $(`${iframeHtml}`).appendTo('.hardiness-container')
-                               
+                                target = $(`#detailed_${key}`)
+                                $(`${iframeHtml}`).appendTo(target)
                                 hardinessURL = innerObj.full_url
                                 // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
                                 // this seems to be a full page, and is NOT cacheable.
@@ -138,9 +138,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                     default: 
                                         console.log(perenualApiResult.default_image.license_name + " not known!")
                                     case "authorized":
-                                        // console.log(perenualApiResult[key][imgSize])
-                                       
-                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo('#imageContainer');
+                                        // for any of the above case statements, display the image.  for any of the below case statements, do not.
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
                                         // move this section up or down depending on team agreement.
                                         break
                                     }
@@ -207,7 +206,8 @@ for (let [key, value] of params) {
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
-        getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
+        // this fetches and parses the JSON for a single detailed result.
+        getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
     } else {
         //console.log(`search parameter ${key} not implemented`)
     }

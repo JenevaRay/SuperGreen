@@ -272,3 +272,10 @@ for (let [key, value] of params) {
         //console.log(`search parameter ${key} not implemented`)
     }
 }
+
+$('.btn').on('click', function(event){
+    event.preventDefault();
+    $('main.result-page').removeClass('hide');
+    $('.search-box').removeClass('hide');
+    $('.landing').addClass('hide');
+})

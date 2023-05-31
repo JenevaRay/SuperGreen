@@ -35,12 +35,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // feel free to edit this for your needs - keep in mind that
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
-    
-
-    // imgSize = "thumbnail"
-    
-    // window.location.href = `${window.location.pathname}?plantID=${id}`
-    // console.log(perenualApiResult)
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
     let imageContainer =  thisDiv.find("#imageContainer")
     for (let [key, value] of Object.entries(perenualApiResult)) {
@@ -56,9 +50,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     window.location.href = `${window.location.pathname}?plantID=${plantID}`
                 })
             }
+            // medicinal_method is filtered out per team choice due to out-of-scope data.
         } else if (["medicinal_method"].includes(key)) {
-            // id is already utilized as an option in thisDiv ('#plantID-____')  wholly skipping this one.
+            // if the data is not there because it's pending, then don't show it.
         } else if (["Coming Soon"].includes(value)) {
+            // TODO: uncomment, because irrelevant information doesn't belong (hiding disabled for layout testing).
             // innerDiv.hide()
         } else {
             innerDiv = $(`<div class="${key}">`).appendTo(thisDiv) // for each data element, for custom styling.
@@ -71,19 +67,20 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                 // if there is no care guide (which seems common) then this is automatically omitted
                 // the URL given to us by the API silently requires HTTPS
                 getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
-            } 
-            else if (["scientific_name"].includes(key)) {
+            } else if (["scientific_name"].includes(key)) {
                 header = $("<h2>").text(value).appendTo(innerDiv)
             } else if (["other_name"].includes(key)) {
+                // aliases also matter.
                 p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
-            }
-             else {
+            } else {
                 if (!["default_image"].includes(key)) {
                     // we won't add a header for images.
                     header = $("<h2>").text(key).appendTo('innerDiv')
+                    // this is a default category header, but not for images.
+                    header = $("<h2>").text(key).appendTo(innerDiv)
                 } 
                 // and now we'll add any other info as <p>words</p>
-                let p = ""
+                let p = "" // pre-define it so that we can use it later out of the scope of the switch case below.
                 switch (typeof perenualApiResult[key]) {
                     case "string":
                         p = $("<p>").text(perenualApiResult[key]).insertAfter(header)
@@ -91,9 +88,12 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     case "object":
                         if (Array.isArray(perenualApiResult[key])) {
                             if (perenualApiResult[key].length == 0) {
-                                innerDiv.hide()
+                                // if the information is empty, do not show the category.
+                                // TODO, enable after category layout is determined.
+                                // innerDiv.hide()
                             }
                             for (index in perenualApiResult[key]) {
+                                // for each entry in the array, give it its own line.
                                 p = $("<p>").text(perenualApiResult[key][index]).insertAfter(header)
                             }
                         } else {
@@ -150,6 +150,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                     // if the information... really doesn't have information, then we'll hide the section.
                                     innerDiv.hide()
                                 } else {
+                                    // if the category does have information, report it.
                                     console.log(key)
                                 }
                             }
@@ -191,8 +192,9 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
 $("form").on("submit", (event) => {
     event.preventDefault()
+    // get the text from the first input within the form.
     let searchString = $("form").find("input").first().val()
-    // this is for if we are on a single-page form
+    // search for the string given in the search box.
     window.location.href = `${window.location.pathname}?q=${searchString}`
 })
 
@@ -207,6 +209,6 @@ for (let [key, value] of params) {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
         getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
     } else {
-        console.log(`search parameter ${key} not implemented`)
+        //console.log(`search parameter ${key} not implemented`)
     }
 }

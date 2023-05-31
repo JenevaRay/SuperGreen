@@ -75,7 +75,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             else if (["scientific_name"].includes(key)) {
                 header = $("<h2>").text(value).appendTo(innerDiv)
             } else if (["other_name"].includes(key)) {
-                p = $("<p>").text(value.join(", ")).appendTo('#idContainer')
+                p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
             }
              else {
                 if (!["default_image"].includes(key)) {

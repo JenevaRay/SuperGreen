@@ -60,15 +60,17 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                 header = $("<h1>").text(value).appendTo(innerDiv)
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
-                // the URL given to us by the API silently requires HTTPS
+                // the URL given to us by the API silently requires HTTPS or we get CORS errors.
                 getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
             } else if (["scientific_name"].includes(key)) {
+                // subheader because usually it's the common name people look for.
                 header = $("<h2>").text(value).appendTo(innerDiv)
             } else if (["other_name"].includes(key)) {
+                // aliases also matter.
                 p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
             } else {
                 if (!["default_image"].includes(key)) {
-                    // we won't add a header for images.
+                    // this is a default category header, but not for images.
                     header = $("<h2>").text(key).appendTo(innerDiv)
                 } 
                 // and now we'll add any other info as <p>words</p>

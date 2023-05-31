@@ -275,7 +275,7 @@ for (let [key, value] of params) {
 
 $('.btn').on('click', function(event){
     event.preventDefault();
-    $('main.result-page').removeClass('hide');
+    $('.result-page').removeClass('hide');
     $('.search-box').removeClass('hide');
     $('.landing').addClass('hide');
 })

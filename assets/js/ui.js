@@ -94,8 +94,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                             innerObj = perenualApiResult[key]
                             if (key == "hardiness_location") {
                                 iframeHtml = innerObj.full_iframe
-                                target = $(".detailedResult")
-                                $(`${iframeHtml}`).insertAfter(target)
+                                target = $(`#detailed_${key}`)
+                                $(`${iframeHtml}`).appendTo(target)
                                 hardinessURL = innerObj.full_url
                                 // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
                                 // this seems to be a full page, and is NOT cacheable.

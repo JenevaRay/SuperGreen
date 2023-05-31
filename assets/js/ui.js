@@ -8,15 +8,18 @@ function showCareGuide(data, innerDiv) {
                 // each entry is an object, this gives us all the information in parseable form.
                 for (let [key, value] of Object.entries(data.data[row].section[index])) {
                     // add a section to the innerDiv, for dynamic sizing.
-                    let keyDiv = $(`<div class=${key}>`).appendTo(innerDiv)
-                    if (key === "id") {
+                  //  let keyDiv = $(`<div class=${key}>`).appendTo(innerDiv)
+                    if (key === "common_name") {
+                        $("<div>").text(value).appendTo("#idContainer");
                         // omit display of this, because it's already in the grandparent div data.
                     } else if (key === "type") {
                         // type: watering, for example.
-                        $("<h3>").text(value).appendTo(keyDiv)
+                        $("<div>").text(value).appendTo("#typeContainer");
+                       // $("<h3>").text(value).appendTo(keyDiv)
                     } else if (key === "description") {
                         // and then display the care guide.
-                        $("<p>").text(value).appendTo(keyDiv)
+//                        $("<p>").text(value).appendTo(keyDiv)
+                        $("<div>").text(value).appendTo("#descriptionContainer");
                     }
                     // console.log(data.data[row].section[index])
                 }
@@ -39,6 +42,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // window.location.href = `${window.location.pathname}?plantID=${id}`
     // console.log(perenualApiResult)
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
+    let imageContainer =  thisDiv.find("#imageContainer")
     for (let [key, value] of Object.entries(perenualApiResult)) {
         let paywalled = false;
         let imgLicenseRestricted = false;
@@ -62,19 +66,21 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             let header = ""
             if (["common_name"].includes(key)) {
                 // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-                header = $("<h1>").text(value).appendTo(innerDiv)
+                header = $("<h3>").text(value).appendTo('#idContainer')
             } else if (["care-guides"].includes(key)) {
                 // if there is no care guide (which seems common) then this is automatically omitted
                 // the URL given to us by the API silently requires HTTPS
                 getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
-            } else if (["scientific_name"].includes(key)) {
+            } 
+            else if (["scientific_name"].includes(key)) {
                 header = $("<h2>").text(value).appendTo(innerDiv)
             } else if (["other_name"].includes(key)) {
-                p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
-            } else {
+                p = $("<p>").text(value.join(", ")).appendTo('#idContainer')
+            }
+             else {
                 if (!["default_image"].includes(key)) {
                     // we won't add a header for images.
-                    header = $("<h2>").text(key).appendTo(innerDiv)
+                    header = $("<h2>").text(key).appendTo('innerDiv')
                 } 
                 // and now we'll add any other info as <p>words</p>
                 let p = ""
@@ -94,7 +100,9 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                             innerObj = perenualApiResult[key]
                             if (key == "hardiness_location") {
                                 iframeHtml = innerObj.full_iframe
-                                let iFrame = $(`${iframeHtml}`).insertAfter(header)
+                              
+                                let iFrame = $(`${iframeHtml}`).appendTo('.hardiness-container')
+                               
                                 hardinessURL = innerObj.full_url
                                 // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
                                 // this seems to be a full page, and is NOT cacheable.
@@ -106,7 +114,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                 if (perenualApiResult[key] == null) {
                                     innerDiv.hide()
                                 } else {
-                                    console.log(perenualApiResult)
+                                    $("<p>").text(value).appendTo('#typeContainer');
                                 }
                                 // p = $("<p>").text(`min: ${min}, max: ${max}`).insertAfter(header)
                             } else if (key == "default_image") {
@@ -131,7 +139,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                                         console.log(perenualApiResult.default_image.license_name + " not known!")
                                     case "authorized":
                                         // console.log(perenualApiResult[key][imgSize])
-                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
+                                       
+                                        $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo('#imageContainer');
                                         // move this section up or down depending on team agreement.
                                         break
                                     }
@@ -192,11 +201,11 @@ invalidParams = false;
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
-            getPerenualSpeciesList($("#results"), value, "thumbnail")
+            getPerenualSpeciesList($("#results"), value, "small_url")
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
-        getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
+        getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
     } else {
         console.log(`search parameter ${key} not implemented`)
     }

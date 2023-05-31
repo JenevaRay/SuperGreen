@@ -1,155 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <title>Super Green Plants solution</title>
-    <!-- cdn for swiper css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <!-- cdn for fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap"
-        rel="stylesheet">
-    <!-- custom stylesheet-->
-    <link rel="stylesheet" href="./assets/style.css">
+  <title>Perenual Search</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
-    <!-- header section starts-->
-    <header>
-        <div class="menu-btn">
-            <i id="bars" class="fas fa-bars"></i>
-        </div>
-        <div class="navbar">
-            <div class="close-btn">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="navbar-items">
-                <div class="item"><a href="#"><i class="fa-solid fa-house"></i>Home</a></div>
-                <div class="item"><a href="#"><i class="fa-solid fa-chart-line"></i>Dashboard</a></div>
-                <div class="item"><a href="#"><i class="fa-solid fa-magnifying-glass-arrow-right"></i>Search history</a></div>
-                <div class="item"><a href="#"><i class="fa-solid fa-cloud-showers-heavy"></i>Weather</a></div>
-            </div>
-        </div>
-        <div class="search-container">
-            <form>
-                <input type="text" class="search-input" placeholder="Search Plants here">
-                <button type="submit" class="search-button">
-                    <span class="search-icon"></span>Search
-                </button>
-            </form>
-        </div>
-        <div class="logo">
-            <img src="./assets/images/logo.png" alt="logo">
-        </div>
-    </header>
-<!-- header section ends-->
-<!-- main section starts-->
-    <div class="first-main">
-        <div class="introduction">
-            <h1>Super Green</h1>
-        </div>
+  <h1>Perenual Search</h1>
+  
+  <form>
+    <input type="text" id="searchInput" placeholder="Enter search query">
+    <button type="submit">Search</button>
+  </form>
 
-        <div class="desc">
-            <div class="message-box">
-                <div class="message-content">
-                    <div class="message-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <div class="message-text">
-                        <p>Introducing GreenLife: Your Ultimate Plant Companion!</p>
-                        <button class="learn">learn more</button>
-                    </div>
-                </div>
-            </div>
-            <div class="desc-item">
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+  <div id="results"></div>
+  <div id="detailedresult"></div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- main section ends -->
-<section class="nav-section">
-<div class="navigator">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-</section>
-<!-- swiper sliding section starts -->
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">Slide 1</div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
-          <div class="swiper-slide">Slide 6</div>
-          <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
-          <div class="swiper-slide">Slide 9</div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
+  <script>
+    // Place the provided script here
+    // ...
 
-<!-- footer section -->
-    <footer>
-        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a>
-        <br>
-        <p>© 2023 Super Green. All rights reserved.</p>
-    </footer>
-    <!-- cdn for jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- API needs to be loaded sooner for the purpose of getting information available to display. -->
-    <script src="./assets/js/api.js"></script>
-    <!-- cdn for swiper js -->    
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <!-- cdn for jquery -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8"></script> -->
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.menu-btn').click(function () {
-                $('.navbar').toggleClass('active');
-                $('menu-btn').css('visibility', 'hidden');
-            });
-            $('.close-btn').click(function () {
-                $('.navbar').removeClass('active');
-                $('close-btn').css('visibility', 'visible');
-            });
-        });
-
-        var swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      slidesPerView: 1,
-      spaceBetween: 30,
-      mousewheel: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+    // On form submission, trigger the search
+    $("form").on("submit", (event) => {
+      event.preventDefault();
+      let searchString = $("#searchInput").val();
+      getPerenualSpeciesList($("#results"), searchString, "thumbnail");
     });
-    var swiperContainer = document.querySelector(".swiper-container");
-
-//     swiperContainer.addEventListener("mousewheel", function (event) {
-//   event.stopPropagation();
-// }, {passive: false});
-    </script>
+  </script>
+    <script src="./assets/js/api.js"></script>
     <script src="./assets/js/ui.js"></script>
-
 </body>
-
 </html>

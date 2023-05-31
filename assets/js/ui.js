@@ -202,12 +202,18 @@ invalidParams = false;
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
-            getPerenualSpeciesList($("#results"), value, "small_url")
+            // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
+            // this fetches and parses the JSON for multiple generic results.
+            getPerenualSpeciesList($("#results"), value, "thumbnail")
+            // we will hide detailed results html for searching by name, when one has been selected, then it switches modes to detailed results by plantID
+            $("#detailedresult").hide()
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
         // this fetches and parses the JSON for a single detailed result.
-        getPerenualPlantDetail($("#detailedresult"), value, "thumbnail")
+        getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
+        // we will hide search-by-name results html in this mode.
+        $("#results").hide()
     } else {
         //console.log(`search parameter ${key} not implemented`)
     }

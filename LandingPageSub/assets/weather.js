@@ -14,7 +14,7 @@ fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Salt Lake City
             currPrecip.textContent = "Precipitation: " + jsonData.current.precip_mm + " mm"
 
         } else {
-            currPrecip.textContent = "Precipitation: N/A";
+            currPrecip.textContent = "Precipitation: None";
         }
 
     });

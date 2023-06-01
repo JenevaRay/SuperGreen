@@ -19,27 +19,6 @@ function showCareGuide(data) {
                 } else if(data.data[row].section[index].type == "pruning") {
                     $("#detailed_care_guide_pruning").text(data.data[row].section[index].description)
                 }
-
-                
-                for (let [key, value] of Object.entries(data.data[row].section[index])) {
-                    // add a section to the innerDiv, for dynamic sizing.
-                  //  let keyDiv = $(`<div class=${key}>`).appendTo(innerDiv)
-                  
-                    if (key === "sunlight") {
-                        // console.log(data.data[row].section[index][key].description)
-                        
-                        // omit display of this, because it's already in the grandparent div data.
-                    } else if (key === "watering") {
-                        // type: watering, for example.
-                        
-                       // $("<h3>").text(value).appendTo(keyDiv)
-                    } else if (key === "pruning") {
-                        // and then display the care guide.
-//                        $("<p>").text(value).appendTo(keyDiv)
-                        $(`#detailed_care_guide_pruning`).text(value)
-                    }
-                    // console.log(data.data[row].section[index])
-                }
             }
         }
     }
@@ -74,6 +53,9 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
         let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(thisDiv)
         $(`<h2>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv)
+        let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
+        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
+
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
             $("$").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
@@ -84,8 +66,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $("<p>").text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`).appendTo(wateringDiv)
         let sunlightDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
         $("<p>").text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`).appendTo(sunlightDiv)
-        let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
-        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
     } else {
         $(`${mode}_common_name`).text(perenualApiResult.common_name)
         $(`${mode}_scientific_name`).text(`${perenualApiResult.family}: ${perenualApiResult.scientific_name}`)
@@ -104,9 +84,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_description`).text(`${perenualApiResult.description}`)
         $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location)
         
-        if (perenualApiResult.flowers) {
-            
-            $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
+        if (perenualApiResult.flowers) {            
+            if (perenualApiResult.flowering_season != null) {
+                $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
+
+            }
             $(`${mode}_flower_color`).text(`Flowers are ${perenualApiResult.flower_color.toLowerCase()}`)
         } else {
             $(`${mode}_flowering_season`).hide()

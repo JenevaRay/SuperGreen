@@ -273,9 +273,9 @@ for (let [key, value] of params) {
     }
 }
 
-$('.btn').on('click', function(event){
-    event.preventDefault();
-    $('.result-page').removeClass('hide');
-    $('.search-box').removeClass('hide');
-    $('.landing').addClass('hide');
-})
+// $('.btn').on('click', function(event){
+//     event.preventDefault();
+//     $('.result-page').removeClass('hide');
+//     $('.search-box').removeClass('hide');
+//     $('.landing').addClass('hide');
+// })

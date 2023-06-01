@@ -17,4 +17,12 @@ fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Salt Lake City
             currPrecip.textContent = "Precipitation: None";
         }
 
+        .then((jsonData) => {
+            console.log(jsonData);
+            const iconImg = document.createElement('img');
+            iconImg.setAttribute('class', 'icon-span-styling');
+            iconImg.setAttribute('src', `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Salt Lake City&aqi=yes`);
+            currWeatherList.append(iconImg);
+        })
+
     });

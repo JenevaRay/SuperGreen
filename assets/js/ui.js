@@ -99,13 +99,14 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_description`).text(`${perenualApiResult.description}`)
         $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location)
         
-        if (perenualApiResult.flowers) {
-            $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
-            $(`${mode}_flower_color`).text(`Flowers are ${perenualApiResult.flower_color.toLowerCase()}`)
-        } else {
-            $(`${mode}_flowering_season`).hide()
-            $(`${mode}_flower_color`).hide()
-        }
+        // if (perenualApiResult.flowers) {
+            
+        //     $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
+        //     $(`${mode}_flower_color`).text(`Flowers are ${perenualApiResult.flower_color.toLowerCase()}`)
+        // } else {
+        //     $(`${mode}_flowering_season`).hide()
+        //     $(`${mode}_flower_color`).hide()
+        // }
 
         $(`${mode}_growth_rate`).text(`Growth rate is ${perenualApiResult.growth_rate.toLowerCase()}`)
         $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)

@@ -1,7 +1,7 @@
 function showCareGuide(data) {
     // let innerDiv = $(`#detailed_care_guides`)
     // silently implied, better to be explicit for readability.
-    console.log(data)
+
     // $("#detailed_care_guide_watering").text("This is text")
     if (data.data.length != 0) {
         // if there's no rows of data, then there's nothing to parse/display/generate.
@@ -58,7 +58,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
-            $("$").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
+            $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
         }
         let cycleDiv = $(`<div class="cycle">`).appendTo(thisDiv)
         $("<p>").text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `).appendTo(cycleDiv)
@@ -85,9 +85,10 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location)
         
         if (perenualApiResult.flowers) {            
-            if (perenualApiResult.flowering_season != null) {
+            if (perenualApiResult.flowering_season !== null) {
                 $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
-
+            } else {
+                $(`${mode}_flowering_season`).hide()
             }
             $(`${mode}_flower_color`).text(`Flowers are ${perenualApiResult.flower_color.toLowerCase()}`)
         } else {
@@ -98,7 +99,12 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_growth_rate`).text(`Growth rate is ${perenualApiResult.growth_rate.toLowerCase()}`)
         $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)
         $(`${mode}_propagation`).text(`${perenualApiResult.propagation.join(", ").toLowerCase()}`)
-        $(`${mode}_pest_susceptibility`).text(`Pests: ${perenualApiResult.pest_susceptibility.join(", ").toLowerCase()}`)
+        if (perenualApiResult.pest_susceptibility.length > 0) {
+            $(`${mode}_pest_susceptibility`).text(`Pests: ${perenualApiResult.pest_susceptibility.join(", ").toLowerCase()}`)
+        } else {
+            $(`${mode}_pest_susceptibility`).hide()
+        }
+        
 
         let poisonous_to = []
         if (perenualApiResult.poisonous_to_humans) {

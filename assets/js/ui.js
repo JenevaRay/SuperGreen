@@ -1,25 +1,42 @@
-function showCareGuide(data, innerDiv) {
+function showCareGuide(data) {
+    // let innerDiv = $(`#detailed_care_guides`)
     // silently implied, better to be explicit for readability.
+    console.log(data)
+    // $("#detailed_care_guide_watering").text("This is text")
     if (data.data.length != 0) {
         // if there's no rows of data, then there's nothing to parse/display/generate.
         for (let row in data.data) {
             // rows contain arrays of data in the section field.
+
             for (let index in data.data[row].section) {         
                 // each entry is an object, this gives us all the information in parseable form.
+                // console.log(data.data[row].section[index])
+                // console.log(data.data[row].section[index].description)
+                if (data.data[row].section[index].type == "watering") {
+                    $("#detailed_care_guide_watering").text(data.data[row].section[index].description)
+                } else if (data.data[row].section[index].type == "sunlight") {
+                    $("#detailed_care_guide_sunlight").text(data.data[row].section[index].description)
+                } else if(data.data[row].section[index].type == "pruning") {
+                    $("#detailed_care_guide_pruning").text(data.data[row].section[index].description)
+                }
+
+                
                 for (let [key, value] of Object.entries(data.data[row].section[index])) {
                     // add a section to the innerDiv, for dynamic sizing.
                   //  let keyDiv = $(`<div class=${key}>`).appendTo(innerDiv)
-                    if (key === "common_name") {
-                        $("<div>").text(value).appendTo("#idContainer");
+                  
+                    if (key === "sunlight") {
+                        // console.log(data.data[row].section[index][key].description)
+                        
                         // omit display of this, because it's already in the grandparent div data.
-                    } else if (key === "type") {
+                    } else if (key === "watering") {
                         // type: watering, for example.
-                        $("<div>").text(value).appendTo("#typeContainer");
+                        
                        // $("<h3>").text(value).appendTo(keyDiv)
-                    } else if (key === "description") {
+                    } else if (key === "pruning") {
                         // and then display the care guide.
 //                        $("<p>").text(value).appendTo(keyDiv)
-                        $("<div>").text(value).appendTo("#descriptionContainer");
+                        $(`#detailed_care_guide_pruning`).text(value)
                     }
                     // console.log(data.data[row].section[index])
                 }
@@ -115,8 +132,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         } else {
             $(`${mode}_attracts`).hide()
         }
-        
-        getPerenualCareInfo($(`${mode}_care-guides`), perenualApiResult['care-guides'].replace(/http/i, "https"))
+        let key = "care-guides"
+        getPerenualCareInfo(perenualApiResult[key].replace(/http/i, "https"))
 
         // console.log(perenualApiResult)
         // todo: eventually remove the below section.

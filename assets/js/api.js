@@ -261,7 +261,7 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
     checkPerenualInfo()
 }
 
-function getPerenualCareInfo(innerDiv, url) {    
+function getPerenualCareInfo(url) {    
     /* perenualApiKey:  API key 
     **  such as     sk-zrou646ebab236f671020
     ** jQueryEl:        a jQuery element to attach data to with the perenual plant ID written in
@@ -315,7 +315,7 @@ function getPerenualCareInfo(innerDiv, url) {
                     console.log(cache[url])
                 }
                 // show the care guide
-                showCareGuide(cache[url], innerDiv)
+                showCareGuide(cache[url])
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
                 checkPerenualInfo()

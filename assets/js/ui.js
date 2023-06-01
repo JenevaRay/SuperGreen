@@ -38,7 +38,16 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
     let imageContainer =  thisDiv.find("#imageContainer")
 
+    // let keys = Object.keys(perenualApiResult)
+    let booleanFields = ["cones", "cuisine", "drought_tolerant", "edible_fruit", "edible_leaf", "flowers", "fruits", "indoor", "invasive", "leaf", "medicinal", "poisonous_to_humans", "poisonous_to_pets", "salt_tolerant", "thorny", "tropical"]
+    
+    let trueBooleanFields = []
+    
+    // let fieldsComingSoon = ["rare", "rare_level", "cuisine_list", "edible_fruit_taste_profile", "edible_leaf_taste_profile", "endangered", "endangered_level", "fruit_nutritional_value", "harvest_method", "harvest_season", "leaf_nutritional_value", "medicinal_use", "pest_susceptibility_api", "poison_effects_to_humans", "poison_effects_to_pets", "poison_to_humans_cure", "poison_to_pets_cure", "problem"]
+    // let fieldsNull = ["flowering_season"]
+
     if (mode == "searchresult") {
+
         let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
         $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
         let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(thisDiv)
@@ -66,9 +75,25 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)
         $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
         $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
+        $(`${mode}_care_level`).text(`This plant is ${perenualApiResult.care_level.toLowerCase()} to care for.`)
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
         console.log(perenualApiResult.dimension)
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
+        $(`${mode}_description`).text(`${perenualApiResult.description}`)
+        $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location)
+        
+        if (perenualApiResult.flowers) {
+            $(`${mode}_flowering_season`).text(`Flowers bloom in ${perenualApiResult.flowering_season.toLowerCase()}`)
+            $(`${mode}_flower_color`).text(`Flowers are ${perenualApiResult.flower_color.toLowerCase()}`)
+        } else {
+            $(`${mode}_flowering_season`).hide()
+            $(`${mode}_flower_color`).hide()
+        }
+
+        $(`${mode}_growth_rate`).text(`Growth rate is ${perenualApiResult.growth_rate.toLowerCase()}`)
+        $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)
+        $(`${mode}_propagation`).text(`${perenualApiResult.propagation.join(", ").toLowerCase()}`)
+        $(`${mode}_pest_susceptibility`).text(`Pests: ${perenualApiResult.pest_susceptibility.join(", ").toLowerCase()}`)
 
         let poisonous_to = []
         if (perenualApiResult.poisonous_to_humans) {
@@ -85,6 +110,15 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             $(`${mode}_poisonous_to_`).text(`Poisonous to: ${poisonous_to.join(", ")}`)
         }
 
+        if (perenualApiResult.attracts.length != 0) {
+            $(`${mode}_attracts`).text(`This attracts: ${perenualApiResult.attracts.join(", ").toLowerCase()}`)
+        } else {
+            $(`${mode}_attracts`).hide()
+        }
+        
+        getPerenualCareInfo($(`${mode}_care-guides`), perenualApiResult['care-guides'].replace(/http/i, "https"))
+
+        // console.log(perenualApiResult)
         // todo: eventually remove the below section.
         
 
@@ -117,15 +151,15 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                     // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
                     $(`${mode}_${key}`).text(value)
                     // header = $("<h1>").text(value).appendTo(innerDiv)
-                } else if (["care-guides"].includes(key)) {
-                    // if there is no care guide (which seems common) then this is automatically omitted
-                    // the URL given to us by the API silently requires HTTPS
-                    getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
-                } else if (["scientific_name"].includes(key)) {
-                    header = $("<h2>").text(value).appendTo(innerDiv)
-                } else if (["other_name"].includes(key)) {
-                    // aliases also matter.
-                    p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
+                // } else if (["care-guides"].includes(key)) {
+                //     // if there is no care guide (which seems common) then this is automatically omitted
+                //     // the URL given to us by the API silently requires HTTPS
+                //     getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
+                // } else if (["scientific_name"].includes(key)) {
+                //     header = $("<h2>").text(value).appendTo(innerDiv)
+                // } else if (["other_name"].includes(key)) {
+                //     // aliases also matter.
+                //     p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
                 } else {
                     if (!["default_image"].includes(key)) {
                         // we won't add a header for images.

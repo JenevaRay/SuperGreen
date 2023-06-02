@@ -82,7 +82,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         console.log(perenualApiResult.dimension)
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
         $(`${mode}_description`).text(`${perenualApiResult.description}`)
-        $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location)
+        $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location.full_iframe)
         
         if (perenualApiResult.flowers) {            
             if (perenualApiResult.flowering_season !== null) {
@@ -98,7 +98,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
         $(`${mode}_growth_rate`).text(`Growth rate is ${perenualApiResult.growth_rate.toLowerCase()}`)
         $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)
-        $(`${mode}_propagation`).text(`${perenualApiResult.propagation.join(", ").toLowerCase()}`)
+        $(`${mode}_propagation`).text(`Propagation: ${perenualApiResult.propagation.join(", ").toLowerCase()}`)
         if (perenualApiResult.pest_susceptibility.length > 0) {
             $(`${mode}_pest_susceptibility`).text(`Pests: ${perenualApiResult.pest_susceptibility.join(", ").toLowerCase()}`)
         } else {
@@ -323,7 +323,5 @@ for (let [key, value] of params) {
 
 // $('.btn').on('click', function(event){
 //     event.preventDefault();
-//     $('.result-page').removeClass('hide');
 //     $('.search-box').removeClass('hide');
-//     $('.landing').addClass('hide');
 // })

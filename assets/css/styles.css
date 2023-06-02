@@ -312,6 +312,10 @@ button,
     color: rgb(178, 178, 178);
 }
 
+.scissors {
+    color: rgb(61, 92, 139);
+}
+
 .d-flex {
     display: flex !important;
 }

@@ -306,6 +306,7 @@ for (let [key, value] of params) {
             getPerenualSpeciesList($("#results"), value, "thumbnail")
             // we will hide detailed results html for searching by name, when one has been selected, then it switches modes to detailed results by plantID
             $("#detailedresult").hide()
+            $(".landing").hide()
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
@@ -313,6 +314,7 @@ for (let [key, value] of params) {
         getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
         // we will hide search-by-name results html in this mode.
         $("#results").hide()
+        $(".landing").hide()
     } else {
         //console.log(`search parameter ${key} not implemented`)
     }

@@ -118,11 +118,27 @@
         <section id="detailedresult" class="wrapper">
             <section class="features-icons bg-light text-center right-feature">
                 <div class="container row">
+
+
+                    <div class="card" style="width: 60rem; text-align: justify; font-size: large;">
+                        <div class="card-header"></div>
+                        <div class="weatherlist" >
+                            <div class="col-lg-4" style="display: flex; align-items: center; gap: 10px;">
+                                
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="col-lg-3">
                         <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
-                            <h3 class="feature-title">Watering Schedules</h3>
-                            <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
+                            <h3 class="feature-title">Watering</h3>
+                            <em id="detailed_watering"></em>
+                            <p id="detailed_care_guide_watering"></p>
+                            <!-- <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p> -->
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -139,8 +155,15 @@
                             <div class="features-icons-icon d-flex">
                                 <i class="fa-solid fa-cloud-bolt clouds"></i>
                             </div>
+                            <div>
+                                <img id="icon" style="text-align: left;">
+                                <div id="current-weather"></div>
+                                <div id="currentWeatherList"></div>
+                            </div>
                             <h3 class="feature-title">Weather Tracking</h3>
                             <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
+                            <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px;"></div>
+                            <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px; margin-right: 0;">precipitation:</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -191,7 +214,7 @@
                 
             </div>
             <div id="detailed_care_guides"></div>
-            <section class="guides-tips">
+            <!-- <section class="guides-tips">
                 <h1>Guides & Tips</h1>
                 <div class="guides">
                     <div class="guide">
@@ -209,13 +232,11 @@
                         </div>
                         <li id="detailed_watering">1 gallon</li>
                         <p id="detailed_care_guide_watering"></p>
-                    </div>
-                    <div class="guide">
+                    </div> -->
+                    <!-- <div class="guide">
                         <span class="icon">☀️</span>
                         <h3>Sunlight</h3>
-                        <li id="detailed_sunlight">half</li>
-                        <p id="detailed_care_guide_sunlight"></p>
-                    </div>
+                    </div> -->
                     <!-- <div class="guide">
                         <span class="icon">🌱</span>
                         <h3>Propagation</h3>

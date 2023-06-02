@@ -478,6 +478,19 @@ body {
     word-break: break-word;
 }
 
+/* added for Solomon's reference. */
+#results {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.searchresult {
+    margin: 1em;
+    width: max-content;
+    background: grey;
+    border: 1px dotted black;
+}
+
 .guides{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

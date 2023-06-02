@@ -49,31 +49,6 @@
             </div>
         </header>
         <!-- three features area on landing page -->
-        <section class="features-icons bg-light text-center right-feature">
-            <div class="container row">
-                <div class="col-lg-4">
-                    <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
-                        <h3 class="feature-title">Watering Schedules</h3>
-                        <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
-                        <h3 class="feature-title">Sunlight Needed</h3>
-                        <p class="lead mb-0">Find out what amount of sunlight your specific plant needs.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
-                        <h3 class="feature-title">Weather Tracking</h3>
-                        <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Image Showcases -->
         <section class="showcase">
             <div class="container-fluid p-0">
@@ -107,9 +82,45 @@
         <section class="wrapper">
         </div>
         <section id="detailedresult" class="wrapper">
-            <div class="top">
+            <section class="features-icons bg-light text-center right-feature">
+                <div class="container row">
+                    <div class="col-lg-3">
+                        <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
+                            <h3 class="feature-title">Watering Schedules</h3>
+                            <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
+                            <h3 class="feature-title">Sunlight Needed</h3>
+                            <p class="lead mb-0">Find out what amount of sunlight your specific plant needs.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mx-auto mb-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex">
+                                <i class="fa-solid fa-cloud-bolt clouds"></i>
+                            </div>
+                            <h3 class="feature-title">Weather Tracking</h3>
+                            <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mx-auto mb-0 mb-lg-3">
+                            <div class="features-icon-icon d-flex">
+                                <i class="fa-solid fa-cloud-bolt clouds"></i>
+                            </div>
+                            <h3 class="feature-title">Pruning</h3>
+                            <p id="detailed_care_guide_pruning"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                <div class="top">
                 <div class="coll left-side">
-                    <h3>Database</h3>
+                    <div id="detailed_description" class="description"></div>
                     <ul>
                         <li id="detailed_origin"></li>
                         <li id="detailed_poisonous_to_"></li>
@@ -134,14 +145,14 @@
                 <div class="coll coll1">
                     <h3 class="hardiness">hardiness_location</h3>
                     <div id="detailed_hardiness_location"></div>
-                    <p>hardiness_location location goes here / the map thing</p>
+                    <!-- <p>hardiness_location location goes here / the map thing</p> -->
                 </div>
-                <div class="coll coll2">
+                <!-- <div class="coll coll2">
                     extra info goes here like leaf, flower, fruit, etc
-                </div>
-                <div id="detailed_description" class="description">
-                    <p> description goes here it is responsive so it will be flexible with amount of text</p>
-                </div>
+                </div> -->
+                
+                    <!-- <p> description goes here it is responsive so it will be flexible with amount of text</p> -->
+                
             </div>
             <div id="detailed_care_guides"></div>
             <section class="guides-tips">

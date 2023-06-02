@@ -288,7 +288,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     }
 }
 
-$("form").on("submit", (event) => {
+$("#contactForm").on("submit", (event) => {
     event.preventDefault()
     // get the text from the first input within the form.
     let searchString = $("form").find("input").first().val()

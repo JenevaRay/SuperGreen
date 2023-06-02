@@ -68,7 +68,12 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $("<p>").text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`).appendTo(sunlightDiv)
     } else {
         $(`${mode}_common_name`).text(perenualApiResult.common_name)
-        $(`${mode}_scientific_name`).text(`${perenualApiResult.family}: ${perenualApiResult.scientific_name}`)
+        if (perenualApiResult.family != null) {
+            $(`${mode}_scientific_name`).text(`${perenualApiResult.family}: ${perenualApiResult.scientific_name}`)
+        } else {
+            $(`${mode}_scientific_name`).text(`${perenualApiResult.scientific_name}`)
+        }
+        
         if (perenualApiResult.other_name.length != 0) {
             $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo($(`${mode}_all_image`))
         }

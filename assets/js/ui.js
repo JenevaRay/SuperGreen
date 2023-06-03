@@ -45,7 +45,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         
         let imgDiv = $(`<div class="default_image">`).appendTo(mainDiv);
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
-        if (perenualApiResult.default_image[imgSize].includes("49255769768_df55596553_b.jpg")) {
+        if (perenualApiResult.default_image[imgSize] == undefined || perenualApiResult.default_image[imgSize].includes("49255769768_df55596553_b.jpg")) {
             // this is a filler image for a legitimate entry, but we don't want to display trees when people are looking for raspberries.
             thisDiv.hide()
         }
@@ -76,7 +76,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         }
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
         $(`${mode}_origin`).text(`from: ${perenualApiResult.origin.join(", ")}`)
-        $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)
+        $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)        
         $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
         $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
         $(`${mode}_care_level`).text(`This plant is ${perenualApiResult.care_level.toLowerCase()} to care for.`)

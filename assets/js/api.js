@@ -226,89 +226,92 @@ function getPerenualCareInfo(url) {
 }
 
 function getOpenAIquery(detailedJson, careGuideURL) {
-    parsedJson = $.extend(true, {}, detailedJson)
-    // because we want to edit the existing entries and throw out garbage.
-    
-    for (let [key, value] of Object.entries(parsedJson))
-    {
-        if (["Coming Soon", "Coming", null].includes(value)) {
-            delete parsedJson[key]
-        } else if (value.length == 0) {
-            delete parsedJson[key]
-        } else if (["id", "care-guides", "hardiness_location", "default_image", "type"].includes(key)) {
-            delete parsedJson[key]
-        } else if (["poisonous_to_humans", "poisonous_to_pets"].includes(key)) {
-            if (value) {
-                parsedJson[key] = true
-            } else {
-                parsedJson[key] = false
-            }
-        } else if (["hardiness"].includes(key)) {
-            parsedJson[key] = `${value.min} to ${value.max}`
-        }
-        // console.log(key)
-    }
-
-    let gotOpenAIResponse = false
-
-    function checkPerenualCareInfo() {
-        setTimeout(()=>{
-            if(gotPerenualCareInfo) {
-                if (debug.dataToBeDisplayed) {
-                    // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
-                    // console.log(cache[url])
+    if (API.openAI) {
+        parsedJson = $.extend(true, {}, detailedJson)
+        // because we want to edit the existing entries and throw out garbage.
+        
+        for (let [key, value] of Object.entries(parsedJson))
+        {
+            if (["Coming Soon", "Coming", null].includes(value)) {
+                delete parsedJson[key]
+            } else if (value.length == 0) {
+                delete parsedJson[key]
+            } else if (["id", "care-guides", "hardiness_location", "default_image", "type"].includes(key)) {
+                delete parsedJson[key]
+            } else if (["poisonous_to_humans", "poisonous_to_pets"].includes(key)) {
+                if (value) {
+                    parsedJson[key] = true
+                } else {
+                    parsedJson[key] = false
                 }
-                parsedJson["care-guide-watering"] = $("#detailed_care_guide_watering").text()
-                parsedJson["care-guide-sunlight"] = $("#detailed_care_guide_sunlight").text()
-                parsedJson["care-guide-pruning"] = $("#detailed_care_guide_pruning").text()
-                // prelude = "Make this JSON result into natural language, omitting information that is boolean false, and without bullet point list formatting.  Do not repeat information from the care-guide-watering, care-guide-sunlight, care-guide-pruning, or the description.  "
-                // message = prelude + JSON.stringify(parsedJson)
-
-                message = "say this is a test."
-                // we will not cache these results.
-                url = "https://127.0.0.1"
-                // url = 'https://api.openai.com/v1/completions'
-                fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + API.openAI,
-                        // "Access-Control-Allow-Origin": "*"
-                    }, body: JSON.stringify({
-                        // "frequency_penalty": 1.2,
-                        // "max_tokens": 1000,
-                        "model": "text-davinci-003",
-                        // "presence_penalty": 0,
-                        "prompt": [message],
-                        "temperature": 0,
-                    })
-                }).then((response) => {
-                    if (response.status === 401) {
-                        console.log("API error!")
-                    } else if (response.status === 200) {
-                        // pass on the parsed json to the next then
-                        return response.json();
-                    } else if (!response.ok) {
-                        console.log("Network response was not OK")
-                        // show all the request/response info
-                        console.log(response)
-                    }
-                }).then((jsonData) => {
-                    if (debug.cache) {console.log("fetching info");}
-                    // we'll put the fetched info into cache
-                    console.log(jsonData.choices[0].text)
-                    // say that we got the information...
-                    gotOpenAIResponse = true;
-                    // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)
-                    // localStorage.setItem("PerenualInfo", JSON.stringify(cache))
-                })
-            } else {
-                // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
-                checkPerenualCareInfo()
+            } else if (["hardiness"].includes(key)) {
+                parsedJson[key] = `${value.min} to ${value.max}`
             }
-        }, 50)
-    }
-    checkPerenualCareInfo()
+            // console.log(key)
+        }
     
-    // console.log(parsedJson)
+        let gotOpenAIResponse = false
+    
+        function checkPerenualCareInfo() {
+            setTimeout(()=>{
+                if(gotPerenualCareInfo) {
+                    if (debug.dataToBeDisplayed) {
+                        // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
+                        // console.log(cache[url])
+                    }
+                    parsedJson["care-guide-watering"] = $("#detailed_care_guide_watering").text()
+                    parsedJson["care-guide-sunlight"] = $("#detailed_care_guide_sunlight").text()
+                    parsedJson["care-guide-pruning"] = $("#detailed_care_guide_pruning").text()
+                    // prelude = "Make this JSON result into natural language, omitting information that is boolean false, and without bullet point list formatting.  Do not repeat information from the care-guide-watering, care-guide-sunlight, care-guide-pruning, or the description.  "
+                    // message = prelude + JSON.stringify(parsedJson)
+    
+                    message = "say this is a test."
+                    // we will not cache these results.
+                    url = "https://127.0.0.1"
+                    // url = 'https://api.openai.com/v1/completions'
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + API.openAI,
+                            // "Access-Control-Allow-Origin": "*"
+                        }, body: JSON.stringify({
+                            // "frequency_penalty": 1.2,
+                            // "max_tokens": 1000,
+                            "model": "text-davinci-003",
+                            // "presence_penalty": 0,
+                            "prompt": [message],
+                            "temperature": 0,
+                        })
+                    }).then((response) => {
+                        if (response.status === 401) {
+                            console.log("API error!")
+                        } else if (response.status === 200) {
+                            // pass on the parsed json to the next then
+                            return response.json();
+                        } else if (!response.ok) {
+                            console.log("Network response was not OK")
+                            // show all the request/response info
+                            console.log(response)
+                        }
+                    }).then((jsonData) => {
+                        if (debug.cache) {console.log("fetching info");}
+                        // we'll put the fetched info into cache
+                        console.log(jsonData.choices[0].text)
+                        // say that we got the information...
+                        gotOpenAIResponse = true;
+                        // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)
+                        // localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                    })
+                } else {
+                    // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
+                    checkPerenualCareInfo()
+                }
+            }, 50)
+        }
+        checkPerenualCareInfo()
+        
+        // console.log(parsedJson)
+    }
+
 }

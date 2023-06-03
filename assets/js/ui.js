@@ -110,7 +110,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         } else {
             $(`${mode}_pest_susceptibility`).hide()
         }
-        
 
         let poisonous_to = []
         if (perenualApiResult.poisonous_to_humans) {
@@ -134,7 +133,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         }
         let key = "care-guides"
         getPerenualCareInfo(perenualApiResult[key].replace(/http/i, "https"))
-
+        getOpenAIquery(perenualApiResult, perenualApiResult[key].replace(/http/i, "https"))
         // todo: eventually remove the below section.
         
         // for (let [key, value] of Object.entries(perenualApiResult)) {

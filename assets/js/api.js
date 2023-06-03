@@ -226,7 +226,7 @@ function getPerenualCareInfo(url) {
 }
 
 function getOpenAIquery(detailedJson, careGuideURL) {
-    if (API.openAI) {
+    if (API.openAI != undefined) {
         parsedJson = $.extend(true, {}, detailedJson)
         // because we want to edit the existing entries and throw out garbage.
         
@@ -262,13 +262,13 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                     parsedJson["care-guide-watering"] = $("#detailed_care_guide_watering").text()
                     parsedJson["care-guide-sunlight"] = $("#detailed_care_guide_sunlight").text()
                     parsedJson["care-guide-pruning"] = $("#detailed_care_guide_pruning").text()
-                    // prelude = "Make this JSON result into natural language, omitting information that is boolean false, and without bullet point list formatting.  Do not repeat information from the care-guide-watering, care-guide-sunlight, care-guide-pruning, or the description.  "
-                    // message = prelude + JSON.stringify(parsedJson)
+                    prelude = "Make this JSON result into natural language, omitting information that is boolean false, and without bullet point list formatting.  Do not repeat information from the care-guide-watering, care-guide-sunlight, care-guide-pruning, or the description.  "
+                    message = prelude + JSON.stringify(parsedJson)
     
-                    message = "say this is a test."
+                    // message = "count from 1 to 10."
                     // we will not cache these results.
                     url = "https://127.0.0.1"
-                    // url = 'https://api.openai.com/v1/completions'
+                    url = 'https://api.openai.com/v1/chat/completions'
                     fetch(url, {
                         method: "POST",
                         headers: {
@@ -277,10 +277,14 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                             // "Access-Control-Allow-Origin": "*"
                         }, body: JSON.stringify({
                             // "frequency_penalty": 1.2,
-                            // "max_tokens": 1000,
-                            "model": "text-davinci-003",
+                            "max_tokens": 1000,
+                            // "model": "text-davinci-003",
+                            "model": "gpt-3.5-turbo",
                             // "presence_penalty": 0,
-                            "prompt": [message],
+                            // "prompt": [message],
+                            "messages": [{
+                                "role": "user", "content": message
+                            }],
                             "temperature": 0,
                         })
                     }).then((response) => {
@@ -297,7 +301,9 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                     }).then((jsonData) => {
                         if (debug.cache) {console.log("fetching info");}
                         // we'll put the fetched info into cache
-                        console.log(jsonData.choices[0].text)
+                        $("#detailed_description").text(jsonData.choices[0].message.content)
+                        console.log(jsonData)
+                        $("#hidewhenautosummary").hide()
                         // say that we got the information...
                         gotOpenAIResponse = true;
                         // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)

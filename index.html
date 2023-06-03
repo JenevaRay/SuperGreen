@@ -1,262 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-     <!-- icons used for site from font awesome -->
-    <script src="https://kit.fontawesome.com/4268e3dc68.js" crossorigin="anonymous"></script>
-    <link href="./assets/css/styles.css" rel="stylesheet" />
-    <title>SuperGreen</title>
-</head>
-<body>
-    <!-- nav bar, will remain the same on both landing page and search results page. -->
-    <nav class="navbar navbar-light bg-light whole-nav">
-        <div class="left-nav">
-            <img class="logo" src="assets/images/logo.png" alt="Garden">
-            <h1 class="title">SuperGreen</h1>
-        </div>
-        <!-- on click of "submit", remove class hide -->
-        <div class="container search-box hide">
-            <input type="text" placeholder="Search Plants Here" class="search">
-            <input type="submit" value="Search" id="searchplant" class="search-btn">
-        </div>
-    </nav>
-    <section class="landing">
-        <!-- this section will only appear on the landing page -->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">Expert Gardening is One Search Away!</h1>
-                            <form class="form-subscribe" id="contactForm">
-                                <div class="row lg-search">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="searchplant" placeholder="Search Plant" />
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-lg" id="submitButton" type="submit">Search</button></div>
-                                </div>           
-                            </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+        <!-- icons used for site from font awesome -->
+        <script src="https://kit.fontawesome.com/4268e3dc68.js" crossorigin="anonymous"></script>
+        <link href="./assets/css/styles.css" rel="stylesheet" />
+        <title>SuperGreen</title>
+    </head>
+    <body>
+        <!-- nav bar, will remain the same on both landing page and search results page. -->
+        <nav class="navbar navbar-light bg-light whole-nav">
+            <div class="left-nav">
+                <img class="logo" src="assets/images/logo.png" alt="Garden">
+                <h1 class="title">SuperGreen</h1>
+            </div>
+            <!-- on click of "submit", remove class hide -->
+            <div class="container search-box hide">
+                <input type="text" placeholder="Search Plants Here" class="search">
+                <input type="submit" value="Search" id="searchplant" class="search-btn">
+            </div>
+        </nav>
+        <section class="landing">
+            <!-- this section will only appear on the landing page -->
+            <header class="masthead">
+                <div class="container position-relative">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6">
+                            <div class="text-center text-white">
+                                <!-- Page heading-->
+                                <h1 class="mb-5">Expert Gardening is One Search Away!</h1>
+                                <form class="form-subscribe" id="contactForm">
+                                    <div class="row lg-search">
+                                        <div class="col">
+                                            <input class="form-control form-control-lg" id="searchplant" placeholder="Search Plant" />
+                                        </div>
+                                        <div class="col-auto"><button class="btn btn-lg" id="submitButton" type="submit">Search</button></div>
+                                    </div>           
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <!-- three features area on landing page -->
-        <section class="features-icons bg-light text-center right-feature">
-            <div class="container row">
-                <div class="col-lg-3">
-                    <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
-                        <h3 class="feature-title">Watering Schedules</h3>
-                        <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
-                        <h3 class="feature-title">Sunlight Needed</h3>
-                        <p class="lead mb-0">Find out what amount of sunlight your specific plant needs.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
-                        <h3 class="feature-title">Weather Tracking</h3>
-                        <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex"><i class="fa-solid fa-scissors scissors"></i></div>
-                        <h3 class="feature-title">Pruning</h3>
-                        <p class="lead mb-0">Learn when and how to best prune your vegetables for an optimal harvest</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Image Showcases -->
-        <section class="showcase">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/agriculture.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>All Your Gardening Information In One Place</h2>
-                        <p class="lead mb-0">You no longer need to scour the internet looking for vital gardening information. The techniques and criteria needed to grow your favorite vegetables are all found with one easy search</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/veggies.jpg')"></div>
-                    <div class="col-lg-6 my-auto showcase-text">
-                        <h2>Save Your Virtual Garden</h2>
-                        <p class="lead mb-0">Conveniently save plant searches to your online garden for fast and easy reference</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/woman-carrying-fruits-vegetables.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Keep Informed About The Weather</h2>
-                        <p class="lead mb-0">Using our built in weather feature, you will be able to stay up to date on your local weather to anticipate any adjustments you may need to make in the care of your plants</p>
-                    </div>
-                </div>
-            </div>
-        </section> 
-    </section>
-    <!-- below is the result page that will be hidden until the search is executed --> 
-    <main class="result-page ">
-
-        <div id="results">
-        </div>
-        <section class="wrapper">
-        </div> <!-- what is this single closed div tag?? -->
-        <section id="detailedresult" class="wrapper">
+            </header>
+            <!-- three features area on landing page -->
             <section class="features-icons bg-light text-center right-feature">
                 <div class="container row">
                     <div class="col-lg-3">
                         <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
-                            <h3 class="feature-title">Watering</h3>
-                            <em id="detailed_watering"></em>
-                            <p id="detailed_care_guide_watering"></p>
+                            <h3 class="feature-title">Watering Schedules</h3>
+                            <p class="lead mb-0">Know how often to water your plant, as well as the approximate amount of water to use.</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
-                            <h3 class="feature-title">Sunlight</h3>
-                            <em id="detailed_sunlight"></em>
-                            <p id="detailed_care_guide_sunlight"></p>   
+                            <h3 class="feature-title">Sunlight Needed</h3>
+                            <p class="lead mb-0">Find out what amount of sunlight your specific plant needs.</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mx-auto mb-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
-                            <h3 class="feature-title">Weather</h3>
-                            <div>
-                                <div id="current-weather"></div>
-                                <div id="currentWeatherList"></div>
-                                <div class="d-flex align-items-center">
-                                <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 25px; margin-top: 20px;"></div>    
-                                <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 10px; margin-top: 20px; margin-right: 0px; margin-bottom: 0px;">precipitation:</p>
-                                <img id="icon" style="text-align: right; margin-left: 5px;">                     
-                            </div>
-                            </div>
+                            <h3 class="feature-title">Weather Tracking</h3>
+                            <p class="lead mb-0">Know what weather to expect in your local city to anticipate if care adjustments are needed</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex">
-                                <i class="fa-solid fa-scissors scissors"></i>
-                            </div>
+                            <div class="features-icons-icon d-flex"><i class="fa-solid fa-scissors scissors"></i></div>
                             <h3 class="feature-title">Pruning</h3>
-                            <p id="detailed_care_guide_pruning">No special info</p>
+                            <p class="lead mb-0">Learn when and how to best prune your vegetables for an optimal harvest</p>
                         </div>
                     </div>
                 </div>
             </section>
-                <div class="top">
-                <div class="coll left-side">
-                    <div id="detailed_description" class="description"></div>
-                    <ul>
-                        <li id="detailed_origin"></li>
-                        <li id="detailed_poisonous_to_"></li>
-                        <li id="detailed_cycle">cycle</li>
-                        <li id="detailed_type"></li>
-                        <li id="detailed_dimension"></li>
-                        <li id="detailed_attracts"></li>
-                        <li id="detailed_care_level"></li>
-                        <li id="detailed_flowering_season"></li>
-                        <li id="detailed_flower_color"></li>
-                        <li id="detailed_growth_rate"></li>
-                        <li id="detailed_soil"></li>
-                        <li id="detailed_pest_susceptibility"></li>
-                        <li id="detailed_propagation"></li>
-                    </ul>
+            <!-- Image Showcases -->
+            <section class="showcase">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/agriculture.jpg')"></div>
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>All Your Gardening Information In One Place</h2>
+                            <p class="lead mb-0">You no longer need to scour the internet looking for vital gardening information. The techniques and criteria needed to grow your favorite vegetables are all found with one easy search</p>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/images/veggies.jpg')"></div>
+                        <div class="col-lg-6 my-auto showcase-text">
+                            <h2>Save Your Virtual Garden</h2>
+                            <p class="lead mb-0">Conveniently save plant searches to your online garden for fast and easy reference</p>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/woman-carrying-fruits-vegetables.jpg')"></div>
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>Keep Informed About The Weather</h2>
+                            <p class="lead mb-0">Using our built in weather feature, you will be able to stay up to date on your local weather to anticipate any adjustments you may need to make in the care of your plants</p>
+                        </div>
+                    </div>
                 </div>
-                <div id="detailed_all_image" class="main plant-image">
-                    <div id="detailed_default_image"></div>
-                    <h1 id="detailed_common_name" class="common_name">Plant name</h1>
-                    <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>
-                </div>
-                <div class="coll coll1">
-                    <h3 class="hardiness">hardiness_location</h3>
-                    <div id="detailed_hardiness_location"></div>
-                    <!-- <p>hardiness_location location goes here / the map thing</p> -->
-                </div>
-                <!-- <div class="coll coll2">
-                    extra info goes here like leaf, flower, fruit, etc
-                </div> -->
-                
-                    <!-- <p> description goes here it is responsive so it will be flexible with amount of text</p> -->
-                
+            </section> 
+        </section>
+        <!-- below is the result page that will be hidden until the search is executed --> 
+        <main class="result-page ">
+
+            <div id="results">
             </div>
-            <div id="detailed_care_guides"></div>
-            <!-- <section class="guides-tips">
-                <h1>Guides & Tips</h1>
-                <div class="guides">
-                    <div class="guide">
-                        <span class="icon">💧</span>
-                        <h3>Watering</h3>
-                        <div id="current-weather" class="card" style="width: 60rem; text-align: justify; font-size: large;">
-                            <div class="card-header"></div>
-                            <div id="currentWeatherList" class="weatherlist" style="text-align: left;">
-                                <div class="col-lg-4" style="display: flex; align-items: center; gap: 10px;">
-                                    <img id="icon">
-                                    <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px;"></div>
-                                    <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px; margin-right: 0;">precipitation:</p>
+            <section class="wrapper">
+            <section id="detailedresult" class="wrapper">
+                <section class="features-icons bg-light text-center right-feature">
+                    <div class="container row">
+                        <div class="col-lg-3">
+                            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
+                                <h3 class="feature-title">Watering</h3>
+                                <em id="detailed_watering"></em>
+                                <p id="detailed_care_guide_watering"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
+                                <h3 class="feature-title">Sunlight</h3>
+                                <em id="detailed_sunlight"></em>
+                                <p id="detailed_care_guide_sunlight"></p>   
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mx-auto mb-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
+                                <h3 class="feature-title">Weather</h3>
+                                <div>
+                                    <div id="current-weather"></div>
+                                    <div id="currentWeatherList"></div>
+                                    <div class="d-flex align-items-center">
+                                    <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 25px; margin-top: 20px;"></div>    
+                                    <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 10px; margin-top: 20px; margin-right: 0px; margin-bottom: 0px;">precipitation:</p>
+                                    <img id="icon" style="text-align: right; margin-left: 5px;">                     
+                                </div>
                                 </div>
                             </div>
                         </div>
-                        <li id="detailed_watering">1 gallon</li>
-                        <p id="detailed_care_guide_watering"></p>
+                        <div class="col-lg-3">
+                            <div class="mx-auto mb-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i class="fa-solid fa-scissors scissors"></i>
+                                </div>
+                                <h3 class="feature-title">Pruning</h3>
+                                <p id="detailed_care_guide_pruning">No special info</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                    <div class="top">
+                    <div class="coll left-side">
+                        <div id="detailed_description" class="description"></div>
+                        <ul>
+                            <li id="detailed_origin"></li>
+                            <li id="detailed_poisonous_to_"></li>
+                            <li id="detailed_cycle">cycle</li>
+                            <li id="detailed_type"></li>
+                            <li id="detailed_dimension"></li>
+                            <li id="detailed_attracts"></li>
+                            <li id="detailed_care_level"></li>
+                            <li id="detailed_flowering_season"></li>
+                            <li id="detailed_flower_color"></li>
+                            <li id="detailed_growth_rate"></li>
+                            <li id="detailed_soil"></li>
+                            <li id="detailed_pest_susceptibility"></li>
+                            <li id="detailed_propagation"></li>
+                        </ul>
+                    </div>
+                    <div id="detailed_all_image" class="main plant-image">
+                        <div id="detailed_default_image"></div>
+                        <h1 id="detailed_common_name" class="common_name">Plant name</h1>
+                        <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>
+                    </div>
+                    <div class="coll coll1">
+                        <h3 class="hardiness">hardiness_location</h3>
+                        <div id="detailed_hardiness_location"></div>
+                        <!-- <p>hardiness_location location goes here / the map thing</p> -->
+                    </div>
+                    <!-- <div class="coll coll2">
+                        extra info goes here like leaf, flower, fruit, etc
                     </div> -->
-                    <!-- <div class="guide">
-                        <span class="icon">☀️</span>
-                        <h3>Sunlight</h3>
-                    </div> -->
-                    <!-- <div class="guide">
-                        <span class="icon">🌱</span>
-                        <h3>Propagation</h3>
-                        <p >Lorem ipsum.</p>
-                    </div> -->
-
-                    <!-- <div class="pruning guide">
-                        <span class="icon">👨‍🌾</span>
-                        <h3>Pruning</h3>
-                        <p id="detailed_care_guide_pruning">Lorem ipsum assumenda.</p>
-                    </div> -->
+                    
+                        <!-- <p> description goes here it is responsive so it will be flexible with amount of text</p> -->
+                    
                 </div>
-            </section>
-        </section>
-    </main>
-    <!-- Footer-->
-    <!-- <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="#!">About</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!">Contact</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!">My Garden</a></li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Made with 💚</p>
+                <div id="detailed_care_guides"></div>
+                <!-- <section class="guides-tips">
+                    <h1>Guides & Tips</h1>
+                    <div class="guides">
+                        <div class="guide">
+                            <span class="icon">💧</span>
+                            <h3>Watering</h3>
+                            <div id="current-weather" class="card" style="width: 60rem; text-align: justify; font-size: large;">
+                                <div class="card-header"></div>
+                                <div id="currentWeatherList" class="weatherlist" style="text-align: left;">
+                                    <div class="col-lg-4" style="display: flex; align-items: center; gap: 10px;">
+                                        <img id="icon">
+                                        <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px;"></div>
+                                        <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px; margin-right: 0;">precipitation:</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <li id="detailed_watering">1 gallon</li>
+                            <p id="detailed_care_guide_watering"></p>
+                        </div> -->
+                        <!-- <div class="guide">
+                            <span class="icon">☀️</span>
+                            <h3>Sunlight</h3>
+                        </div> -->
+                        <!-- <div class="guide">
+                            <span class="icon">🌱</span>
+                            <h3>Propagation</h3>
+                            <p >Lorem ipsum.</p>
+                        </div> -->
+
+                        <!-- <div class="pruning guide">
+                            <span class="icon">👨‍🌾</span>
+                            <h3>Pruning</h3>
+                            <p id="detailed_care_guide_pruning">Lorem ipsum assumenda.</p>
+                        </div> -->
+        <!-- Footer-->
+        <!-- <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">My Garden</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Made with 💚</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer> -->
-    <script src="./assets/js/weather.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./assets/js/api.js"></script>
-    <script src="./assets/js/ui.js"></script>
-</body>
+        </footer> -->
+        <script src="./assets/js/weather.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="./assets/js/api.js"></script>
+        <script src="./assets/js/ui.js"></script>
+    </body>
 </html>

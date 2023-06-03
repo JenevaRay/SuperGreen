@@ -48,24 +48,34 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                 window.location.href = `${window.location.pathname}?plantID=${perenualApiResult.id}`
             })
         }
+       
+        let mainDiv = $('<div class="main"></div>').appendTo(thisDiv);
 
-        let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
-        $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
-        let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(thisDiv)
-        $(`<h2>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv)
-        let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
-        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
+        let commonNameDiv = $(`<div class="common_name">`).appendTo(mainDiv);
+        $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv);
+
+        let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(mainDiv);
+        $(`<h4>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv);
+        let imgDiv = $(`<div class="default_image">`).appendTo(mainDiv);
+        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
+        
+    // let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
+        // $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
+        // let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(thisDiv)
+        // $(`<h4>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv)
+        // let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
+        // $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
 
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
             $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
         }
         let cycleDiv = $(`<div class="cycle">`).appendTo(thisDiv)
-        $("<p>").text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `).appendTo(cycleDiv)
-        let wateringDiv = $(`<div class="watering">`).appendTo(thisDiv)
-        $("<p>").text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`).appendTo(wateringDiv)
-        let sunlightDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
-        $("<p>").text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`).appendTo(sunlightDiv)
+        // $("<p>").text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `).appendTo(cycleDiv)
+        // let wateringDiv = $(`<div class="watering">`).appendTo(thisDiv)
+        // $("<p>").text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`).appendTo(wateringDiv)
+        // let sunlightDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
+        // $("<p>").text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`).appendTo(sunlightDiv)
     } else {
         $(`${mode}_common_name`).text(perenualApiResult.common_name)
         if (perenualApiResult.family != null) {

@@ -1,8 +1,5 @@
 function showCareGuide(data) {
-    // let innerDiv = $(`#detailed_care_guides`)
     // silently implied, better to be explicit for readability.
-
-    // $("#detailed_care_guide_watering").text("This is text")
     if (data.data.length != 0) {
         // if there's no rows of data, then there's nothing to parse/display/generate.
         for (let row in data.data) {
@@ -10,8 +7,6 @@ function showCareGuide(data) {
 
             for (let index in data.data[row].section) {         
                 // each entry is an object, this gives us all the information in parseable form.
-                // console.log(data.data[row].section[index])
-                // console.log(data.data[row].section[index].description)
                 if (data.data[row].section[index].type == "watering") {
                     $("#detailed_care_guide_watering").text(data.data[row].section[index].description)
                 } else if (data.data[row].section[index].type == "sunlight") {
@@ -32,15 +27,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     // this function is used site-wide, not just for individual html files.
     // array matches are used for ease of categorical changes.
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
-    let imageContainer =  thisDiv.find("#imageContainer")
-
-    // let keys = Object.keys(perenualApiResult)
-    let booleanFields = ["cones", "cuisine", "drought_tolerant", "edible_fruit", "edible_leaf", "flowers", "fruits", "indoor", "invasive", "leaf", "medicinal", "poisonous_to_humans", "poisonous_to_pets", "salt_tolerant", "thorny", "tropical"]
-    
-    let trueBooleanFields = []
-    
-    // let fieldsComingSoon = ["rare", "rare_level", "cuisine_list", "edible_fruit_taste_profile", "edible_leaf_taste_profile", "endangered", "endangered_level", "fruit_nutritional_value", "harvest_method", "harvest_season", "leaf_nutritional_value", "medicinal_use", "pest_susceptibility_api", "poison_effects_to_humans", "poison_effects_to_pets", "poison_to_humans_cure", "poison_to_pets_cure", "problem"]
-    // let fieldsNull = ["flowering_season"]
 
     if (mode == "searchresult") {
         if (linked) {
@@ -56,26 +42,27 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
         let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(mainDiv);
         $(`<h4>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv);
+        
         let imgDiv = $(`<div class="default_image">`).appendTo(mainDiv);
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
-        
-    // let commonNameDiv = $(`<div class="common_name">`).appendTo(thisDiv)
-        // $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv)
-        // let scientificNameDiv = $(`<div class="scientific_name">`).appendTo(thisDiv)
-        // $(`<h4>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv)
-        // let imgDiv = $(`<div class="default_image">`).appendTo(thisDiv)
-        // $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv)
+        if (perenualApiResult.default_image[imgSize].includes("49255769768_df55596553_b.jpg")) {
+            // this is a filler image for a legitimate entry, but we don't want to display trees when people are looking for raspberries.
+            thisDiv.hide()
+        }
 
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
             $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
         }
-        let cycleDiv = $(`<div class="cycle">`).appendTo(thisDiv)
+        
+        // DO NOT DELETE: this may be functionality we want.
+        // let cycleDiv = $(`<div class="cycle">`).appendTo(thisDiv)
         // $("<p>").text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `).appendTo(cycleDiv)
         // let wateringDiv = $(`<div class="watering">`).appendTo(thisDiv)
         // $("<p>").text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`).appendTo(wateringDiv)
         // let sunlightDiv = $(`<div class="sunlight">`).appendTo(thisDiv)
         // $("<p>").text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`).appendTo(sunlightDiv)
+
     } else {
         $(`${mode}_common_name`).text(perenualApiResult.common_name)
         if (perenualApiResult.family != null) {
@@ -335,8 +322,3 @@ for (let [key, value] of params) {
         //console.log(`search parameter ${key} not implemented`)
     }
 }
-
-// $('.btn').on('click', function(event){
-//     event.preventDefault();
-//     $('.search-box').removeClass('hide');
-// })

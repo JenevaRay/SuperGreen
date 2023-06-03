@@ -49,7 +49,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             })
         }
        
-        let mainDiv = $('<div class="main"></div>').appendTo(thisDiv);
+        let mainDiv = $('<div class="mainDiv"></div>').appendTo(thisDiv);
 
         let commonNameDiv = $(`<div class="common_name">`).appendTo(mainDiv);
         $(`<h1>`).text(perenualApiResult.common_name).appendTo(commonNameDiv);

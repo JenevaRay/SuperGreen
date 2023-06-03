@@ -79,7 +79,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)        
         $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
         $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
-        $(`${mode}_care_level`).text(`This plant is ${perenualApiResult.care_level.toLowerCase()} to care for.`)
+        $(`${mode}_care_level`).text(`Care difficulty: ${perenualApiResult.care_level.toLowerCase()}`)
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
         console.log(perenualApiResult.dimension)
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
@@ -99,7 +99,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         }
 
         $(`${mode}_growth_rate`).text(`Growth rate is ${perenualApiResult.growth_rate.toLowerCase()}`)
-        $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)
+        if (perenualApiResult.soil.length > 0) {
+            $(`${mode}_soil`).text(`Soils this grows in: ${perenualApiResult.soil.join(", ").toLowerCase()}`)
+        } else {
+            $(`${mode}_soil`).hide()
+        }
         $(`${mode}_propagation`).text(`Propagation: ${perenualApiResult.propagation.join(", ").toLowerCase()}`)
         if (perenualApiResult.pest_susceptibility.length > 0) {
             $(`${mode}_pest_susceptibility`).text(`Pests: ${perenualApiResult.pest_susceptibility.join(", ").toLowerCase()}`)

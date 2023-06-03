@@ -311,7 +311,7 @@ function getOpenAIquery(detailedJson, careGuideURL) {
         }
         checkPerenualCareInfo()
         
-        // console.log(parsedJson)
+        // console.log(parsedJson)        
     }
 
 }

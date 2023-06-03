@@ -145,7 +145,9 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
                         showEachSearchResult(cache[url].data[row], jQueryEl, imgSize, true, "searchresult")
                     }
                 }
-
+                if (cache[url].data.length == 0) {
+                    $(".landing").show()
+                }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
                 checkPerenualInfo()

@@ -711,3 +711,8 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     }
 }
    
+.hardiness-location-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}

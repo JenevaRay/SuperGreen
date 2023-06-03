@@ -84,7 +84,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         console.log(perenualApiResult.dimension)
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
         $(`${mode}_description`).text(`${perenualApiResult.description}`)
-        $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location.full_iframe)
+        $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location.full_iframe).addClass("hardiness-location-container")
         
         if (perenualApiResult.flowers) {            
             if (perenualApiResult.flowering_season !== null) {
@@ -135,12 +135,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         let key = "care-guides"
         getPerenualCareInfo(perenualApiResult[key].replace(/http/i, "https"))
 
-        // console.log(perenualApiResult)
         // todo: eventually remove the below section.
         
-
-
-
         // for (let [key, value] of Object.entries(perenualApiResult)) {
         //     let paywalled = false;
         //     let imgLicenseRestricted = false;

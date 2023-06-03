@@ -1,9 +1,11 @@
 // need API for Trefle.io
 
 // need API for 
-API = {}
-API.perenual = "sk-uzQv6475151f07b921086"
-API.openAI = "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"
+if (API == undefined) {
+    API = {
+        perenual: "sk-uzQv6475151f07b921086"
+    }    
+} 
 
 var cache = {}
 cache = JSON.parse(localStorage.getItem("cache"))

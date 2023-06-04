@@ -321,7 +321,7 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                     }).then((jsonData) => {
                         if (debug.cache) {console.log("fetching info");}
                         // we'll put the fetched info into cache
-                        $("#detailed_description").text(jsonData.choices[0].message.content)
+                        $("#detailed_description").text(jsonData.choices[0].message.content).show()
                         console.log(jsonData)
                         $("#hidewhenautosummary").hide()
                         // say that we got the information...

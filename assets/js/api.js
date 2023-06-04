@@ -11,6 +11,7 @@ try {
         console.log("API keys not set.")
         console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
         console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
+        // please note there is one more API key that I am keeping off GitHub.
     }
 
 }

@@ -21,6 +21,7 @@ if (cache == null) {
 
 // for debugging purposes.
 let debug = {
+    demo: true,
     // cache: true,
     cache: false,
     // dataToBeDisplayed: false,
@@ -243,7 +244,7 @@ function getPerenualCareInfo(url) {
     checkPerenualInfo()
 }
 
-function getOpenAIquery(detailedJson, careGuideURL) {
+function getOpenAIquery(detailedJson) {
     if (API.openAI != undefined) {
         $("#hidewhenautosummary").hide()
         parsedJson = $.extend(true, {}, detailedJson)
@@ -339,7 +340,10 @@ function getOpenAIquery(detailedJson, careGuideURL) {
         
         // console.log(parsedJson)        
     } else {
-        $("#hidewhenautosummary").show()
+        $("#hidewhenAIsummary").show()
+        if (debug.demo) {
+            $("#hidewhenAIsummary").hide()
+        }
         console.log("OpenAI API key not set.")
         console.log(`type:  API.openAI = "___your secret key here____";`)
         console.log(`then:  localStorage.setItem("API", JSON.stringify(API));`)

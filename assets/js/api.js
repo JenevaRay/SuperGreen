@@ -1,19 +1,31 @@
 // need API for Trefle.io
 
 // need API for 
+
 API = {}
-API.perenual = "sk-uzQv6475151f07b921086"
+try {
+    API = JSON.parse(localStorage.getItem("API"))
+} catch {
+    if (API == null || Object.keys(API).length != 2) {
+        API = {}
+        console.log("API keys not set.")
+        console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
+        console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
+        // please note there is one more API key that I am keeping off GitHub.
+    }
+
+}
 
 
-var cache = {}
-cache = JSON.parse(localStorage.getItem("cache"))
+let cache = {}
+cache = JSON.parse(localStorage.getItem("PerenualInfo"))
 if (cache == null) {
     cache = {}
 }
 
 var debug = {
-    cache: true,
-    dataToBeDisplayed: true,
+    cache: false,
+    dataToBeDisplayed: false,
 }
 
 function getPerenualPlantDetail(jQueryEl, plantID, imgSize) {    
@@ -147,6 +159,10 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
                 }
                 if (cache[url].data.length == 0) {
                     $(".landing").show()
+                    $("form").find("input").first().attr('placeholder', `${query} not found, try another spelling`).focus().blur()
+                } else if (cache[url].data.length == 1) {
+                    // only one result found, so skip the fluff.
+                    window.location.href = `${window.location.pathname}?plantID=${cache[url].data[0].id}`
                 }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
@@ -158,6 +174,7 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
     checkPerenualInfo()
 }
 
+let gotPerenualCareInfo = false
 function getPerenualCareInfo(url) {    
     /* perenualApiKey:  API key 
     **  such as     sk-zrou646ebab236f671020
@@ -168,10 +185,9 @@ function getPerenualCareInfo(url) {
     */
 
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
-    gotPerenualInfo = false
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
     // let url = `https://perenual.com/api/species/details/${plantID}?key=${perenualApiKey}`
-    console.log(url)
+    
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url, {
@@ -193,19 +209,19 @@ function getPerenualCareInfo(url) {
             // we'll put the fetched info into cache
             cache[url] = jsonData
             // say that we got the information...
-            gotPerenualInfo = true;
+            gotPerenualCareInfo = true;
             // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)
             localStorage.setItem("PerenualInfo", JSON.stringify(cache))
         })
     } else {
         if (debug.cache) {console.log("using cache");}
         // since the info is in cache, then say we got it
-        gotPerenualInfo = true;
+        gotPerenualCareInfo = true;
     };
     function checkPerenualInfo() {
         setTimeout(() => {
             // if we have the info in memory, and the information matches the information we can display:
-            if (gotPerenualInfo) {
+            if (gotPerenualCareInfo) {
                 // if we're debugging, show the source information to be shown
                 if (debug.dataToBeDisplayed) {
                     // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
@@ -221,4 +237,102 @@ function getPerenualCareInfo(url) {
         },50)
     }
     checkPerenualInfo()
+}
+
+function getOpenAIquery(detailedJson, careGuideURL) {
+    if (API.openAI != undefined) {
+        parsedJson = $.extend(true, {}, detailedJson)
+        // because we want to edit the existing entries and throw out garbage.
+        
+        for (let [key, value] of Object.entries(parsedJson))
+        {
+            if (["Coming Soon", "Coming", null].includes(value)) {
+                delete parsedJson[key]
+            } else if (value.length == 0) {
+                delete parsedJson[key]
+            } else if (["id", "care-guides", "hardiness_location", "default_image", "type"].includes(key)) {
+                delete parsedJson[key]
+            } else if (["poisonous_to_humans", "poisonous_to_pets"].includes(key)) {
+                if (value) {
+                    parsedJson[key] = true
+                } else {
+                    parsedJson[key] = false
+                }
+            } else if (["hardiness"].includes(key)) {
+                delete parsedJson[key]
+                // parsedJson[key] = `${value.min} to ${value.max}`
+            }
+            // console.log(key)
+        }
+    
+        let gotOpenAIResponse = false
+    
+        function checkPerenualCareInfo() {
+            setTimeout(()=>{
+                if(gotPerenualCareInfo) {
+                    if (debug.dataToBeDisplayed) {
+                        // console.log(`${infoToShow}: ${JSON.stringify(cache[url][infoToShow])} from object:`);
+                        // console.log(cache[url])
+                    }
+                    parsedJson["care-guide-watering"] = $("#detailed_care_guide_watering").text()
+                    parsedJson["care-guide-sunlight"] = $("#detailed_care_guide_sunlight").text()
+                    parsedJson["care-guide-pruning"] = $("#detailed_care_guide_pruning").text()
+                    prelude = "Make this JSON result into natural language, omitting information that is boolean false, and without bullet point list formatting.  Do not repeat information from the care-guide-watering, care-guide-sunlight, care-guide-pruning, or the description.  "
+                    message = prelude + JSON.stringify(parsedJson)
+    
+                    // message = "count from 1 to 10."
+                    // we will not cache these results.
+                    url = "https://127.0.0.1"
+                    url = 'https://api.openai.com/v1/chat/completions'
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + API.openAI,
+                            // "Access-Control-Allow-Origin": "*"
+                        }, body: JSON.stringify({
+                            // "frequency_penalty": 1.2,
+                            "max_tokens": 1000,
+                            // "model": "text-davinci-003",
+                            "model": "gpt-3.5-turbo",
+                            // "presence_penalty": 0,
+                            // "prompt": [message],
+                            "messages": [{
+                                "role": "user", "content": message
+                            }],
+                            "temperature": 0,
+                        })
+                    }).then((response) => {
+                        if (response.status === 401) {
+                            console.log("API error!")
+                        } else if (response.status === 200) {
+                            // pass on the parsed json to the next then
+                            return response.json();
+                        } else if (!response.ok) {
+                            console.log("Network response was not OK")
+                            // show all the request/response info
+                            console.log(response)
+                        }
+                    }).then((jsonData) => {
+                        if (debug.cache) {console.log("fetching info");}
+                        // we'll put the fetched info into cache
+                        $("#detailed_description").text(jsonData.choices[0].message.content)
+                        console.log(jsonData)
+                        $("#hidewhenautosummary").hide()
+                        // say that we got the information...
+                        gotOpenAIResponse = true;
+                        // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)
+                        // localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                    })
+                } else {
+                    // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)
+                    checkPerenualCareInfo()
+                }
+            }, 50)
+        }
+        checkPerenualCareInfo()
+        
+        // console.log(parsedJson)        
+    }
+
 }

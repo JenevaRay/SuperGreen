@@ -12,7 +12,7 @@
 }
 
 :root {
-    --main-bg-color: rgba(255, 255, 255, 0.8);;
+    --main-bg-color: hsla(0, 0%, 100%, 0.8);;
     --main-accent-color: hsl(90, 50%, 50%);
     --main-hover-color: #621075ed;
     --main-border-color: #ccc;
@@ -205,9 +205,9 @@ header.masthead h1, header.masthead .h1 {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    /* -webkit-appearance: none;        ** modern browser standard */
-    /* -moz-appearance: none;           ** modern browser standard */
-    appearance: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -242,8 +242,8 @@ header.masthead h1, header.masthead .h1 {
 .form-control::file-selector-button {
     padding: 0.75rem 1rem;
     margin: -0.75rem -1rem;
-    /* -webkit-margin-end: 1rem;        ** modern browser standard */
-    margin-inline-end: 1rem;
+    -webkit-margin-end: 1rem;
+            margin-inline-end: 1rem;
     color: #212529;
     background-color: #e9ecef;
     pointer-events: none;
@@ -279,9 +279,9 @@ button,
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
-    /* -webkit-user-select: none;   ** modern browser standard */
-    /* -moz-user-select: none;      ** modern browser standard */
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     border: 1px solid transparent;
     border-radius: 0.375rem;
     background-color: transparent;
@@ -829,6 +829,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     font-family: 'Impact';
 } */
 
+<<<<<<< HEAD
 @media (max-width: 576px) {
     .top {
         grid-template-areas: 
@@ -861,3 +862,37 @@ color: var(--text-dark); /* color of the text root name  should've changed */
           max-width: 300px;
        }
     }
+=======
+    }
+}
+   
+.hardiness-location-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+div {
+    position: relative;
+}
+
+svg {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 3em;
+    height: 3em;
+}
+
+svg:hover {
+    transform: scale(1.02);
+}
+
+#favorites button {
+    margin-left: 1em;
+}
+
+.default_image {
+    width: min-content;
+}
+>>>>>>> c5247afd8c781ea6554841481b289c8c53ccae94

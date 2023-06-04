@@ -69,7 +69,13 @@ h1 {
     margin-left: 50px;
 }
 
-/* #searchplant {
+.search {
+    height: 45px;
+    border: var(--main-text-color) solid 1px;
+    border-radius: 8px;
+}
+
+#searchplant {
     display: flex;
     justify-content: flex-end;
 } */
@@ -321,6 +327,11 @@ button,
     color: rgb(61, 92, 139);
 }
 
+.weather-text {
+    text-align: center;
+    justify-content: center;
+}
+
 .d-flex {
     display: flex !important;
 }
@@ -554,6 +565,7 @@ form div input
 }
 .default_image:hover {
     transform: scale(1.02);
+    cursor: pointer;
 }
 /* .mainDiv{
 color: var(--text-dark);
@@ -565,7 +577,9 @@ color: var(--text-dark);
 } */
 /* .mainDiv h1:hover{
     color: var(--main-accent-color);
+    cursor: pointer;
 } */
+
 
 /* .guides{
     display: grid;
@@ -734,7 +748,7 @@ color: var(--text-dark);
         font-size: 30px;
     }
   }
-/*   
+  
 @media (max-width: 1200px) {
     .logo {
         max-width: 10%;
@@ -752,7 +766,7 @@ color: var(--text-dark);
         flex: 0 0 auto;
         width: 50%;
     }
-} */
+}
 @media (max-width: 576px) {
     .top {
         grid-template-areas: 

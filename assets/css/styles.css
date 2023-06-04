@@ -68,6 +68,12 @@ html, body {
     margin-left: 50px;
 }
 
+.search {
+    height: 45px;
+    border: var(--main-text-color) solid 1px;
+    border-radius: 8px;
+}
+
 #searchplant {
     display: flex;
     justify-content: flex-end;
@@ -320,6 +326,11 @@ button,
     color: rgb(61, 92, 139);
 }
 
+.weather-text {
+    text-align: center;
+    justify-content: center;
+}
+
 .d-flex {
     display: flex !important;
 }
@@ -552,6 +563,7 @@ footer ul li a {
 }
 .default_image:hover {
     transform: scale(1.02);
+    cursor: pointer;
 }
 .mainDiv{
 color: var(--text-dark); /* color of the text root name  should've changed */
@@ -563,6 +575,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
 }
 .mainDiv h1:hover{
     color: var(--main-accent-color);
+    cursor: pointer;
 }
 
 .guides{
@@ -722,7 +735,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         font-size: 30px;
     }
   }
-/*   
+  
 @media (max-width: 1200px) {
     .logo {
         max-width: 10%;
@@ -740,7 +753,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         flex: 0 0 auto;
         width: 50%;
     }
-} */
+}
 @media (max-width: 576px) {
     .top {
         grid-template-areas: 

@@ -13,6 +13,9 @@ Where plant care makes a green thumb!
 ## Description
 We wrote this app to meet the need of one of our teammates' desire to have a plant care site.  It has a wealth of information that includes things like what bugs a plant can attract, what soil it grows best in, where it is found naturally, how much sunlight and watering it requires, and even how to prune them.
 
+## Features
+
+
 ## Table of Contents
 * Index.html                `The main page site, which includes three different functional modes.`
 * LICENSE                   `tl;dr: MIT license.`

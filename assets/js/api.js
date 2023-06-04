@@ -149,6 +149,10 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
                 }
                 if (cache[url].data.length == 0) {
                     $(".landing").show()
+                    $("form").find("input").first().attr('placeholder', `${query} not found, try another spelling`).focus().blur()
+                } else if (cache[url].data.length == 1) {
+                    // only one result found, so skip the fluff.
+                    window.location.href = `${window.location.pathname}?plantID=${cache[url].data[0].id}`
                 }
             } else {
                 // the follow-up call in case we don't have the info yet (loops back on itself, making a new setTimeout)

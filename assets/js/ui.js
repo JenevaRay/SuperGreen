@@ -78,7 +78,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_origin`).text(`from: ${perenualApiResult.origin.join(", ")}`)
         $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)        
         $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
-        $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
+        if (perenualApiResult.cycle) {
+            $(`${mode}_cycle`).text(`This plant is: ${perenualApiResult.cycle.toLowerCase()} `)
+        } else {
+            $(`${mode}_cycle`).hide()
+        }
         $(`${mode}_care_level`).text(`Care difficulty: ${perenualApiResult.care_level.toLowerCase()}`)
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
         console.log(perenualApiResult.dimension)

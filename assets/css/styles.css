@@ -526,11 +526,6 @@ color: var(--text-dark); /* color of the text root name  should've changed */
 .mainDiv h1:hover{
     color: var(--main-accent-color);
 }
-/* .searchresult {
-    margin: 1em;
-    width: max-content;
-    border: 1px dotted black;
-} */
 
 .guides{
     display: grid;

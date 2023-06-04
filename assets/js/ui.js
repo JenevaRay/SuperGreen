@@ -184,7 +184,8 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
 
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
-        if (perenualApiResult.description == null) {
+        // console.log(perenualApiResult.description)
+        if (perenualApiResult.description == 'null') {
             $(`${mode}_description`).text(`${perenualApiResult.description}`)
         } else {
             $(`${mode}_description`).hide()

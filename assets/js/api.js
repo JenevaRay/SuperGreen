@@ -1,20 +1,14 @@
 // API keys data structure
-API = {}
-try {
-    // if we can get it from LocalStorage, we'll do so.
-    API = JSON.parse(localStorage.getItem("API"))
-} catch {
-    // if we don't have both perenual and openAI keys...
-    if (API == null || Object.keys(API).length != 2) {
-        // reset the data structure
-        API = {}
-        // and walk the user through how to add keys.
-        console.log("API keys not set.")
-        console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
-        console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
-        // please note there is one more API key that I am keeping off GitHub.
-    }
-}
+API = JSON.parse(localStorage.getItem("API"))
+// if (API == null || Object.keys(API).length != 2) {
+//     // reset the data structure
+//     API = {}
+//     // and walk the user through how to add keys.
+//     console.log("API keys not set.")
+//     console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
+//     console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
+//     // please note there is one more API key that I am keeping off GitHub.
+// }
 
 // cache & favorites data structure, NOT including OpenAI queries.
 let cache = {}

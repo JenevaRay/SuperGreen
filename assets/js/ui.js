@@ -260,6 +260,7 @@ for (let [key, value] of params) {
             // this fetches and parses the JSON for multiple generic results.
             getPerenualSpeciesList($("#results"), value, "thumbnail")
             // we will hide detailed results html for searching by name, when one has been selected, then it switches modes to detailed results by plantID
+            $("#detailedresult").hide()
             $(".landing").hide()
         }
     } else if (key === "plantID") {
@@ -269,6 +270,7 @@ for (let [key, value] of params) {
         // we will hide search-by-name results html in this mode.
        // $("#results").hide()
         $("#detailedresult").show()
+        $("#results").hide()
         $(".landing").hide()
     } else {
         //console.log(`search parameter ${key} not implemented`)

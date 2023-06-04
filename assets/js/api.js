@@ -1,33 +1,37 @@
-// need API for Trefle.io
-
-// need API for 
-
+// API keys data structure
 API = {}
 try {
+    // if we can get it from LocalStorage, we'll do so.
     API = JSON.parse(localStorage.getItem("API"))
 } catch {
+    // if we don't have both perenual and openAI keys...
     if (API == null || Object.keys(API).length != 2) {
+        // reset the data structure
         API = {}
+        // and walk the user through how to add keys.
         console.log("API keys not set.")
         console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
         console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
         // please note there is one more API key that I am keeping off GitHub.
     }
-
 }
 
-
+// cache & favorites data structure, NOT including OpenAI queries.
 let cache = {}
+// if we can get it from LocalStorage, we'll do so.
 cache = JSON.parse(localStorage.getItem("PerenualInfo"))
+// if there is no cache, then reset the data structure.
 if (cache == null) {
     cache = {}
 }
 
-var debug = {
+// for debugging purposes.
+let debug = {
     cache: false,
     dataToBeDisplayed: false,
 }
 
+// the function for a detailed plant query.
 function getPerenualPlantDetail(jQueryEl, plantID, imgSize) {    
     /* 
     ** searchString:    string
@@ -95,7 +99,6 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
     ** imgSize:         image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
     **  such as     "medium_url"
     */
-    let plantID = ""
 
     for (let [key, value] of params) {
         if (key === "q") {
@@ -114,6 +117,7 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
 
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
     let url = `https://perenual.com/api/species-list?q=${query}&key=${API.perenual}`
+    // if it's not in the cache, then we'll fetch it.
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url).then((response) => {
@@ -140,6 +144,7 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
         // since the info is in cache, then say we got it
         gotPerenualInfo = true;
     };
+    // we'll use this for checking to see if the async function is finished.
     function checkPerenualInfo() {
         setTimeout(() => {
             // if we have the info in memory, and the information matches the information we can display:
@@ -150,10 +155,13 @@ function getPerenualSpeciesList(jQueryEl, query, imgSize = "thumbnail") {
                     console.log(cache[url])
                 }
                 for (let row in cache[url].data) {
+                    // an issue for less than PREMIUM subscribers to Perenual.  EVERY query should have a scientific name.
                     if (["Coming Soon", "Upgrade Plan For Access https://perenual.com/subscription-api-pricing. I'm sorry"].includes(cache[url].data[row].scientific_name)) {
-                        console.log("skipped entry due to paywall for PlantID: " + cache[url].data[row].id)
-                        // innerDiv.hide()
+                        if (debug.dataToBeDisplayed) {console.log("skipped entry due to paywall for PlantID: " + cache[url].data[row].id)}
+                        // since the data is not accessible, then hide the missing info.
+                        innerDiv.hide()
                     } else {
+                        // show the result.
                         showEachSearchResult(cache[url].data[row], jQueryEl, imgSize, true, "searchresult")
                     }
                 }
@@ -333,6 +341,10 @@ function getOpenAIquery(detailedJson, careGuideURL) {
         checkPerenualCareInfo()
         
         // console.log(parsedJson)        
+    } else {
+        console.log("OpenAI API key not set.")
+        console.log(`type:  API.openAI = "___your secret key here____";`)
+        console.log(`then:  localStorage.setItem("API", JSON.stringify(API));`)
     }
 
 }

@@ -1,3 +1,5 @@
-assets/js/by-jeneva.js
+node_modules/
+package-lock.json
+package.json
 DS_Store/
 vault.js

@@ -1,21 +1,30 @@
 // need API for Trefle.io
 
 // need API for 
-if (API == undefined) {
-    API = {
-        perenual: "sk-uzQv6475151f07b921086"
-    }    
-} 
 
-var cache = {}
-cache = JSON.parse(localStorage.getItem("cache"))
+API = {}
+try {
+    API = JSON.parse(localStorage.getItem("API"))
+} catch {
+    if (API == null || Object.keys(API).length != 2) {
+        API = {}
+        console.log("API keys not set.")
+        console.log(`type:  API.perenual = "sk-uzQv6475151f07b921086";`)
+        console.log(`then:  localStorage.setItem("API", JSON.stringify(API))`)
+    }
+
+}
+
+
+let cache = {}
+cache = JSON.parse(localStorage.getItem("PerenualInfo"))
 if (cache == null) {
     cache = {}
 }
 
 var debug = {
-    cache: true,
-    dataToBeDisplayed: true,
+    cache: false,
+    dataToBeDisplayed: false,
 }
 
 function getPerenualPlantDetail(jQueryEl, plantID, imgSize) {    
@@ -177,7 +186,7 @@ function getPerenualCareInfo(url) {
     // we'll fetch the information if we don't already have it, assume that we don't have it yet.
     // the url we'll check the cache for, and if it's not in the cache, fetch it.
     // let url = `https://perenual.com/api/species/details/${plantID}?key=${perenualApiKey}`
-    console.log(url)
+    
     if (!cache[url]) {            
         // since it's not in the cache, fetch it.
         fetch(url, {
@@ -249,7 +258,8 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                     parsedJson[key] = false
                 }
             } else if (["hardiness"].includes(key)) {
-                parsedJson[key] = `${value.min} to ${value.max}`
+                delete parsedJson[key]
+                // parsedJson[key] = `${value.min} to ${value.max}`
             }
             // console.log(key)
         }

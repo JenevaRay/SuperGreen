@@ -29,11 +29,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     let thisDiv = $(`<div id="plantID-${perenualApiResult.id}" class="searchresult">`).appendTo(jQueryEl)
 
     if (mode == "searchresult") {
-        if (linked) {
-            thisDiv.on("click", () => {
-                window.location.href = `${window.location.pathname}?plantID=${perenualApiResult.id}`
-            })
-        }
        
         let mainDiv = $('<div class="mainDiv"></div>').appendTo(thisDiv);
 
@@ -45,6 +40,52 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         
         let imgDiv = $(`<div class="default_image">`).appendTo(mainDiv);
         $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
+        let favorite = $(`<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`).appendTo(imgDiv)
+        favorite.attr("fill", "#ffffffbb")
+        if (cache.favorites != undefined) {
+            for (row in cache.favorites) {
+                if (cache.favorites[row].id == perenualApiResult.id) {
+                    favorite.attr("fill", "#a52a2acc")
+                }
+            }
+        }
+        if (linked) {
+            thisDiv.on("click", (event) => {
+                let target = $(event.target)
+                // svg and path are svg elements.
+                if (target.is("svg") || target.is("path")) {
+                    let inFavorites = false
+                    if (cache.favorites == undefined) {
+                        cache.favorites = []
+                        // localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                    } else {
+                        for (row in cache.favorites) {
+                            if (cache.favorites[row].id == perenualApiResult.id) {
+                                inFavorites = true
+                                cache.favorites.splice(row, 1)
+                                favorite.attr("fill", "#ffffffbb")
+                                localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                            }
+                        }
+                    }
+                    if (!inFavorites) {
+                        // then we'll add to favorites.
+                        let data = {
+                            "id": perenualApiResult.id,
+                            "common_name": perenualApiResult.common_name,
+                            "scientific_name": perenualApiResult.scientific_name
+                        }
+                        cache.favorites.push(data)
+                        localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                        favorite.attr("fill", "#a52a2acc")
+                    }
+                    // console.log(data)
+                } else {
+                    window.location.href = `${window.location.pathname}?plantID=${perenualApiResult.id}`
+                }
+            })
+        }
+        
         if (perenualApiResult.default_image[imgSize] == undefined || perenualApiResult.default_image[imgSize].includes("49255769768_df55596553_b.jpg")) {
             // this is a filler image for a legitimate entry, but we don't want to display trees when people are looking for raspberries.
             thisDiv.hide()
@@ -74,7 +115,54 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         if (perenualApiResult.other_name.length != 0) {
             $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo($(`${mode}_all_image`))
         }
-        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
+        let image = $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
+
+
+        let favorite = $(`<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`).appendTo($(`${mode}_default_image`))
+        favorite.attr("fill", "#ffffffbb")
+        if (cache.favorites != undefined) {
+            for (row in cache.favorites) {
+                if (cache.favorites[row].id == perenualApiResult.id) {
+                    favorite.attr("fill", "#a52a2acc")
+                }
+            }
+        }
+            $(`${mode}_default_image`).on("click", (event) => {
+                let target = $(event.target)
+                // svg and path are svg elements.
+                if (target.is("svg") || target.is("path")) {
+                    console.log()
+                    let inFavorites = false
+                    if (cache.favorites == undefined) {
+                        cache.favorites = []
+                    } else {
+                        for (row in cache.favorites) {
+                            if (cache.favorites[row].id == perenualApiResult.id) {
+                                inFavorites = true
+                                cache.favorites.splice(row, 1)
+                                localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                                favorite.attr("fill", "#ffffffbb")
+                            }
+                        }
+                    }
+                    if (!inFavorites) {
+                        // then we'll add to favorites.
+                        let data = {
+                            "id": perenualApiResult.id,
+                            "common_name": perenualApiResult.common_name,
+                            "scientific_name": perenualApiResult.scientific_name
+                        }
+                        cache.favorites.push(data)
+                        localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                        favorite.attr("fill", "#a52a2acc")
+                    }
+                    // console.log(data)
+                } 
+                makeFavoritesButtons()
+            })
+
+
+
         $(`${mode}_origin`).text(`from: ${perenualApiResult.origin.join(", ")}`)
         $(`${mode}_watering`).text(`This requires ${perenualApiResult.watering.toLowerCase()} watering.`)        
         $(`${mode}_sunlight`).text(`This grows best in ${perenualApiResult.sunlight.join(" or ").toLowerCase()}`)
@@ -83,9 +171,13 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         } else {
             $(`${mode}_cycle`).hide()
         }
-        $(`${mode}_care_level`).text(`Care difficulty: ${perenualApiResult.care_level.toLowerCase()}`)
+        if (perenualApiResult.care_level != null) {
+            $(`${mode}_care_level`).text(`Care difficulty: ${perenualApiResult.care_level.toLowerCase()}`)
+        } else {
+            $(`${mode}_care_level`).hide()
+        }
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
-        console.log(perenualApiResult.dimension)
+
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
         $(`${mode}_description`).text(`${perenualApiResult.description}`)
         $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location.full_iframe).addClass("hardiness-location-container")
@@ -325,3 +417,14 @@ for (let [key, value] of params) {
         //console.log(`search parameter ${key} not implemented`)
     }
 }
+
+function makeFavoritesButtons () {
+    $("#favorites").empty()
+    for (row in cache.favorites) {
+        let button = $(`<button class="btn btn-lg" data-plantid=${cache.favorites[row].id}>`).text(`${cache.favorites[row].common_name}`).css("margin-left", "5px;").appendTo($("#favorites"))
+        button.on("click", (event) => {
+            window.location.href = `${window.location.pathname}?plantID=${button.data().plantid}`
+        })
+    }
+}
+makeFavoritesButtons()

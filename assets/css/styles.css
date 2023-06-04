@@ -112,7 +112,7 @@ button[type='submit'] {
 /* main area, including extra plant search button */
 header.masthead {
     position: relative;
-    background-color: #343a40;
+    /* background-color: #343a40; */
     background: url("../images/Leafy-Vegetable-Garden.webp") no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
@@ -204,9 +204,9 @@ header.masthead h1, header.masthead .h1 {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    /* -webkit-appearance: none; */
+    -moz-appearance: none;
+    appearance: none;
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

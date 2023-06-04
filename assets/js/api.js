@@ -250,7 +250,6 @@ function getPerenualCareInfo(url) {
 }
 
 function getOpenAIquery(detailedJson, careGuideURL) {
-    API.openAI = "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";
     if (API.openAI != undefined) {
         $("#hidewhenautosummary").hide()
         parsedJson = $.extend(true, {}, detailedJson)

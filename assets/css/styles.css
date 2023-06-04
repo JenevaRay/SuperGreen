@@ -10,7 +10,11 @@
     margin: 0px;
     padding: 0px;
 }
-
+html, body {
+    background-color: var(--main-bg-color);
+    position: relative;
+    height: 100%;
+}
 :root {
     --main-bg-color: hsla(0, 0%, 100%, 0.8);;
     --main-accent-color: hsl(90, 50%, 50%);
@@ -394,22 +398,16 @@ footer ul li a {
  }
  .top {
      display: grid;
-     grid-template-areas: "main  cta1"
-                          "left-side cta2";
+     grid-template-areas: "main coll1"
+                          "left-side coll2";
  }
  
  .main {
      grid-area: main;
      border: 1px solid var(--main-border-color);
-     display: flex;
-     flex-direction: column;
-     align-items: start;
-     justify-content: center;
-     text-align: justify;
  }
  .main img {
      width: 100%;
-     height: 100%;
  }
  .coll {
      display: grid;
@@ -419,9 +417,7 @@ footer ul li a {
      align-items: center;
      align-content: center;
  }
- .coll p {
-     margin: 0;
- }
+
  .main > * {
      background-color: rgba(0, 0, 0, 0.085);
      padding: 5px;
@@ -446,27 +442,27 @@ footer ul li a {
     background-color: #0b0a010b;
  }
  .coll1 {
-     grid-area: cta1;     
+     grid-area: coll1;     
      word-break: break-word;
      padding: 20px;
  }
  .coll1 {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 300;
     line-height: 1.5;
  }
     .coll1 h1 {
         text-align: center;
         text-decoration: underline;
-        color: var(--main-text-color);
+        color:var(--main-accent-color)
     }
     .coll1 p {
       text-decoration: underline;
-      color: var(--main-text-color);
+      color: var(--main-accent-color);
       text-align: center;
     }
  .coll2 {
-     grid-area: cta2;
+     grid-area: coll2;
  }
  .coll2 ul {
      list-style-type: circle;
@@ -599,66 +595,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     display: none;
 }
 
-@media (max-width: 500px) {
-    * {
-      margin: 2px;
-      padding: 0;
-    }
-  
-    .top {
-        grid-template-areas: 
-        "cta1"
-        "main"
-        "left-side"
-        "cta2";
-          grid-template-columns: 1fr;
-       }
-       .search-input{
-          width: 200px;
-          margin: 5px;
-          padding: 5px 10px;
-       }
-       .search-button {
-          padding: 7px 10px;
-       }
-       .coll2 {
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-       }
-       .main img{
-          max-width: 300px;
-       }
-}
 
-@media (min-width: 768px) {
-    header.masthead {
-      padding-top: 12rem;
-      padding-bottom: 12rem;
-    }
-    header.masthead h1, header.masthead .h1 {
-      font-size: 3rem;
-    }
-    .top {
-        display: grid;
-        grid-template-areas:
-          "left-side main"
-          "description description"
-          "cta2 cta2"
-          "cta1 cta1";
-    }
-    .description {
-      grid-column: 1 / 3; 
-    }
-    .about {
-        grid-template-columns: 1fr;
-    }
-    .coll2 {
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-    }
-  }
 @media (min-width: 992px) {
     .col-lg {
       flex: 1 0 0%;
@@ -698,6 +635,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     .col-lg-3 {
       flex: 0 0 auto;
       width: 25%;
+      
     }
     .col-lg-4 {
       flex: 0 0 auto;
@@ -738,9 +676,9 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     .top {
         grid-template-areas: 
         "main main"
-        "cta1 cta1"
+        "coll1 coll1"
         "left-side left-side"
-        "cta2 cta2";
+        "coll2 coll2";
         grid-template-columns: 1fr 1fr;
     }
     main {
@@ -750,6 +688,9 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         width: 100%;
         height: 100%;
         overflow: auto;
+    }
+    .main img{
+        width: 100%;
     }
     .coll1 {
         font-size: 15px;
@@ -765,6 +706,23 @@ color: var(--text-dark); /* color of the text root name  should've changed */
 
 }
 
+@media (max-width: 768px) {
+    .coll2 {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+    .coll1 {
+        font-size: 20px;
+    }
+    .col-lg-3 {
+        font-size: 15px;
+    }
+    .col-lg-3 i {
+        font-size: 30px;
+    }
+  }
+/*   
 @media (max-width: 1200px) {
     .logo {
         max-width: 10%;
@@ -782,12 +740,42 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         flex: 0 0 auto;
         width: 50%;
     }
-}
-
+} */
+@media (max-width: 576px) {
+    .top {
+        grid-template-areas: 
+        "coll1"
+        "main"
+        "left-side"
+        "coll2";
+          grid-template-columns: 1fr;
+       }
+       .search-input{
+          width: 200px;
+          margin: 5px;
+          padding: 5px 10px;
+       }
+       .search-button {
+          padding: 7px 10px;
+       }
+       .coll2 {
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+       }
+       .main {
+          width: 100%;
+          height: 100%;
+       }
+       .coll1 {
+        font-size: 15px;
+    }
+    }
+/* 
 .weatherlist {
     color: rgb(10, 157, 10);
     font-family: 'Impact';
-}
+} */
 /*  
 @media screen and (max-width: 992px) {    
     .mainDiv h1{

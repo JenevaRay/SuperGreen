@@ -113,152 +113,86 @@
 
             <div id="results">
             </div>
-            <section id="detailedresult" class="wrapper">
-                <section class="features-icons bg-light text-center right-feature">
-                    <div class="container row">
-                        <div class="col-lg-3">
-                            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
-                                <h3 class="feature-title">Watering</h3>
-                                <em id="detailed_watering"></em>
-                                <p id="detailed_care_guide_watering"></p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
-                                <h3 class="feature-title">Sunlight</h3>
-                                <em id="detailed_sunlight"></em>
-                                <p id="detailed_care_guide_sunlight"></p>   
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mx-auto mb-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
-                                <h3 class="feature-title">Weather</h3>
-                                <div>
-                                    <div id="current-weather"></div>
-                                    <div id="currentWeatherList"></div>
-                                    <div class="d-flex align-items-center">
-                                    <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 25px; margin-top: 20px;"></div>    
-                                    <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 10px; margin-top: 20px; margin-right: 0px; margin-bottom: 0px;">precipitation:</p>
-                                    <img id="icon" style="text-align: right; margin-left: 5px;">                     
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mx-auto mb-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex">
-                                    <i class="fa-solid fa-scissors scissors"></i>
-                                </div>
-                                <h3 class="feature-title">Pruning</h3>
-                                <p id="detailed_care_guide_pruning">No special info</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+           
                 <main>
                     <div id="detailedresults">
                         <div class="top">
                             <div class="coll left-side">
-                                <ul id="hidewhenautosummary" style="display: none;">
-                                    <li id="detailed_origin"></li>
-                                    <li id="detailed_poisonous_to_"></li>
-                                    <li id="detailed_cycle"></li>
-                                    <li id="detailed_type"></li>
-                                    <li id="detailed_dimension"></li>
-                                    <li id="detailed_attracts"></li>
-                                    <li id="detailed_care_level"></li>
-                                    <li id="detailed_flowering_season"></li>
-                                    <li id="detailed_flower_color"></li>
-                                    <li id="detailed_growth_rate"></li>
-                                    <li id="detailed_soil"></li>
-                                    <li id="detailed_pest_susceptibility"></li>
-                                    <li id="detailed_propagation"></li>
-                                </ul>
+                              <ul>
+                                <li id="detailed_origin"></li>
+                                <li id="detailed_poisonous_to_"></li>
+                                <li id="detailed_cycle"></li>
+                                <li id="detailed_type"></li>
+                                <li id="detailed_dimension"></li>
+                                <li id="detailed_attracts"></li>
+                                <li id="detailed_care_level"></li>
+                                <li id="detailed_flowering_season"></li>
+                                <li id="detailed_flower_color"></li>
+                                <li id="detailed_growth_rate"></li>
+                                <li id="detailed_soil"></li>
+                                <li id="detailed_pest_susceptibility"></li>
+                                <li id="detailed_propagation"></li>
+                            </ul>
                             </div>
-                          <div class="main plant-image" id="detailed_default_image">
-                            
+                          <div class="main plant-image" id="detailed_all_image">
+                            <div id="detailed_default_image"></div>                            
                           </div>
                           <div class="coll coll1">    
                             <h1 id="detailed_common_name" class="common_name">Plant name</h1>
-                            <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>
+                            <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>    
                             <div id="detailed_description"></div>
                           </div>
                           <div class="coll coll2">
                             <div id="detailed_hardiness_location"></div> 
                           </div>
                           </div>
-                    <!-- <div class="top">
-                    <div class="coll left-side">
-                        <div id="detailed_description" class="description"></div>
-                        <ul id="hidewhenautosummary">
-                            <li id="detailed_origin"></li>
-                            <li id="detailed_poisonous_to_"></li>
-                            <li id="detailed_cycle">cycle</li>
-                            <li id="detailed_type"></li>
-                            <li id="detailed_dimension"></li>
-                            <li id="detailed_attracts"></li>
-                            <li id="detailed_care_level"></li>
-                            <li id="detailed_flowering_season"></li>
-                            <li id="detailed_flower_color"></li>
-                            <li id="detailed_growth_rate"></li>
-                            <li id="detailed_soil"></li>
-                            <li id="detailed_pest_susceptibility"></li>
-                            <li id="detailed_propagation"></li>
-                        </ul>
-                    </div>
-                    <div id="detailed_all_image" class="main plant-image">
-                        <div id="detailed_default_image"></div>
-                        <h1 id="detailed_common_name" class="common_name">Plant name</h1>
-                        <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>
-                    </div>
-                    <div class="coll coll1">
-                        <h3 class="hardiness">Native To</h3>
-                        <div id="detailed_hardiness_location"></div>
-                        
-                    </div>
-                    
                 </div>
-                          
-                      </main> -->
-
-                <!-- <div id="detailed_care_guides"></div> -->
-                <!-- <section class="guides-tips">
-                    <h1>Guides & Tips</h1>
-                    <div class="guides">
-                        <div class="guide">
-                            <span class="icon">💧</span>
-                            <h3>Watering</h3>
-                            <div id="current-weather" class="card" style="width: 60rem; text-align: justify; font-size: large;">
-                                <div class="card-header"></div>
-                                <div id="currentWeatherList" class="weatherlist" style="text-align: left;">
-                                    <div class="col-lg-4" style="display: flex; align-items: center; gap: 10px;">
-                                        <img id="icon">
-                                        <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px;"></div>
-                                        <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 0px; margin-top: 0px; margin-right: 0;">precipitation:</p>
+                <section id="detailedresult" class="wrapper">
+                    <section class="features-icons bg-light text-center right-feature">
+                        <div class="container row">
+                            <div class="col-lg-3">
+                                <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                    <div class="features-icons-icon d-flex"><i class="fa-sharp fa-solid fa-droplet water"></i></div>
+                                    <h3 class="feature-title">Watering</h3>
+                                    <em id="detailed_watering"></em>
+                                    <p id="detailed_care_guide_watering"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                    <div class="features-icons-icon d-flex"><i class="fa-solid fa-sun sun"></i></div>
+                                    <h3 class="feature-title">Sunlight</h3>
+                                    <em id="detailed_sunlight"></em>
+                                    <p id="detailed_care_guide_sunlight"></p>   
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mx-auto mb-0 mb-lg-3">
+                                    <div class="features-icons-icon d-flex"><i class="fa-solid fa-cloud-bolt clouds"></i></div>
+                                    <h3 class="feature-title">Weather</h3>
+                                    <div>
+                                        <div id="current-weather"></div>
+                                        <div id="currentWeatherList"></div>
+                                        <div class="d-flex align-items-center">
+                                        <div id="temp" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 25px; margin-top: 20px;"></div>    
+                                        <p id="precip" class="list-group-item" style="color: black; font-size: 17px; text-align: left; font-weight: bolder; margin-left: 10px; margin-top: 20px; margin-right: 0px; margin-bottom: 0px;">precipitation:</p>
+                                        <img id="icon" style="text-align: right; margin-left: 5px;">                     
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <li id="detailed_watering">1 gallon</li>
-                            <p id="detailed_care_guide_watering"></p>
-                        </div> -->
-                        <!-- <div class="guide">
-                            <span class="icon">☀️</span>
-                            <h3>Sunlight</h3>
-                        </div> -->
-                        <!-- <div class="guide">
-                            <span class="icon">🌱</span>
-                            <h3>Propagation</h3>
-                            <p >Lorem ipsum.</p>
-                        </div> -->
-
-                        <!-- <div class="pruning guide">
-                            <span class="icon">👨‍🌾</span>
-                            <h3>Pruning</h3>
-                            <p id="detailed_care_guide_pruning">Lorem ipsum assumenda.</p>
-                        </div> -->
+                            <div class="col-lg-3">
+                                <div class="mx-auto mb-0 mb-lg-3">
+                                    <div class="features-icons-icon d-flex">
+                                        <i class="fa-solid fa-scissors scissors"></i>
+                                    </div>
+                                    <h3 class="feature-title">Pruning</h3>
+                                    <p id="detailed_care_guide_pruning">No special info</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                      </main>
         <!-- Footer-->
         <!-- <footer class="footer bg-light">
             <div class="container">

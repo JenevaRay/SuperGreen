@@ -323,7 +323,7 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                         // we'll put the fetched info into cache
                         $("#detailed_description").text(jsonData.choices[0].message.content).show()
                         console.log(jsonData)
-                        $("#hidewhenautosummary").hide()
+                        $("#hidewhenAIsummary").hide()
                         // say that we got the information...
                         gotOpenAIResponse = true;
                         // then store the info in localstorage for quick access (this info doesn't change much, so it's a great option!)

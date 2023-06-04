@@ -27,8 +27,10 @@ if (cache == null) {
 
 // for debugging purposes.
 let debug = {
+    // cache: true,
     cache: false,
-    dataToBeDisplayed: false,
+    // dataToBeDisplayed: false,
+    dataToBeDisplayed: true
 }
 
 // the function for a detailed plant query.
@@ -248,7 +250,9 @@ function getPerenualCareInfo(url) {
 }
 
 function getOpenAIquery(detailedJson, careGuideURL) {
+    API.openAI = "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";
     if (API.openAI != undefined) {
+        $("#hidewhenautosummary").hide()
         parsedJson = $.extend(true, {}, detailedJson)
         // because we want to edit the existing entries and throw out garbage.
         
@@ -342,6 +346,7 @@ function getOpenAIquery(detailedJson, careGuideURL) {
         
         // console.log(parsedJson)        
     } else {
+        $("#hidewhenautosummary").show()
         console.log("OpenAI API key not set.")
         console.log(`type:  API.openAI = "___your secret key here____";`)
         console.log(`then:  localStorage.setItem("API", JSON.stringify(API));`)

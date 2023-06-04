@@ -118,7 +118,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         }
         
         if (perenualApiResult.other_name.length != 0) {
-            $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo($(`${mode}_all_image`))
+            $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).insertAfter($(`${mode}_scientific_name`))
         }
         let image = $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo($(`${mode}_default_image`))
 
@@ -184,7 +184,11 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`${mode}_type`).text(`This is a ${perenualApiResult.type.toLowerCase()}`)
 
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
-        $(`${mode}_description`).text(`${perenualApiResult.description}`)
+        if (perenualApiResult.description == null) {
+            $(`${mode}_description`).text(`${perenualApiResult.description}`)
+        } else {
+            $(`${mode}_description`).hide()
+        }
         $(`${mode}_hardiness_location`).html(perenualApiResult.hardiness_location.full_iframe).addClass("hardiness-location-container")
         
         if (perenualApiResult.flowers) {            

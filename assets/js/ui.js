@@ -185,7 +185,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
 
         $(`${mode}_dimension`).text(`Size: ${perenualApiResult.dimension}`)
         // console.log(perenualApiResult.description)
-        if (perenualApiResult.description != 'null') {
+        if (perenualApiResult.description != null) {
             $(`${mode}_description`).text(`${perenualApiResult.description}`)
         } else {
             $(`${mode}_description`).hide()

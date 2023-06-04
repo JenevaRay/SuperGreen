@@ -411,7 +411,7 @@ footer ul li a {
  }
  .coll {
      display: grid;
-     border: 1px solid var(--main-border-color);
+     /* border: 1px solid var(--main-border-color); */
      grid-gap: 10px;
      justify-items: center;
      align-items: center;

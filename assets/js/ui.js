@@ -315,7 +315,7 @@ for (let [key, value] of params) {
         // this fetches and parses the JSON for a single detailed result.
         getPerenualPlantDetail($("#detailedresult"), value, "regular_url")
         // we will hide search-by-name results html in this mode.
-        $("#results").hide()
+       // $("#results").hide()
         $("#detailedresult").show()
         $(".landing").hide()
     } else {

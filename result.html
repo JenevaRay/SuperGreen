@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Lato:ital,wght@1,100&family=Quicksand:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="result.css">
+    <title>search result</title>
+</head>
+
+<body>
+    <header>
+        <div class="weather">
+            <img src="./assets/images/cloudy.png" alt="weather-pic">
+        </div>
+        <form class="form-subscribe" id="contactForm">
+        <div class="search-container">
+            <input type="text" id="searchplant" class="search-input" placeholder="Search Plants here">
+            <button type="submit" class="search-button">
+                <span class="search-icon"></span>Search
+            </button>
+          </form>
+        </div>
+        <div class="logo">
+            <img src="./assets/images/logo.png" alt="logo">
+        </div>
+    </header>
+    <main>
+    <div id="results">
+        <div class="top">
+            <div class="coll left-side">
+              <ul>
+                <li id="detailed_origin"></li>
+                <li id="detailed_poisonous_to_"></li>
+                <li id="detailed_cycle"></li>
+                <li id="detailed_type"></li>
+                <li id="detailed_dimension"></li>
+                <li id="detailed_attracts"></li>
+                <li id="detailed_care_level"></li>
+                <li id="detailed_flowering_season"></li>
+                <li id="detailed_flower_color"></li>
+                <li id="detailed_growth_rate"></li>
+                <li id="detailed_soil"></li>
+                <li id="detailed_pest_susceptibility"></li>
+                <li id="detailed_propagation"></li>
+            </ul>
+            </div>
+          <div class="main plant-image" id="detailed_all_image">
+            <div id="detailed_default_image"></div>
+            
+          </div>
+          <div class="coll coll1">    
+            <h1 id="detailed_common_name" class="common_name">Plant name</h1>
+            <p id="detailed_scientific_name" class="scientific_name">Scientfic name</p>    
+            <div id="detailed_description"></div>
+          </div>
+          <div class="coll coll2">
+            <div id="detailed_hardiness_location"></div> 
+          </div>
+          </div>
+</div>
+          <section class="guides-tips">
+            <h1>Guides & Tips</h1>
+            <div class="guides">
+          <div class="guide">
+            <span class="icon">&#x1F343</span>
+            <h3>watering</h3>
+            <li>1 gallon</li>
+          </div>
+          <div class="guide">
+            <span class="icon">&#x1F33F</span>
+            <h3>sunlight</h3>
+            <li>half</li>
+          </div>
+          <div class="guide">
+            <span class="icon">&#x1F340</span>
+            <h3>Propagation</h3>
+            <p>Lorem ipsum.</p>
+          </div>
+          <div class="guide">
+            <span class="icon">&#x1F331</span>
+            <h3>guide</h3>
+            <p>Lorem ipsum assumenda.</p>
+          </div>
+        </div>
+        </section>
+      </main>
+        <script src="./assets/js/weather.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+        integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/ui.js"></script>
+</body>
+
+</html>

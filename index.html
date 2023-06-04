@@ -21,10 +21,10 @@
                 <h1 class="title">SuperGreen</h1>
             </div>
             <!-- on click of "submit", remove class hide -->
-            <div class="container search-box hide">
-                <input type="text" placeholder="Search Plants Here" class="search">
-                <input type="submit" value="Search" id="searchplant" class="search-btn">
-            </div>
+            <form id="minisearch" class="search-box">
+                <input class="search" placeholder="Search Plants Here" />
+                <div class="col-auto"><button class="btn btn-lg" type="submit">Search</button></div>
+            </form>           
         </nav>
         <section class="landing">
             <!-- this section will only appear on the landing page -->
@@ -35,14 +35,14 @@
                             <div class="text-center text-white">
                                 <!-- Page heading-->
                                 <h1 class="mb-5">Expert Gardening is One Search Away!</h1>
-                                <form class="form-subscribe" id="contactForm">
-                                    <div class="row lg-search">
+                                <div class="form-subscribe" id="contactForm">
+                                    <form class="row lg-search">
                                         <div class="col">
                                             <input class="form-control form-control-lg" id="searchplant" placeholder="Search Plant" />
                                         </div>
-                                        <div class="col-auto"><button class="btn btn-lg" id="submitButton" type="submit">Search</button></div>
-                                    </div>           
-                                </form>
+                                        <div class="col-auto"><button class="btn btn-lg" type="submit">Search</button></div>
+                                    </form>           
+                                </div>
                             </div>
                         </div>
                     </div>

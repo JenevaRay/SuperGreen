@@ -242,17 +242,36 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
     }
 }
 
-$("#contactForm").on("submit", (event) => {
+$("form").on("submit", (event) => {
     event.preventDefault()
     // get the text from the first input within the form.
-    let searchString = $("form").find("input").first().val()
+    let searchString = $(event.target).find("input").first().val()
     // search for the string given in the search box.
     window.location.href = `${window.location.pathname}?q=${searchString}`
 })
 
+// $("#contactForm").on("submit", (event) => {
+//     event.preventDefault()
+//     // get the text from the first input within the form.
+//     let searchString = $("form").find("input").first().val()
+//     // search for the string given in the search box.
+//     window.location.href = `${window.location.pathname}?q=${searchString}`
+// })
+
+// $("#minisearch").on("submit", (event) => {
+//     event.preventDefault()
+//     console.log()
+//     // get the text from the first input within the form.
+//     let searchString = $("#minisearch").find("input").first().val()
+//     // search for the string given in the search box.
+//     window.location.href = `${window.location.pathname}?q=${searchString}`
+// })
+
+
 params = new URLSearchParams(window.location.search)
 invalidParams = false;
 $("#detailedresult").hide()
+$("#minisearch").hide()
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
@@ -261,6 +280,7 @@ for (let [key, value] of params) {
             getPerenualSpeciesList($("#results"), value, "thumbnail")
             // we will hide detailed results html for searching by name, when one has been selected, then it switches modes to detailed results by plantID
             $("#detailedresult").hide()
+            $("#minisearch").show()
             $(".landing").hide()
         }
     } else if (key === "plantID") {
@@ -270,6 +290,7 @@ for (let [key, value] of params) {
         // we will hide search-by-name results html in this mode.
        // $("#results").hide()
         $("#detailedresult").show()
+        $("#minisearch").show()
         $("#results").hide()
         $(".landing").hide()
     } else {

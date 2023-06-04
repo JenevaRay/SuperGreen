@@ -39,7 +39,12 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         $(`<h4>`).text(perenualApiResult.scientific_name).appendTo(scientificNameDiv);
         
         let imgDiv = $(`<div class="default_image">`).appendTo(mainDiv);
-        $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
+        if (perenualApiResult.default_image[imgSize] == undefined) {
+            // some images in the API do not have resized images.
+            $(`<img src=${perenualApiResult.default_image['original_url']}>`).appendTo(imgDiv);
+        } else {
+            $(`<img src=${perenualApiResult.default_image[imgSize]}>`).appendTo(imgDiv);
+        }
         let favorite = $(`<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`).appendTo(imgDiv)
         favorite.attr("fill", "#ffffffbb")
         if (cache.favorites != undefined) {
@@ -90,7 +95,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
             // this is a filler image for a legitimate entry, but we don't want to display trees when people are looking for raspberries.
             thisDiv.hide()
         }
-
+        
         if (perenualApiResult.other_name.length != 0) {
             let otherNameDiv = $(`<div class="other_name">`).appendTo(thisDiv)
             $("<p>").text(`Also known as: ${perenualApiResult.other_name.join(', ')}`).appendTo(otherNameDiv)
@@ -127,39 +132,39 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                 }
             }
         }
-            $(`${mode}_default_image`).on("click", (event) => {
-                let target = $(event.target)
-                // svg and path are svg elements.
-                if (target.is("svg") || target.is("path")) {
-                    console.log()
-                    let inFavorites = false
-                    if (cache.favorites == undefined) {
-                        cache.favorites = []
-                    } else {
-                        for (row in cache.favorites) {
-                            if (cache.favorites[row].id == perenualApiResult.id) {
-                                inFavorites = true
-                                cache.favorites.splice(row, 1)
-                                localStorage.setItem("PerenualInfo", JSON.stringify(cache))
-                                favorite.attr("fill", "#ffffffbb")
-                            }
+        $(`${mode}_default_image`).on("click", (event) => {
+            let target = $(event.target)
+            // svg and path are svg elements.
+            if (target.is("svg") || target.is("path")) {
+                console.log()
+                let inFavorites = false
+                if (cache.favorites == undefined) {
+                    cache.favorites = []
+                } else {
+                    for (row in cache.favorites) {
+                        if (cache.favorites[row].id == perenualApiResult.id) {
+                            inFavorites = true
+                            cache.favorites.splice(row, 1)
+                            localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                            favorite.attr("fill", "#ffffffbb")
                         }
                     }
-                    if (!inFavorites) {
-                        // then we'll add to favorites.
-                        let data = {
-                            "id": perenualApiResult.id,
-                            "common_name": perenualApiResult.common_name,
-                            "scientific_name": perenualApiResult.scientific_name
-                        }
-                        cache.favorites.push(data)
-                        localStorage.setItem("PerenualInfo", JSON.stringify(cache))
-                        favorite.attr("fill", "#a52a2acc")
+                }
+                if (!inFavorites) {
+                    // then we'll add to favorites.
+                    let data = {
+                        "id": perenualApiResult.id,
+                        "common_name": perenualApiResult.common_name,
+                        "scientific_name": perenualApiResult.scientific_name
                     }
-                    // console.log(data)
-                } 
-                makeFavoritesButtons()
-            })
+                    cache.favorites.push(data)
+                    localStorage.setItem("PerenualInfo", JSON.stringify(cache))
+                    favorite.attr("fill", "#a52a2acc")
+                }
+                // console.log(data)
+            } 
+            makeFavoritesButtons()
+        })
 
 
 
@@ -230,158 +235,6 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
         let key = "care-guides"
         getPerenualCareInfo(perenualApiResult[key].replace(/http/i, "https"))
         getOpenAIquery(perenualApiResult, perenualApiResult[key].replace(/http/i, "https"))
-        // todo: eventually remove the below section.
-        
-        // for (let [key, value] of Object.entries(perenualApiResult)) {
-        //     let paywalled = false;
-        //     let imgLicenseRestricted = false;
-        //     // note: we're putting the Perenual plantID here in the DIV.  That way it's all distinct info.
-        //     let innerDiv = ""
-        //     if (["id"].includes(key)) {
-        //         if (linked) {
-        //             let plantID = value
-        //             thisDiv.on("click", () => {
-        //                 // console.log(plantID)
-        //                 window.location.href = `${window.location.pathname}?plantID=${plantID}`
-        //             })
-        //         }
-        //         // medicinal_method is filtered out per team choice due to out-of-scope data.
-        //     } else if (["medicinal_method"].includes(key)) {
-        //         // if the data is not there because it's pending, then don't show it.
-        //     } else if (["Coming Soon"].includes(value)) {
-        //         // TODO: uncomment, because irrelevant information doesn't belong (hiding disabled for layout testing).
-        //         // innerDiv.hide()
-        //     } else {
-        //         innerDiv = $(`<div class="${key}">`).appendTo(thisDiv) // for each data element, for custom styling.
-        //         // console.log(key)
-        //         let header = ""
-        //         if (["common_name"].includes(key)) {
-        //             // give custom headers for specific elements, like here, we're giving the <h1> tag for "common_name" info.
-        //             $(`${mode}_${key}`).text(value)
-        //             // header = $("<h1>").text(value).appendTo(innerDiv)
-        //         // } else if (["care-guides"].includes(key)) {
-        //         //     // if there is no care guide (which seems common) then this is automatically omitted
-        //         //     // the URL given to us by the API silently requires HTTPS
-        //         //     getPerenualCareInfo(innerDiv, value.replace(/http/i, "https"))
-        //         // } else if (["scientific_name"].includes(key)) {
-        //         //     header = $("<h2>").text(value).appendTo(innerDiv)
-        //         // } else if (["other_name"].includes(key)) {
-        //         //     // aliases also matter.
-        //         //     p = $("<p>").text(value.join(", ")).appendTo(innerDiv)
-        //         } else {
-        //             if (!["default_image"].includes(key)) {
-        //                 // we won't add a header for images.
-        //                 header = $("<h2>").text(key).appendTo('innerDiv')
-        //                 // this is a default category header, but not for images.
-        //                 header = $("<h2>").text(key).appendTo(innerDiv)
-        //             } 
-        //             // and now we'll add any other info as <p>words</p>
-        //             let p = "" // pre-define it so that we can use it later out of the scope of the switch case below.
-        //             switch (typeof perenualApiResult[key]) {
-        //                 case "string":
-        //                     p = $("<p>").text(perenualApiResult[key]).insertAfter(header)
-        //                     break;
-        //                 case "object":
-        //                     if (Array.isArray(perenualApiResult[key])) {
-        //                         if (perenualApiResult[key].length == 0) {
-        //                             // if the information is empty, do not show the category.
-        //                             // TODO, enable after category layout is determined.
-        //                             // innerDiv.hide()
-        //                         }
-        //                         for (index in perenualApiResult[key]) {
-        //                             // for each entry in the array, give it its own line.
-        //                             p = $("<p>").text(perenualApiResult[key][index]).insertAfter(header)
-        //                         }
-        //                     } else {
-        //                         innerObj = perenualApiResult[key]
-        //                         if (key == "hardiness_location") {
-        //                             iframeHtml = innerObj.full_iframe
-        //                             target = $(`#detailed_${key}`)
-        //                             $(`${iframeHtml}`).appendTo(target)
-        //                             hardinessURL = innerObj.full_url;                                    
-        //                             // let hardinessImg = $(`<img src=${hardinessURL}>`).insertAfter(header)
-        //                             // this seems to be a full page, and is NOT cacheable.
-        //                         } else if (key == "hardiness") {
-        //                             let max = perenualApiResult[key].max
-        //                             let min = perenualApiResult[key].min
-        //                             p = $("<p>").text(`min: ${min}, max: ${max}`).insertAfter(header)
-        //                         } else if (key == "flowering_season") {
-        //                             if (perenualApiResult[key] == null) {
-        //                                 innerDiv.hide()
-        //                             } else {
-        //                                 $("<p>").text(value).appendTo('#typeContainer');
-        //                             }
-        //                             // p = $("<p>").text(`min: ${min}, max: ${max}`).insertAfter(header)
-        //                         } else if (key == "default_image") {
-        //                             if (perenualApiResult[key][imgSize].includes("49255769768_df55596553_b.jpg")) {
-        //                                 if (debug.dataToBeDisplayed) {
-        //                                     console.log("omitted search result with erroneous image.")
-        //                                 }
-        //                                 thisDiv.hide()
-        //                             } 
-        //                             switch(perenualApiResult[key].license_name) {
-        //                                 case undefined:
-        //                                     paywalled = true;
-        //                                     // we would get this one in case of paywall, so we'll silently hide them
-        //                                     break;
-        //                                 case "CC0 1.0 Universal (CC0 1.0) Public Domain":
-        //                                     // freely usable
-        //                                 case "Attribution-ShareAlike License":
-        //                                 case "Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)":
-        //                                     imgLicenseRestricted = true;
-        //                                     // use of this licence requires everything to be made copyleft (freely available upon request.)
-        //                                 default: 
-        //                                     console.log(perenualApiResult.default_image.license_name + " not known!")
-        //                                 case "authorized":
-        //                                     // for any of the above case statements, display the image.  for any of the below case statements, do not.
-        //                                     $(`<img src=${perenualApiResult[key][imgSize]}>`).appendTo(innerDiv)
-        //                                     // move this section up or down depending on team agreement.
-        //                                     break
-        //                                 }
-                
-        //                         } else {
-        //                             if (value == null) {
-        //                                 // if the information... really doesn't have information, then we'll hide the section.
-        //                                 innerDiv.hide()
-        //                             } else {
-        //                                 // if the category does have information, report it.
-        //                                 console.log(key)
-        //                             }
-        //                         }
-                                
-        //                     }
-        //                     break;
-        //                 case "boolean":
-        //                     booleanFields = ["cuisine"]
-        //                     if (perenualApiResult[key]) {
-        //                         // if it evaluates to True
-        //                         if (booleanFields.includes(key)) {
-        //                             header.text("IS " + header.text())
-        //                         }    
-        //                     } else {
-        //                         // if it evaluates to False
-        //                         header.text("IS NOT " + header.text())
-        //                     }
-        //                     // console.log(cache[url][key])
-        //                     break;
-        //                 case "number":
-        //                     // this is another form of boolean.  Data returned is either 0 or 1.
-        //                     if (perenualApiResult[key] == 1) {
-        //                         header.text("IS " + header.text())
-        //                     } else if (perenualApiResult[key] == 0) {
-        //                         header.text("IS NOT " + header.text())
-        //                     } else {
-        //                         p = $("<p>").text(perenualApiResult[key]).insertAfter(header)
-        //                     }
-        //                     break;
-        //                 default:
-        //                     // if we don't know what the field is and how to display it, show this.
-        //                     console.log(typeof perenualApiResult[key])
-        //                     break;
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
 

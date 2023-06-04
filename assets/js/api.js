@@ -336,14 +336,14 @@ function getOpenAIquery(detailedJson) {
                 }
             }, 50)
         }
-        if (debug.demo) {
-            $("#hidewhenAIsummary").hide()
-        }
         checkPerenualCareInfo()
         
         // console.log(parsedJson)        
     } else {
-        $("#hidewhenautosummary").show()
+        $("#hidewhenAIsummary").show()
+        if (debug.demo) {
+            $("#hidewhenAIsummary").hide()
+        }
         console.log("OpenAI API key not set.")
         console.log(`type:  API.openAI = "___your secret key here____";`)
         console.log(`then:  localStorage.setItem("API", JSON.stringify(API));`)

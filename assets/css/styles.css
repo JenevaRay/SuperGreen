@@ -782,7 +782,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         font-size: 25px;
 
     }
-}
+}*/
    
 .hardiness-location-container {
     width: 100%;
@@ -812,4 +812,4 @@ svg:hover {
 
 .default_image {
     width: min-content;
-} */
+}

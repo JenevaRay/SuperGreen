@@ -21,6 +21,7 @@ if (cache == null) {
 
 // for debugging purposes.
 let debug = {
+    demo: true,
     // cache: true,
     cache: false,
     // dataToBeDisplayed: false,
@@ -243,7 +244,7 @@ function getPerenualCareInfo(url) {
     checkPerenualInfo()
 }
 
-function getOpenAIquery(detailedJson, careGuideURL) {
+function getOpenAIquery(detailedJson) {
     if (API.openAI != undefined) {
         $("#hidewhenautosummary").hide()
         parsedJson = $.extend(true, {}, detailedJson)
@@ -334,6 +335,9 @@ function getOpenAIquery(detailedJson, careGuideURL) {
                     checkPerenualCareInfo()
                 }
             }, 50)
+        }
+        if (debug.demo) {
+            $("#hidewhenAIsummary").hide()
         }
         checkPerenualCareInfo()
         

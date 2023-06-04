@@ -17,8 +17,10 @@
         <!-- nav bar, will remain the same on both landing page and search results page. -->
         <nav class="navbar navbar-light bg-light whole-nav">
             <div class="left-nav">
-                <img class="logo" src="assets/images/logo.png" alt="Garden">
-                <h1 class="title">SuperGreen</h1>
+                <a class="undecorated" href="#">
+                    <img class="logo" src="assets/images/logo.png" alt="Garden">
+                    <h1 class="title">SuperGreen</h1>
+                </a>
             </div>
             <div id="favorites"></div>
             <form id="minisearch" class="search-box">
@@ -38,7 +40,7 @@
                                 <div class="form-subscribe" id="contactForm">
                                     <form class="row lg-search">
                                         <div class="col">
-                                            <input class="form-control form-control-lg" id="searchplant" placeholder="Search Plant" />
+                                            <input class="form-control form-control-lg" placeholder="Search Plant" />
                                         </div>
                                         <div class="col-auto"><button class="btn btn-lg" type="submit">Search</button></div>
                                     </form>           
@@ -82,8 +84,8 @@
                 </div>
             </section>
             <!-- Image Showcases -->
-            <section class="showcase">
-                <div class="container-fluid p-0">
+            <!-- <section class="showcase"> -->
+                <div class="showcase container-fluid p-0">
                     <div class="row g-0">
                         <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/images/agriculture.jpg')"></div>
                         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
@@ -106,14 +108,14 @@
                         </div>
                     </div>
                 </div>
-            </section> 
+            <!-- </section>  -->
         </section>
         <!-- below is the result page that will be hidden until the search is executed --> 
-        <main class="result-page ">
-            <div id="results"></div>           
+        <main>
+            <div id="results"></div>
             <section id="detailedresult" class="wrapper features-icons bg-light text-center right-feature">
                 <div>
-                    <div class="coll left-side"  id="hidewhenAIsummary">
+                    <!-- <div class="coll left-side"  id="hidewhenAIsummary">
                         <ul>
                             <li id="detailed_origin"></li>
                             <li id="detailed_poisonous_to_"></li>
@@ -129,8 +131,8 @@
                             <li id="detailed_pest_susceptibility"></li>
                             <li id="detailed_propagation"></li>
                         </ul>
-                    </div>
-                    <div class="main plant-image" id="detailed_all_image">
+                    </div> -->
+                    <div class="main plant-image">
                         <div id="detailed_default_image"></div>                            
                     </div>    
                     <div class="coll coll1">    
@@ -181,7 +183,7 @@
                         </div>
                     </div>
 
-                    <div class="coll coll2">
+                    <div class="coll coll2 hardinessmap">
                         <h3>Where This Plant Best Grows Year Round</h3>
                         <div id="detailed_hardiness_location"></div> 
                     </div>

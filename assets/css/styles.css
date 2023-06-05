@@ -554,9 +554,10 @@ footer ul li a {
     }
     * input{
      min-height: 40px;
-     min-width: 400px;
+     min-width: 200px;
     
     }
+
     
 /* added for Solomon's reference. */
 
@@ -803,7 +804,6 @@ color: var(--text-dark); /* color of the text root name  should've changed */
        .coll1 {
         font-size: 15px;
     }
-   
 }
 /* 
 .weatherlist {

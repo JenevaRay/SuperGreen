@@ -84,6 +84,7 @@ function showEachSearchResult(perenualApiResult, jQueryEl, imgSize, linked = fal
                         localStorage.setItem("PerenualInfo", JSON.stringify(cache))
                         favorite.attr("fill", "#a52a2acc")
                     }
+                    makeFavoritesButtons()
                     // console.log(data)
                 } else {
                     window.location.href = `${window.location.pathname}?plantID=${perenualApiResult.id}`
@@ -271,18 +272,22 @@ $("form").on("submit", (event) => {
 
 params = new URLSearchParams(window.location.search)
 invalidParams = false;
+
+$("#results").hide()        
 $("#detailedresult").hide()
 $("#minisearch").hide()
+
 for (let [key, value] of params) {
     if (key === "q") {
         if (value != "") {
             // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
             // this fetches and parses the JSON for multiple generic results.
+            $(".landing").hide()
+            $("#results").show()
             getPerenualSpeciesList($("#results"), value, "thumbnail")
             // we will hide detailed results html for searching by name, when one has been selected, then it switches modes to detailed results by plantID
-            $("#detailedresult").hide()
             $("#minisearch").show()
-            $(".landing").hide()
+            
         }
     } else if (key === "plantID") {
         // image size from ["medium_url", "original_url", "regular_url", "small_url", "thumbnail"]
@@ -292,7 +297,7 @@ for (let [key, value] of params) {
        // $("#results").hide()
         $("#detailedresult").show()
         $("#minisearch").show()
-        $("#results").hide()
+        
         $(".landing").hide()
     } else {
         //console.log(`search parameter ${key} not implemented`)
@@ -309,3 +314,10 @@ function makeFavoritesButtons () {
     }
 }
 makeFavoritesButtons()
+
+$(document).ready(function(){
+    $(".dropdown").click(function(){
+        $(this).toggleClass("active");
+        $("#favorites").toggleClass("active");
+    })
+});

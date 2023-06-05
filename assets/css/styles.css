@@ -14,6 +14,7 @@ html, body {
     background-color: var(--main-bg-color);
     position: relative;
     height: 100%;
+    background-color: rgba(var(--light), var(--bg-opacity));
 }
 :root {
     --main-bg-color: hsla(0, 0%, 100%, 0.8);;
@@ -36,7 +37,7 @@ html, body {
 .navbar {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: row wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -53,7 +54,7 @@ html, body {
     margin: 0;
 }
 
-.title {
+h1 {
     color: var(--text-dark);
     margin: 0;
     font-size: 28px;
@@ -77,7 +78,7 @@ html, body {
 #searchplant {
     display: flex;
     justify-content: flex-end;
-}
+} */
 
 /* general styling for inputs */
 input[type='text'] {
@@ -92,7 +93,7 @@ input[type='text']:focus {
     border-color: var(--main-text-color);
 }
 
-input[type='submit'] {
+button[type='submit'] {
     padding: 10px 20px;
     border: 1px solid var(--main-border-color);
     border-radius: 5px;
@@ -117,7 +118,7 @@ input[type='submit'] {
 /* main area, including extra plant search button */
 header.masthead {
     position: relative;
-    background-color: #343a40;
+    /* background-color: #343a40; */
     background: url("../images/Leafy-Vegetable-Garden.webp") no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
@@ -209,9 +210,9 @@ header.masthead h1, header.masthead .h1 {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    /* -webkit-appearance: none; */
+    -moz-appearance: none;
+    appearance: none;
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -351,78 +352,78 @@ button,
     opacity: 0.85;
 }
 /* footer element */
-.footer {
+/* .footer {
     padding-top: 4rem;
     padding-bottom: 4rem;
     padding-left: 2rem;
-}
+} */
 
-.h-100 {
+/* .h-100 {
     height: 100% !important;
-}
+} */
 
 .my-auto {
     margin-top: auto !important;
     margin-bottom: auto !important;
 }
 
-.list-inline {
+/* .list-inline {
     padding-left: 0;
     list-style: none;
-}
+} */
 
-.list-inline-item {
+/* .list-inline-item {
     display: inline-block;
-}
+} */
 
-.list-inline-item:not(:last-child) {
+/* .list-inline-item:not(:last-child) {
     margin-right: 0.5rem;
-}
-footer ul li a {
+} */
+/* footer ul li a {
     color: var(--text-dark);
     text-decoration: none;
-}
+} */
 /* general styling elements */
-.mb-2 {
+/* .mb-2 {
     margin-bottom: 0.5rem !important;
-}
+} */
 
-.text-muted {
+/* .text-muted {
     --text-opacity: 1;
     color: #6c757d !important;
-}
+} */
 
-.small {
+/* .small {
     font-size: 0.875em;
-}
+} */
 
-.mb-4 {
+/* .mb-4 {
     margin-bottom: 1.5rem !important;
-}
+} */
 
 /* styling for results page */
-.main  > *  {
+.main > *  {
     margin: 30px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
  }
+/* the only element that used this is going away. */
  .top {
-     display: grid;
-     grid-template-areas: "main coll1"
-                          "left-side coll2";
+    display: grid;
+    grid-template-areas: "main coll1"
+                         "left-side coll2";
  }
- 
  .main {
      grid-area: main;
-     border: 1px solid var(--main-border-color);
+     /* border: 1px solid var(--main-border-color); */
  }
  .main img {
      width: 100%;
  }
  .coll {
      display: grid;
-     border: 1px solid var(--main-border-color);
+     /* border: 1px solid var(--main-border-color); */
      grid-gap: 10px;
      justify-items: center;
      align-items: center;
@@ -462,30 +463,31 @@ footer ul li a {
     font-weight: 300;
     line-height: 1.5;
  }
-    .coll1 h1 {
-        text-align: center;
-        text-decoration: underline;
-        color:var(--main-accent-color)
-    }
-    .coll1 p {
-      text-decoration: underline;
-      color: var(--main-accent-color);
-      text-align: center;
-    }
- .coll2 {
-     grid-area: coll2;
- }
- .coll2 ul {
+.coll1 h1 {
+    text-align: center;
+    text-decoration: underline;
+    color:var(--main-accent-color)
+}
+.coll1 p {
+    text-decoration: underline;
+    color: var(--main-accent-color);
+    text-align: center;
+}
+.coll2 {
+    grid-area: coll2;
+}
+/* the list is going away */
+/* .coll2 ul {
      list-style-type: circle;
      margin-left: 3px;
      line-height: 1.5;
      padding: 10px;
-     }  
-    .coll2 li {        
-     border: 1px solid #ccccccf8;
-     border-radius: 4px;
-     margin-top: 3px;
-    }
+     }   */
+/* .coll2 li {        
+    border: 1px solid #ccccccf8;
+    border-radius: 4px;
+    margin-top: 3px;
+} */
 
 .search-box {
     display: flex;
@@ -496,16 +498,20 @@ footer ul li a {
     margin-left: 50px;
 }
 
-#searchplant {
+form div input
+/* removed id from html, not used programmatically */
+/* #searchplant  */
+{
     display: flex;
 }
-.search-container {
+
+/* .search-container {
     display: flex;
     align-items: center;
     margin: 10px 20px 10px auto;
-  }
+  } */
   
-  .search-input {
+  /* .search-input {
     width: 300px;
     padding: 10px;
     border: 1px solid #cccccc6e;
@@ -513,32 +519,26 @@ footer ul li a {
     font-size: 16px;
     margin-right: 10px;
     text-transform: none;
-  }
+  } */
   
-  .search-button {
+  /* .search-button {
     border: none;
     color: white;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-  }
+  } */
   
-  .search-button:hover {
-    background-color: var(--main-text-color);
-  }
-    .logo img {
-   width: 30px;
-   margin-top: 20px;
-  }
-
-
-/* added for Solomon's reference. */
-.result-page {
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 10px;
+ /* .search-button:hover {
+    background-color: var(--main-text-color); 
+  }  */
+.logo img {
+    width: 30px;
+    margin-top: 20px;
 }
+
 #results {
+    /* merged from other classes, which made for redundant entries */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 10px;
@@ -550,6 +550,9 @@ footer ul li a {
     text-align: center;
     align-items: center;
     justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 10px;
 }
 .default_image {
     border-radius: 5px;
@@ -565,20 +568,21 @@ footer ul li a {
     transform: scale(1.02);
     cursor: pointer;
 }
-.mainDiv{
-color: var(--text-dark); /* color of the text root name  should've changed */
-}
-.mainDiv h1{
+/* .mainDiv{
+color: var(--text-dark);
+} */
+/* .mainDiv h1{
     font-weight: 600;
     text-decoration: underline;
     text-align: center;
-}
-.mainDiv h1:hover{
+} */
+/* .mainDiv h1:hover{
     color: var(--main-accent-color);
     cursor: pointer;
-}
+} */
 
-.guides{
+
+/* .guides{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     background-color: var(--main-bg-color);
@@ -586,9 +590,9 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     border: 1px solid black;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+} */
 
-.guides .icon {
+/* .guides .icon {
     color: gray
 }
 
@@ -597,17 +601,27 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     background-color: var(--main-accent-color);
     margin: 0;
     font-size: 28px;
-}
+} */
 
-.guide {
+/* .guide {
     border: 1px solid var(--main-text-color);
     margin: 10px;
-}
+} */
 
-.hide {
+/* .hide {
     display: none;
+} */
+
+.undecorated {
+    text-decoration: none;
+    flex: 1 0 100%;
+    flex-flow: row nowrap;
+    display: flex;
 }
 
+.hardinessmap {
+    margin-top: 2em;
+}
 
 @media (min-width: 992px) {
     .col-lg {
@@ -742,7 +756,9 @@ color: var(--text-dark); /* color of the text root name  should've changed */
     }
     .whole-nav {
         display: flex;
-        flex-direction: column;
+        /* this was actually not helping */
+        /* flex-direction: column; */
+        flex-flow: row wrap;
         justify-content: center;
         align-items: center;
     }
@@ -793,9 +809,8 @@ color: var(--text-dark); /* color of the text root name  should've changed */
 @media screen and (max-width: 992px) {    
     .mainDiv h1{
         font-size: 25px;
-
     }
-}
+} */
    
 .hardiness-location-container {
     width: 100%;
@@ -825,4 +840,4 @@ svg:hover {
 
 .default_image {
     width: min-content;
-} */
+}

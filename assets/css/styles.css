@@ -37,7 +37,7 @@ html, body {
 .navbar {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: row wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -756,7 +756,9 @@ color: var(--text-dark);
     }
     .whole-nav {
         display: flex;
-        flex-direction: column;
+        /* this was actually not helping */
+        /* flex-direction: column; */
+        flex-flow: row wrap;
         justify-content: center;
         align-items: center;
     }
@@ -807,7 +809,6 @@ color: var(--text-dark);
 @media screen and (max-width: 992px) {    
     .mainDiv h1{
         font-size: 25px;
-
     }
 } */
    

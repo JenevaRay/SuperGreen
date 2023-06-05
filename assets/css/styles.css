@@ -409,11 +409,11 @@ button,
     border-radius: 10px;
  }
 /* the only element that used this is going away. */
- /* .top {
-     display: grid;
-     grid-template-areas: "main coll1"
-                          "left-side coll2";
- } */
+ .top {
+    display: grid;
+    grid-template-areas: "main coll1"
+                         "left-side coll2";
+ }
  .main {
      grid-area: main;
      /* border: 1px solid var(--main-border-color); */
@@ -504,6 +504,7 @@ form div input
 {
     display: flex;
 }
+
 /* .search-container {
     display: flex;
     align-items: center;

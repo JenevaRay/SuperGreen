@@ -803,8 +803,7 @@ color: var(--text-dark); /* color of the text root name  should've changed */
         align-items: center;
     }
     .dropdown {
-        justify-content: space-around;
-        transform:scale(0.2rem);
+        translate: 0px;
     }
     .left-nav {
         justify-content: center;

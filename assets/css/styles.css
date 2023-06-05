@@ -7,7 +7,7 @@
 
 *, ::before, ::after {
     box-sizing: border-box;
-    margin: 0px;
+    margin: 2px;
     padding: 0px;
 }
 html, body {
@@ -524,14 +524,42 @@ footer ul li a {
   #favorites button {
     max-width: 100%;
     margin: 5px;
-}
+  }
+    #favorites {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
 
+    #favorites[type=svg] {
+        transition: all 0.2s ease-in-out;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+   
+    * button {
+        max-height: 40px;
+    }
+    * input{
+     min-height: 40px;
+     min-width: 400px;
+    
+    }
+    
 /* added for Solomon's reference. */
-.result-page {
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 10px;
-}
+
 #results {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -36,7 +36,7 @@ html, body {
 .navbar {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: row wrap;
     align-items: center;
     justify-content: space-between;
 }

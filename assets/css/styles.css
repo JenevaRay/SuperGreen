@@ -521,7 +521,10 @@ footer ul li a {
    width: 30px;
    margin-top: 20px;
   }
-
+  #favorites button {
+    max-width: 100%;
+    margin: 5px;
+}
 
 /* added for Solomon's reference. */
 .result-page {
@@ -772,7 +775,8 @@ color: var(--text-dark); /* color of the text root name  should've changed */
        .coll1 {
         font-size: 15px;
     }
-    }
+   
+}
 /* 
 .weatherlist {
     color: rgb(10, 157, 10);

@@ -314,3 +314,10 @@ function makeFavoritesButtons () {
     }
 }
 makeFavoritesButtons()
+
+$(document).ready(function(){
+    $(".dropdown").click(function(){
+        $(this).toggleClass("active");
+        $("#favorites").toggleClass("active");
+    })
+});

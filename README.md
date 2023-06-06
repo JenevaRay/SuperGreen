@@ -13,8 +13,6 @@ Where plant care makes a green thumb!
 ## Description
 We wrote this app to meet the need of one of our teammates' desire to have a plant care site.  It has a wealth of information that includes things like what bugs a plant can attract, what soil it grows best in, where it is found naturally, how much sunlight and watering it requires, and even how to prune them.
 
-## Features
-
 
 ## Table of Contents
 * Index.html                `The main page site, which includes three different functional modes.`
@@ -35,6 +33,8 @@ We wrote this app to meet the need of one of our teammates' desire to have a pla
 ## Usage
 To use this site, navigate to the `index.html` file.  From there, you can search for various plant names, i.e. `lettuce`.
 To get details on a search result, simply click on it.  We'd make it simpler, but...  that would be reading minds.
+
+## Screenshot of Site
 
 ## Credits
 [inspiration](https://github.com/IvanCampos/OpenAI-API/) for one of the API implementations ~Jeneva

@@ -30,11 +30,12 @@ We wrote this app to meet the need of one of our teammates' desire to have a pla
 * `git clone` (you must provide API keys in console as well)
 * confidential deployment
 
+## Screenshot of Site
+
+
 ## Usage
 To use this site, navigate to the `index.html` file.  From there, you can search for various plant names, i.e. `lettuce`.
 To get details on a search result, simply click on it.  We'd make it simpler, but...  that would be reading minds.
-
-## Screenshot of Site
 
 ## Credits
 [inspiration](https://github.com/IvanCampos/OpenAI-API/) for one of the API implementations ~Jeneva

@@ -31,6 +31,7 @@ We wrote this app to meet the need of one of our teammates' desire to have a pla
 * confidential deployment
 
 ## Screenshot of Site
+![image](https://github.com/JenevaRay/SuperGreen/assets/129894673/b72194e7-4b4e-4b0d-9fbd-ac76afc00a9d)
 
 
 ## Usage

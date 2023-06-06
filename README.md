@@ -26,7 +26,7 @@ We wrote this app to meet the need of one of our teammates' desire to have a pla
 * assets/images             `TODO: full list, and which image is for what.`
 
 ## Installation
-* Github Pages (you must provide API keys in console)
+* [Github Pages](https://jenevaray.github.io/SuperGreen/) (you must provide API keys in console)
 * `git clone` (you must provide API keys in console as well)
 * confidential deployment
 

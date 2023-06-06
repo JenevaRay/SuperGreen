@@ -32,6 +32,9 @@ We wrote this app to meet the need of one of our teammates' desire to have a pla
 
 ## Screenshot of Site
 ![image](https://github.com/JenevaRay/SuperGreen/assets/129894673/b72194e7-4b4e-4b0d-9fbd-ac76afc00a9d)
+![image](https://github.com/JenevaRay/SuperGreen/assets/129894673/2abd142a-1152-4d97-9bc8-f7be726d1ebb)
+![image](https://github.com/JenevaRay/SuperGreen/assets/129894673/d2db29dc-8f61-4e64-a69a-0b91c59c2a13)
+
 
 
 ## Usage
